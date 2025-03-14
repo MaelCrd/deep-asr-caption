@@ -1,0 +1,714 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import numpy as np
+import matplotlib.pyplot as plt
+from torch.utils.data import Dataset, DataLoader
+from torch.nn.utils.rnn import pad_sequence
+import torch.nn.functional as F
+from dataclasses import dataclass
+from typing import List, Dict, Tuple, Optional
+
+import shrink_tensor_pres
+
+from torch.amp.autocast_mode import autocast
+from torch.amp.grad_scaler import GradScaler
+
+# Vocabulary and tokenization utilities
+class Tokenizer:
+    def __init__(self, vocab_size=10000):
+        self.vocab_size = vocab_size
+        self.word2idx = {"<pad>": 0, "<sos>": 1, "<eos>": 2, "<unk>": 3}
+        self.idx2word = {0: "<pad>", 1: "<sos>", 2: "<eos>", 3: "<unk>"}
+        self.word_count = {}
+        self.vocab_size_current = 4  # Start with special tokens
+
+    def fit(self, text_samples: List[str]):
+        """Build vocabulary from text samples"""
+        for text in text_samples:
+            for word in text.lower().split():
+                word = word.strip(".,!?;:\"'()[]{}")
+                if word:
+                    if word not in self.word_count:
+                        self.word_count[word] = 0
+                    self.word_count[word] += 1
+        
+        # Sort words by frequency
+        sorted_words = sorted(self.word_count.items(), key=lambda x: x[1], reverse=True)
+        
+        # Add most common words to vocabulary (up to vocab_size)
+        for word, count in sorted_words:
+            if self.vocab_size_current < self.vocab_size:
+                if word not in self.word2idx:
+                    self.word2idx[word] = self.vocab_size_current
+                    self.idx2word[self.vocab_size_current] = word
+                    self.vocab_size_current += 1
+    
+    def encode(self, text: str) -> List[int]:
+        """Convert text to token indices"""
+        tokens = []
+        for word in text.lower().split():
+            word = word.strip(".,!?;:\"'()[]{}") 
+            if word in self.word2idx:
+                tokens.append(self.word2idx[word])
+            else:
+                tokens.append(self.word2idx["<unk>"])
+        return tokens
+    
+    def decode(self, indices: List[int]) -> str:
+        """Convert token indices to text"""
+        words = [self.idx2word.get(idx, "<unk>") for idx in indices if idx not in [0, 1, 2]]
+        return " ".join(words)
+
+# Dataset class
+class AudioTextAlignmentDataset(Dataset):
+    def __init__(self, data: List[Dict], tokenizer: Tokenizer, max_audio_len=50000):
+        self.data = data
+        self.tokenizer = tokenizer
+        self.max_audio_len = max_audio_len
+        
+    def __len__(self):
+        return len(self.data)
+    
+    def __getitem__(self, idx):
+        item = self.data[idx]
+        
+        # Audio processing - normalize and pad/trim
+        audio = item['audio']
+        if len(audio) > self.max_audio_len:
+            audio = audio[:self.max_audio_len]
+        else:
+            # Pad with zeros
+            padding = np.zeros(self.max_audio_len - len(audio))
+            audio = np.concatenate([audio, padding])
+        
+        # Convert audio to torch tensor and normalize
+        audio_tensor = torch.tensor(audio, dtype=torch.float32)
+        audio_tensor = (audio_tensor - audio_tensor.mean()) / (audio_tensor.std() + 1e-8)
+        
+        # Text processing
+        text = item['text']
+        text_tokens = self.tokenizer.encode(text)
+        text_tensor = torch.tensor(text_tokens, dtype=torch.long)
+        
+        # Word alignment information
+        word_boundaries = []
+        for start, end in zip(item['word_start'], item['word_end']):
+            # Normalize to be between 0 and 1 based on audio length
+            norm_start = start / max(item['word_end'][-1], 1.0)
+            norm_end = end / max(item['word_end'][-1], 1.0)
+            word_boundaries.append((norm_start, norm_end))
+        
+        # Create alignment target tensor - for each frame of audio, which word is being spoken
+        alignment = torch.zeros(self.max_audio_len, dtype=torch.long)
+        audio_duration = item['word_end'][-1]
+        frames_per_second = self.max_audio_len / audio_duration
+        
+        for i, ((start, end), word_idx) in enumerate(zip(word_boundaries, text_tokens)):
+            start_frame = int(start * self.max_audio_len)
+            end_frame = int(end * self.max_audio_len)
+            # Add 1 because 0 is reserved for "no word" (silence)
+            alignment[start_frame:end_frame] = i + 1
+            
+        return {
+            'audio': audio_tensor,
+            'text': text_tensor,
+            'text_length': len(text_tokens),
+            'alignment': alignment,
+            'word_boundaries': word_boundaries
+        }
+
+# Collate function for batching
+def collate_fn(batch):
+    # Sort by audio length for packing
+    batch = sorted(batch, key=lambda x: len(x['audio']), reverse=True)
+    
+    # Get audio tensors and pad
+    audios = [item['audio'] for item in batch]
+    audio_lengths = torch.tensor([len(audio) for audio in audios])
+    audio_tensor = pad_sequence(audios, batch_first=True, padding_value=0)
+    
+    # Get text tensors and pad
+    texts = [item['text'] for item in batch]
+    text_lengths = torch.tensor([item['text_length'] for item in batch])
+    text_tensor = pad_sequence(texts, batch_first=True, padding_value=0)
+    
+    # Get alignment tensors
+    alignments = [item['alignment'] for item in batch]
+    alignment_tensor = pad_sequence(alignments, batch_first=True, padding_value=0)
+    
+    # Get word boundaries
+    word_boundaries = [item['word_boundaries'] for item in batch]
+    
+    return {
+        'audio': audio_tensor,
+        'audio_lengths': audio_lengths,
+        'text': text_tensor,
+        'text_lengths': text_lengths,
+        'alignment': alignment_tensor,
+        'word_boundaries': word_boundaries
+    }
+
+# Audio encoder (feature extraction)
+class AudioEncoder(nn.Module):
+    def __init__(self, input_dim=1, hidden_dim=256, num_layers=3, dropout=0.3):
+        super(AudioEncoder, self).__init__()
+        
+        # 1D CNN for feature extraction
+        self.conv_layers = nn.Sequential(
+            nn.Conv1d(input_dim, 64, kernel_size=7, stride=2, padding=3),
+            nn.BatchNorm1d(64),
+            nn.ReLU(),
+            nn.Conv1d(64, 128, kernel_size=5, stride=2, padding=2),
+            nn.BatchNorm1d(128),
+            nn.ReLU(),
+            nn.Conv1d(128, 256, kernel_size=3, stride=2, padding=1),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Conv1d(256, hidden_dim, kernel_size=3, stride=2, padding=1),
+            nn.BatchNorm1d(hidden_dim),
+            nn.ReLU()
+        )
+        
+        # BiLSTM for sequence modeling
+        self.lstm = nn.LSTM(
+            hidden_dim, hidden_dim // 2, 
+            num_layers=num_layers, 
+            bidirectional=True,
+            dropout=dropout if num_layers > 1 else 0,
+            batch_first=True
+        )
+        
+        self.dropout = nn.Dropout(dropout)
+    
+    def forward(self, x, lengths=None):
+        device = x.device  # Get the device of the input tensor
+        
+        # Input: [batch_size, sequence_length]
+        # Add channel dimension for CNN
+        x = x.unsqueeze(1)  # [batch_size, 1, sequence_length]
+        
+        # Apply CNN layers
+        x = self.conv_layers(x)  # [batch_size, hidden_dim, sequence_length/8]
+        
+        # Transpose for RNN: [batch_size, sequence_length/8, hidden_dim]
+        x = x.transpose(1, 2)
+        
+        # Apply RNN layers
+        if lengths is not None:
+            # Adjust lengths after CNN downsampling
+            lengths = (lengths // 8).clamp(min=1)
+            # Check that lengths match actual sequence dimension
+            lengths = torch.min(lengths, torch.tensor(x.size(1)).expand_as(lengths).to(device))
+            x_packed = nn.utils.rnn.pack_padded_sequence(x, lengths.cpu(), batch_first=True, enforce_sorted=True)
+            output_packed, _ = self.lstm(x_packed)
+            x, _ = nn.utils.rnn.pad_packed_sequence(output_packed, batch_first=True)
+        else:
+            x, _ = self.lstm(x)
+        
+        x = self.dropout(x)
+        return x
+
+# Attention mechanism for alignment
+class AttentionLayer(nn.Module):
+    def __init__(self, encoder_dim, decoder_dim):
+        super(AttentionLayer, self).__init__()
+        self.attn = nn.Linear(encoder_dim + decoder_dim, decoder_dim)
+        self.v = nn.Linear(decoder_dim, 1, bias=False)
+        
+    def forward(self, hidden, encoder_outputs, mask=None):
+        # hidden: [batch_size, decoder_dim]
+        # encoder_outputs: [batch_size, src_len, encoder_dim]
+        
+        batch_size, src_len, _ = encoder_outputs.shape
+        
+        # Repeat decoder hidden state across time dimension
+        hidden = hidden.unsqueeze(1).repeat(1, src_len, 1)
+        
+        # Concatenate encoder outputs and decoder hidden state
+        energy = torch.tanh(self.attn(torch.cat((hidden, encoder_outputs), dim=2)))
+        # energy: [batch_size, src_len, decoder_dim]
+        
+        attention = self.v(energy).squeeze(2)
+        # attention: [batch_size, src_len]
+        
+        if mask is not None:
+            attention = attention.masked_fill(mask == 0, -1e10)
+        
+        # Apply softmax to get attention weights
+        attention_weights = F.softmax(attention, dim=1)
+        # attention_weights: [batch_size, src_len]
+        
+        # Use attention weights to create weighted sum of encoder outputs
+        context = torch.bmm(attention_weights.unsqueeze(1), encoder_outputs)
+        # context: [batch_size, 1, encoder_dim]
+        context = context.squeeze(1)
+        # context: [batch_size, encoder_dim]
+        
+        return context, attention_weights
+
+# Decoder with attention for transcription
+class AttentionDecoder(nn.Module):
+    def __init__(self, vocab_size, embed_dim=256, hidden_dim=512, encoder_dim=256, num_layers=2, dropout=0.3):
+        super(AttentionDecoder, self).__init__()
+        
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        self.attention = AttentionLayer(encoder_dim, hidden_dim)
+        
+        self.rnn = nn.GRU(
+            embed_dim + encoder_dim, 
+            hidden_dim,
+            num_layers=num_layers,
+            dropout=dropout if num_layers > 1 else 0,
+            batch_first=True
+        )
+        
+        self.fc_out = nn.Linear(hidden_dim + encoder_dim + embed_dim, vocab_size)
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, encoder_outputs, target=None, teacher_forcing_ratio=0.5, max_length=100):
+        # encoder_outputs: [batch_size, src_len, encoder_dim]
+        batch_size = encoder_outputs.shape[0]
+        encoder_dim = encoder_outputs.shape[2]
+        vocab_size = self.fc_out.out_features
+        
+        # Initialize outputs tensor
+        if target is not None:
+            max_length = target.shape[1]
+            outputs = torch.zeros(batch_size, max_length, vocab_size).to(encoder_outputs.device)
+        else:
+            outputs = torch.zeros(batch_size, max_length, vocab_size).to(encoder_outputs.device)
+            
+        # For storing attention weights
+        all_attention_weights = torch.zeros(batch_size, max_length, encoder_outputs.shape[1]).to(encoder_outputs.device)
+            
+        # Start token
+        input_token = torch.ones(batch_size, 1).long().to(encoder_outputs.device)  # <sos> token
+        
+        # Initialize hidden state
+        hidden = torch.zeros(self.rnn.num_layers, batch_size, self.rnn.hidden_size).to(encoder_outputs.device)
+        
+        for t in range(max_length):
+            # Get embedding of current input token
+            embedded = self.embedding(input_token).squeeze(1)
+            
+            # Get attention context
+            context, attn_weights = self.attention(hidden[-1], encoder_outputs)
+            
+            # Store attention weights
+            all_attention_weights[:, t, :] = attn_weights
+            
+            # Combine embedding and context
+            rnn_input = torch.cat((embedded, context), dim=1).unsqueeze(1)
+            
+            # Forward through GRU
+            output, hidden = self.rnn(rnn_input, hidden)
+            
+            # Combine output with context and input for prediction
+            output = torch.cat((output.squeeze(1), context, embedded), dim=1)
+            
+            # Predict next token
+            prediction = self.fc_out(output)
+            
+            # Store prediction
+            outputs[:, t] = prediction
+            
+            # Teacher forcing or use own predictions
+            teacher_force = torch.rand(1).item() < teacher_forcing_ratio
+            
+            if teacher_force and target is not None:
+                input_token = target[:, t].unsqueeze(1)
+            else:
+                input_token = prediction.argmax(1).unsqueeze(1)
+                
+        return outputs, all_attention_weights
+
+# Alignment prediction head
+class AlignmentHead(nn.Module):
+    def __init__(self, encoder_dim, max_text_length=100):
+        super(AlignmentHead, self).__init__()
+        
+        self.fc1 = nn.Linear(encoder_dim, encoder_dim // 2)
+        self.fc2 = nn.Linear(encoder_dim // 2, max_text_length + 1)  # +1 for "no word" (silence)
+        
+    def forward(self, encoder_outputs):
+        # encoder_outputs: [batch_size, src_len, encoder_dim]
+        x = F.relu(self.fc1(encoder_outputs))
+        x = self.fc2(x)
+        return x
+
+# Complete model combining all components
+class AudioToTextWithAlignment(nn.Module):
+    def __init__(self, vocab_size, max_text_length=100, **kwargs):
+        super(AudioToTextWithAlignment, self).__init__()
+        
+        # Extract encoder params (remove embed_dim which causes the error)
+        encoder_params = {k: v for k, v in kwargs.items() if k != 'embed_dim'}
+        
+        self.encoder = AudioEncoder(**encoder_params)
+        self.decoder = AttentionDecoder(vocab_size=vocab_size, **kwargs)
+        self.alignment_head = AlignmentHead(encoder_dim=kwargs.get('hidden_dim', 256), max_text_length=max_text_length)
+        
+    def forward(self, audio, audio_lengths=None, text=None, teacher_forcing_ratio=0.5, max_length=100):
+        # Encode audio
+        encoder_outputs = self.encoder(audio, audio_lengths)
+        
+        # Get transcription and attention weights
+        transcription_outputs, attention_weights = self.decoder(
+            encoder_outputs, 
+            target=text, 
+            teacher_forcing_ratio=teacher_forcing_ratio,
+            max_length=max_length
+        )
+        
+        # Get alignment predictions
+        alignment_outputs = self.alignment_head(encoder_outputs)
+        
+        return transcription_outputs, alignment_outputs, attention_weights
+
+# Training and evaluation
+@dataclass
+class TrainingConfig:
+    lr: float = 0.001
+    batch_size: int = 16
+    epochs: int = 30
+    teacher_forcing_ratio: float = 0.5
+    clip_grad: float = 5.0
+    max_text_length: int = 100
+    vocab_size: int = 10000
+    checkpoint_path: str = "audio_to_text_model.pt"
+    
+def train_model(model, train_loader, val_loader, config: TrainingConfig, device='cuda'):
+    model = model.to(device)
+    optimizer = optim.Adam(model.parameters(), lr=config.lr)
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3, factor=0.5)
+    
+    # Loss functions
+    transcription_criterion = nn.CrossEntropyLoss(ignore_index=0)  # Ignore padding
+    alignment_criterion = nn.CrossEntropyLoss(ignore_index=0)  # Ignore padding
+    
+    # Training stats
+    train_losses = []
+    val_losses = []
+    best_val_loss = float('inf')
+    
+    scaler = GradScaler()
+    
+    for epoch in range(config.epochs):
+        model.train()
+        epoch_loss = 0
+        
+        batch_count = 0
+        for batch in train_loader:
+            # Move data to device
+            audio = batch['audio'].to(device)
+            audio_lengths = batch['audio_lengths'].to(device)
+            text = batch['text'].to(device)
+            alignment = batch['alignment'].to(device)
+            
+            # Forward pass
+            # Forward pass with autocast
+            with autocast('cuda'):
+                transcription_outputs, alignment_outputs, _ = model(
+                    audio, 
+                    audio_lengths, 
+                    text,
+                    teacher_forcing_ratio=config.teacher_forcing_ratio,
+                    max_length=config.max_text_length
+                )
+            
+                # Calculate transcription loss
+                transcription_outputs = transcription_outputs.view(-1, transcription_outputs.shape[-1])
+                text_target = text.view(-1)
+                transcription_loss = transcription_criterion(transcription_outputs, text_target)
+                
+                # Calculate alignment loss
+                alignment_outputs = alignment_outputs.reshape(-1, alignment_outputs.shape[-1])
+                alignment_target = alignment.reshape(-1)
+                
+                # save to file for debugging
+                # with open('alignment_outputs.txt', 'w') as f:
+                #     f.write(str(alignment_outputs.cpu().detach().numpy().tolist()))
+                # with open('alignment_target.txt', 'w') as f:
+                #     f.write(str(alignment_target.cpu().detach().numpy().tolist()))
+                
+                # resize target to match output, as output is shorter
+                # BUT we need to preserve the order of the elements and shrink proportionally for each element
+                # print(alignment_outputs.size()[0])
+                alignment_target = shrink_tensor_pres.shrink_tensor_preserve_order(alignment_target, alignment_outputs.size()[0])
+                
+                alignment_loss = alignment_criterion(alignment_outputs, alignment_target)
+                
+                # Combined loss
+                loss = transcription_loss + alignment_loss
+            
+            # Backward pass
+            optimizer.zero_grad()
+            # loss.backward()
+            # Scaling the loss and calling backward
+            scaler.scale(loss).backward()
+            
+            # Gradient clipping
+            torch.nn.utils.clip_grad_norm_(model.parameters(), config.clip_grad)
+            
+            # optimizer.step()
+            # Update the optimizer
+            scaler.step(optimizer)
+            
+            # Update the scale for next iteration
+            scaler.update()
+            
+            epoch_loss += loss.item()
+            
+            if batch_count % 1 == 0:
+                print(f"Epoch {epoch+1}/{config.epochs}, Batch {batch_count}/{len(train_loader)}", end="\r")
+            batch_count += 1
+            
+        # Average training loss
+        avg_train_loss = epoch_loss / len(train_loader)
+        train_losses.append(avg_train_loss)
+        
+        # Validation
+        val_loss = evaluate(model, val_loader, transcription_criterion, alignment_criterion, device)
+        val_losses.append(val_loss)
+        
+        # Update learning rate
+        scheduler.step(val_loss)
+        
+        # Save best model
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            torch.save({
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'val_loss': val_loss,
+            }, config.checkpoint_path)
+        
+        print()
+        print(f"Epoch {epoch+1}/{config.epochs}, Train Loss: {avg_train_loss:.4f}, Val Loss: {val_loss:.4f}")
+        
+    return train_losses, val_losses
+
+def evaluate(model, data_loader, transcription_criterion, alignment_criterion, device='cuda'):
+    model.eval()
+    total_loss = 0
+    
+    with torch.no_grad():
+        for batch in data_loader:
+            # Move data to device
+            audio = batch['audio'].to(device)
+            audio_lengths = batch['audio_lengths'].to(device)
+            text = batch['text'].to(device)
+            alignment = batch['alignment'].to(device)
+            
+            # Forward pass
+            transcription_outputs, alignment_outputs, _ = model(
+                audio, 
+                audio_lengths, 
+                text,
+                teacher_forcing_ratio=0.0  # No teacher forcing during evaluation
+            )
+            
+            # Calculate transcription loss
+            transcription_outputs = transcription_outputs.view(-1, transcription_outputs.shape[-1])
+            text_target = text.view(-1)
+            transcription_loss = transcription_criterion(transcription_outputs, text_target)
+            
+            # Calculate alignment loss
+            alignment_outputs = alignment_outputs.reshape(-1, alignment_outputs.shape[-1])
+            alignment_target = alignment.reshape(-1)
+            # resize target to match output, as output is shorter etc
+            alignment_target = shrink_tensor_pres.shrink_tensor_preserve_order(alignment_target, alignment_outputs.size()[0])
+            alignment_loss = alignment_criterion(alignment_outputs, alignment_target)
+            
+            # Combined loss
+            loss = transcription_loss + alignment_loss
+            
+            total_loss += loss.item()
+    
+    return total_loss / len(data_loader)
+
+def predict(model, audio_tensor, tokenizer, device='cuda'):
+    model.eval()
+    
+    # Process audio
+    audio_tensor = audio_tensor.to(device).unsqueeze(0)  # Add batch dimension
+    
+    with torch.no_grad():
+        # Encode audio
+        encoder_outputs = model.encoder(audio_tensor)
+        
+        # Generate transcription
+        transcription_outputs, attention_weights = model.decoder(
+            encoder_outputs, 
+            target=None,  # No target for inference
+            teacher_forcing_ratio=0.0,
+            max_length=100
+        )
+        
+        # Get alignment predictions
+        alignment_outputs = model.alignment_head(encoder_outputs)
+        alignment_probs = F.softmax(alignment_outputs, dim=-1)
+        
+        # Get predicted tokens
+        predicted_tokens = transcription_outputs.argmax(dim=-1).squeeze(0).cpu().numpy()
+        
+        # Convert to text
+        predicted_text = tokenizer.decode(predicted_tokens)
+        
+        # Get alignment
+        word_alignments = alignment_probs.argmax(dim=-1).squeeze(0).cpu().numpy()
+        
+        return predicted_text, word_alignments, attention_weights.squeeze(0).cpu().numpy()
+
+def visualize_alignment(audio, text, word_alignments, attention_weights, word_boundaries=None):
+    plt.figure(figsize=(15, 10))
+    
+    # Plot audio waveform
+    plt.subplot(3, 1, 1)
+    plt.plot(audio.cpu().numpy())
+    plt.title("Audio Waveform")
+    plt.xlabel("Time (samples)")
+    plt.ylabel("Amplitude")
+    
+    # Plot word alignments
+    plt.subplot(3, 1, 2)
+    plt.imshow(word_alignments.reshape(1, -1), aspect="auto", cmap="viridis")
+    plt.title("Word Alignments")
+    plt.xlabel("Time (frames)")
+    plt.ylabel("Word Index")
+    
+    # If word boundaries are available, add them as vertical lines
+    if word_boundaries:
+        for i, (start, end) in enumerate(word_boundaries):
+            start_frame = int(start * len(audio))
+            end_frame = int(end * len(audio))
+            plt.axvline(x=start_frame, color='r', linestyle='--', alpha=0.5)
+            plt.axvline(x=end_frame, color='g', linestyle='--', alpha=0.5)
+    
+    # Plot attention weights
+    plt.subplot(3, 1, 3)
+    plt.imshow(attention_weights, aspect="auto", cmap="hot")
+    plt.title("Attention Weights")
+    plt.xlabel("Encoder Time Steps")
+    plt.ylabel("Decoder Time Steps")
+    
+    plt.tight_layout()
+    plt.savefig("alignment_visualization.png")
+    plt.close()
+
+# Example of how to use the complete pipeline
+def main():
+    # Sample data (in practice, this would come from your dataset)
+    # sample_data = [
+    #     {
+    #         "text": "Concord returned to its place amidst the tents.",
+    #         "audio": np.random.randn(16000),  # Simulated audio array (1s at 16kHz)
+    #         "words": ["Concord", "returned", "to", "its", "place", "amidst", "the", "tents."],
+    #         "word_start": [0, 1.1617, 1.6424, 1.7225, 1.9028, 2.2833, 2.6638, 2.8241],
+    #         "word_end": [1.1617, 1.6424, 1.7225, 1.9028, 2.2833, 2.6638, 2.8241, 3.485]
+    #     },
+    #     {
+    #         "text": "Yes, an excellent idea, I stammered.",
+    #         "audio": np.random.randn(24000),  # Simulated audio array (1.5s at 16kHz)
+    #         "words": ["Yes,", "an", "excellent", "idea,", "I", "stammered."],
+    #         "word_start": [0, 0.5602, 0.8604, 1.5206, 2.1408, 2.5009],
+    #         "word_end": [0.5602, 0.8604, 1.5206, 2.1408, 2.5009, 3.2412]
+    #     }
+    # ]
+    
+    import parquet_dataframe
+    dataframe = parquet_dataframe.dataframe_from_parquet('valid-00000-of-00001.parquet')
+    sample_data = dataframe.to_dict(orient='records')
+    sample_data = sample_data[:50]
+    
+    for i in range(len(sample_data)):
+        sample_data[i]['audio'] = parquet_dataframe.audio_bytes_to_ndarray(sample_data[i]['audio']['bytes'])
+    
+    # print(sample_data[0])
+    # print(sample_data[0]['audio'].shape) # output: (56080,) or (210560,) or other (no fixed size)
+    
+    ########################################################
+    
+    # Create and fit tokenizer
+    tokenizer = Tokenizer(vocab_size=500)
+    tokenizer.fit([item["text"] for item in sample_data])
+    
+    # print(tokenizer.vocab_size_current)
+    # quit()
+    
+    # Create dataset and data loaders
+    dataset = AudioTextAlignmentDataset(sample_data, tokenizer)
+    
+    # Split data (in practice, you'd have separate train/val sets)
+    train_size = int(0.8 * len(dataset))
+    val_size = len(dataset) - train_size
+    train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
+    
+    batch_size = 2
+    
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, collate_fn=collate_fn, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, collate_fn=collate_fn)
+    
+    # Initialize model
+    model = AudioToTextWithAlignment(
+        vocab_size=tokenizer.vocab_size_current,
+        hidden_dim=256,
+        embed_dim=128,
+        num_layers=4,
+        dropout=0.3,
+        max_text_length=60
+    )
+    
+    # Training configuration
+    config = TrainingConfig(
+        lr=0.001,
+        batch_size=batch_size,
+        epochs=10,
+        teacher_forcing_ratio=0.6,
+        vocab_size=tokenizer.vocab_size_current,
+        checkpoint_path="audio_text_alignment_model.pt"
+    )
+    
+    # Train model
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Training on {device}")
+    train_losses, val_losses = train_model(model, train_loader, val_loader, config, device)
+    
+    # Visualize training progress
+    plt.figure(figsize=(10, 5))
+    plt.plot(train_losses, label='Train Loss')
+    plt.plot(val_losses, label='Validation Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.title('Training Progress')
+    plt.savefig("training_progress.png")
+    plt.close()
+    
+    # Inference examples
+    # inderence_index = 2
+    for inderence_index in range(5):
+        sample_audio = dataset[inderence_index]['audio']
+        predicted_text, word_alignments, attention_weights = predict(model, sample_audio, tokenizer, device)
+        
+        print(f"Predicted text: {predicted_text}")
+        print(f"True text: {sample_data[inderence_index]['text']}")
+    
+    # Visualize alignment
+    visualize_alignment(
+        sample_audio, 
+        predicted_text, 
+        word_alignments, 
+        attention_weights, 
+        dataset[inderence_index]['word_boundaries']
+    )
+
+if __name__ == "__main__":
+    main()
+    # from pyinstrument import Profiler
+    # with Profiler(interval=0.001) as profiler:
+    #     main()
+    # profiler.print()
+    # profiler.output_html()

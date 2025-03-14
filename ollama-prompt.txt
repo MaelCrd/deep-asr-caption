@@ -1,0 +1,16 @@
+I'll give you the output sentence of an ASR model that is noisy, correct the sentence as you can.
+Here is some examples of sentences outputs and references.
+
+Predicted 1 : "chhapte  five.  thhe  glissh.  evvvvvenn taatt ba."
+Reference 1 : "chapter five, the glacier even that day."
+
+Predicted 2 : "tthe  nnosiss  werrre  battttllonnge to nnossslllits  annd  thhe  ciidterr   of ttheirrr  facess  midd  wwa betwinn ttherr  mouuss   annd    errrss.  ttherrree  wwasss   no  hhharrrr  on thheirrr bbodiss."
+Reference 2 : "their noses were but longitudinal slits in the center of their faces. midway between their mouths and ears. there was no hair on their bodies."
+
+Predicted 3 : "tthe  fammisss awwinnn  crraatterrrss,  farr thhe   ggrrraaes  innn  thhe wworrll,   nno tellongg toaarrnash a ss ta,   anndth  viipin illlllaanns  connhhhenn verrrys ottherrrss  ollesss imporess,  yyet sommee of  wwhicchh happrro fvarrry  dssprrute."
+Reference 3 : "the famous hawaiian craters, far the greatest in the world, now belong to our national estate, and the philippine islands contain various others of less importance, yet some of which have proved very destructive."
+
+Now, correct this sentence :
+"{{ASR_output}}"
+
+Enventually, you can change some dots to question marks or exclamation marks if you think it makes sense.
