@@ -155,6 +155,25 @@ def decode_predictions(log_probs, input_lengths):
         decoded_sentences.append(sentence)
     return decoded_sentences
 
+def ctc_decoder(log_probs):
+    """
+    Decodes the output probabilities from a CTC network using greedy decoding.
+    """
+    # Get the index of the highest probability for each time step
+    
+    predicted_tokens = torch.argmax(log_probs, dim=2)
+    
+    for i in range(predicted_tokens.shape[0]):
+        max_indices = predicted_tokens[i].cpu().numpy()
+        chars = [index_to_char[index] for index in max_indices]
+        # Remove consecutive duplicate labels
+        decoded_sequence = [chars[0]]
+        for y in range(1, len(chars)):
+            if chars[y] != chars[y-1]:
+                decoded_sequence.append(chars[y])
+
+    return decoded_sequence
+
 def calculate_wer(predicted_sentences, reference_sentences):
     # wer = jiwer.wer(reference_sentences, predicted_sentences)
     # return wer
@@ -321,7 +340,8 @@ def evaluate():
                 # print("Log probabilities shape:", log_probs.shape) # Print shape
                 # print("Log probabilities example (first utterance, first timestep):", log_probs[0, 0, :]) # Print probs for first timestep of first utterance
                 
-                predicted_sentences = decode_predictions(log_probs, input_lengths)
+                # predicted_sentences = decode_predictions(log_probs, input_lengths)
+                predicted_sentences = ctc_decoder(log_probs)
                 # predicted_sentences = decode_predictions(log_probs, input_lengths, index_to_char, beam_width=3) # Or beam_width=5, etc.
 
                 reference_sentences = []

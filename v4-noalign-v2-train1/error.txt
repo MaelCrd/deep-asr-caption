@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\v4-noalign-v2.py", line 344, in <module>
+
+  File "C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\v4-noalign-v2.py", line 243, in main
+    for batch_idx, (mfccs_padded, tokens_padded, input_lengths, target_lengths) in enumerate(train_dataloader):
+        ^^^^^^^^^^^^^^^
+  File "C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\venv\Lib\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\venv\Lib\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\venv\Lib\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR
