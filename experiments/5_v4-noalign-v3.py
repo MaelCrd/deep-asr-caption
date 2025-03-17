@@ -11,6 +11,8 @@ import os
 import jiwer  # For WER calculation
 import numpy as np
 import matplotlib.pyplot as plt
+import torch.nn.functional as F  # Import functional
+from datetime import datetime
 
 import parquet_dataframe
 
@@ -96,18 +98,26 @@ def collate_fn_asr(batch):
 # parquet_filename = "train-00063-of-00064.parquet" #
 
 files_source = []
-# files_source.append("train-00000-of-00064.parquet")
-# files_source.append("train-00001-of-00064.parquet")
-# files_source.append("train-00002-of-00064.parquet")
-# files_source.append("train-00003-of-00064.parquet")
-# files_source.append("train-00004-of-00064.parquet")
-# files_source.append("train-00005-of-00064.parquet")
-# files_source.append("train-00063-of-00064.parquet")
+files_source.append("train-00000-of-00064.parquet")
+files_source.append("train-00001-of-00064.parquet")
+files_source.append("train-00002-of-00064.parquet")
+files_source.append("train-00003-of-00064.parquet")
+files_source.append("train-00004-of-00064.parquet")
+files_source.append("train-00005-of-00064.parquet")
+files_source.append("train-00006-of-00064.parquet")
+files_source.append("train-00007-of-00064.parquet")
+files_source.append("train-00008-of-00064.parquet")
+files_source.append("train-00009-of-00064.parquet")
+files_source.append("train-00010-of-00064.parquet")
+files_source.append("train-00011-of-00064.parquet")
+files_source.append("train-00012-of-00064.parquet")
+files_source.append("train-00063-of-00064.parquet")
 
-files_source.append("valid-00000-of-00001.parquet")
+# files_source.append("valid-00000-of-00001.parquet")
 
 dataset = []
 for filename in files_source:
+    filename = "dataset/" + filename
     print("Processing file:", filename)
     dataframe = parquet_dataframe.dataframe_from_parquet(filename) # Load a subset for testing
 
@@ -155,6 +165,23 @@ def decode_predictions(log_probs, input_lengths):
         decoded_sentences.append(sentence)
     return decoded_sentences
 
+def ctc_decoder(log_probs, input_lengths):
+    predicted_tokens = torch.argmax(log_probs, dim=2).cpu().numpy()
+    
+    decoded_sentences = []
+    for i in range(predicted_tokens.shape[0]):
+        tokens = predicted_tokens[i, :input_lengths[i]]
+        # use groupby to find continuous same indexes
+        from itertools import groupby
+        tokens = [k for k, g in groupby(tokens)]
+        sentence = ""
+        for t in tokens:
+            char = index_to_char[t.item()]
+            if char != '<blank>': # Assuming no blank token in this simple example, adjust if needed
+                sentence += char
+        decoded_sentences.append(sentence)
+    return decoded_sentences
+
 def calculate_wer(predicted_sentences, reference_sentences):
     # wer = jiwer.wer(reference_sentences, predicted_sentences)
     # return wer
@@ -175,6 +202,9 @@ def calculate_wer(predicted_sentences, reference_sentences):
     return wer
 
 def plot_history(history):
+    plt.cla()
+    plt.clf()
+    plt.close()
     save_path = "asr_loss"
     if type(history) is dict:
         for key in history:
@@ -191,28 +221,87 @@ def plot_history(history):
     # plt.show()
 
 # 4. Model Definition (Simple RNN-based ASR)
-class SimpleASR(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim, num_layers=3): # Increased num_layers (big : 5)
-        super(SimpleASR, self).__init__()
-        self.input_projection = nn.Linear(input_dim, hidden_dim)
-        self.lstm = nn.LSTM(hidden_dim, hidden_dim, num_layers, bidirectional=True, batch_first=True)
-        self.output_projection = nn.Linear(hidden_dim * 2, output_dim)
-        self.log_softmax = nn.LogSoftmax(dim=2)
+class MediumASR(nn.Module):
+    def __init__(self, input_dim, output_dim, dropout=0.2):
+        super(MediumASR, self).__init__()
 
-    def forward(self, x, input_lengths):
-        # print("Input x shape to forward:", x.shape) # Keep debug print
-        projected_input = self.input_projection(x)
-        packed_input = nn.utils.rnn.pack_padded_sequence(projected_input, input_lengths.cpu(), batch_first=True, enforce_sorted=False)
-        packed_output, _ = self.lstm(packed_input)
-        output, _ = nn.utils.rnn.pad_packed_sequence(packed_output, batch_first=True)
-        output = self.output_projection(output)
-        log_probs = self.log_softmax(output)
-        return log_probs
+        self.input_dim = input_dim
+        self.output_dim = output_dim
+        self.dropout = dropout
+
+        # Convolutional Layers
+        self.conv1 = nn.Conv2d(1, 32, kernel_size=(11, 41), stride=(2, 2), padding=(5, 20), bias=False)
+        self.bn1 = nn.BatchNorm2d(32)
+        self.conv2 = nn.Conv2d(32, 32, kernel_size=(11, 21), stride=(1, 2), padding=(5, 10), bias=False)
+        self.bn2 = nn.BatchNorm2d(32)
+
+        # RNN Layers
+        self.lstm1 = nn.LSTM(160, 128, bidirectional=True, batch_first=True)
+        self.lstm2 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
+        self.lstm3 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
+        self.lstm4 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
+        self.lstm5 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
+
+        # Dense Layers
+        self.dense1 = nn.Linear(256, 256)
+        self.output_layer = nn.Linear(256, output_dim + 1)  # +1 for blank
+
+    def forward(self, x):
+        # Expand dimensions
+        x = x.unsqueeze(1)  # Add channel dimension
+
+        # Convolutional Layers
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = F.leaky_relu(x)
+
+        x = self.conv2(x)
+        x = self.bn2(x)
+        x = F.leaky_relu(x)
+        
+        # print("x.shape", x.shape)
+        # print("x.shape before permute:", x.shape)  # torch.Size([32, 32, 842, 5])
+
+        # Reshape for RNN
+        x = x.permute(0, 2, 1, 3)  # Swap feature and channel dimensions
+        # print("x.shape after permute:", x.shape)  # torch.Size([32, 842, 32, 5])
+        batch_size, time_steps, channels, features = x.size()
+        # print(f"{batch_size=}, {time_steps=}, {channels=}, {features=}")
+        # Calculate the correct input size for the LSTM
+        lstm_input_size = channels * features  # 32 * 5 = 160
+        # print(f"{lstm_input_size=}")
+
+        # x = x.reshape(batch_size, time_steps, channels * features)  # Combine channels and features # 160
+        x = x.reshape(batch_size, time_steps, lstm_input_size)
+
+        # print("Reshaped x shape:", x.shape)
+
+        # RNN Layers
+        x, _ = self.lstm1(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        x, _ = self.lstm2(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        x, _ = self.lstm3(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        x, _ = self.lstm4(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        x, _ = self.lstm5(x)
+
+
+        # Dense Layers
+        x = self.dense1(x)
+        x = F.leaky_relu(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+
+        # Classification Layer
+        x = self.output_layer(x)
+        x = F.log_softmax(x, dim=-1)  # Using log_softmax for numerical stability with CTCLoss
+        return x
 
 input_dim = n_mfcc
-hidden_dim = 512 # big : 810
+# hidden_dim = 512 # big : 810
 output_dim = len(characters)
-model = SimpleASR(input_dim, hidden_dim, output_dim)
+model = MediumASR(input_dim, output_dim)
 print(model)
 
 # # Load model checkpoint if needed
@@ -229,7 +318,7 @@ print(f"Using device: {device}")
 model.to(device)
 criterion.to(device)
 
-TRAIN = False # Set to True to train the model
+TRAIN = True # Set to True to train the model
 
 def main():
     if TRAIN:
@@ -247,8 +336,15 @@ def main():
                 target_lengths = target_lengths.to(device)
 
                 optimizer.zero_grad()
-                log_probs = model(mfccs_padded, input_lengths)
+                # log_probs = model(mfccs_padded, input_lengths)
+                log_probs = model(mfccs_padded)
                 log_probs = log_probs.transpose(0, 1) # Time x Batch x Vocab
+                # Inside your training loop, before the CTCLoss call:
+                # print("log_probs shape:", log_probs.shape)
+                # print("input_lengths:", input_lengths)
+                # print("target_lengths:", target_lengths)
+                # Correct input_lengths here:
+                input_lengths = torch.full(size=(log_probs.size(1),), fill_value=log_probs.size(0), dtype=torch.long, device=device)
                 loss = criterion(log_probs, tokens_padded, input_lengths, target_lengths)
                 loss.backward()
                 
@@ -258,18 +354,18 @@ def main():
                 train_loss += loss.item()
                 batch_group_loss += loss.item()
 
-                batch_interval = 50
+                batch_interval = 400
                 if batch_idx % batch_interval == 0 and batch_idx > 0:
                     # avg_loss = train_loss / (batch_idx + 1)
                     avg_loss = batch_group_loss / batch_interval # Print average loss over last few batches
                     batch_group_loss = 0.0
-                    print(f"Epoch [{epoch+1}/{num_epochs}], Batch [{batch_idx}/{len(train_dataloader)}], Train Loss (last batch group): {avg_loss:.4f}")
-                    # torch.save(model.state_dict(), "asr_v2.pth")
+                    print(f"[{datetime.now().strftime("%d-%m %H:%M")}] Epoch [{epoch+1}/{num_epochs}], Batch [{batch_idx}/{len(train_dataloader)}], Train Loss (last batch group): {avg_loss:.4f}")
+                    # torch.save(model.state_dict(), "asr_v3.pth")
                     history_batches.append(avg_loss)
                     plot_history(history_batches)
 
             avg_epoch_loss = train_loss / len(train_dataloader)
-            print(f"Epoch [{epoch+1}/{num_epochs}] - Average Train Loss: {avg_epoch_loss:.4f}")
+            print(f"[{datetime.now().strftime("%d-%m %H:%M")}] Epoch [{epoch+1}/{num_epochs}] - Average Train Loss: {avg_epoch_loss:.4f}")
             history_epochs["train"].append(avg_epoch_loss)
 
             # 7. Evaluation during training (Validation Loss)
@@ -282,8 +378,11 @@ def main():
                     input_lengths = input_lengths.to(device)
                     target_lengths = target_lengths.to(device)
 
-                    log_probs = model(mfccs_padded, input_lengths)
+                    # log_probs = model(mfccs_padded, input_lengths)
+                    log_probs = model(mfccs_padded)
                     log_probs = log_probs.transpose(0, 1)
+                    # Correct input_lengths here:
+                    input_lengths = torch.full(size=(log_probs.size(1),), fill_value=log_probs.size(0), dtype=torch.long, device=device)
                     loss = criterion(log_probs, tokens_padded, input_lengths, target_lengths)
                     dev_loss += loss.item()
 
@@ -294,14 +393,14 @@ def main():
             plot_history(history_epochs)
             
             # Save model checkpoint
-            torch.save(model.state_dict(), "asr_v2.pth")
+            torch.save(model.state_dict(), "asr_v3.pth")
 
         print("Training finished!")
 
         # Save model checkpoint
-        torch.save(model.state_dict(), "asr_v2.pth")
+        torch.save(model.state_dict(), "asr_v3.pth")
     else :
-        model.load_state_dict(torch.load("asr_v2.pth"))
+        model.load_state_dict(torch.load("asr_v3.pth"))
         model.eval()
 
 
@@ -317,11 +416,13 @@ def evaluate():
                 input_lengths = input_lengths.to(device)
                 tokens_padded_cpu = tokens_padded.cpu()
 
-                log_probs = model(mfccs_padded, input_lengths)
+                # log_probs = model(mfccs_padded, input_lengths)
+                log_probs = model(mfccs_padded)
                 # print("Log probabilities shape:", log_probs.shape) # Print shape
                 # print("Log probabilities example (first utterance, first timestep):", log_probs[0, 0, :]) # Print probs for first timestep of first utterance
                 
-                predicted_sentences = decode_predictions(log_probs, input_lengths)
+                # predicted_sentences = decode_predictions(log_probs, input_lengths)
+                predicted_sentences = ctc_decoder(log_probs, input_lengths)
                 # predicted_sentences = decode_predictions(log_probs, input_lengths, index_to_char, beam_width=3) # Or beam_width=5, etc.
 
                 reference_sentences = []
@@ -336,10 +437,9 @@ def evaluate():
                 for i in range(len(predicted_sentences)):
                     if i > len(reference_sentences) - 1:
                         break
-                    print(f"Predicted: {predicted_sentences[i]}")
-                    print(f"Reference: {reference_sentences[i]}")
+                    print(f">>> Predicted: {predicted_sentences[i]}")
+                    print(f">>> Reference: {reference_sentences[i]}")
                     print("")
-                    
                     input("Press Enter to continue...")
 
                 batch_wer = calculate_wer(reference_sentences, predicted_sentences)

@@ -1,0 +1,455 @@
+Processing file: dataset/train-00000-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00001-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00002-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00003-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00004-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00005-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00006-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00007-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00008-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00009-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00010-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00011-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00012-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00013-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00014-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00015-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00016-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00063-of-00064.parquet
+Dataframe shape: (4394, 5)
+Total dataset size: 79109
+Shuffling dataset...
+MediumASR(
+  (conv1): Conv2d(1, 32, kernel_size=(11, 41), stride=(2, 2), padding=(5, 20), bias=False)
+  (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv2): Conv2d(32, 32, kernel_size=(11, 21), stride=(1, 2), padding=(5, 10), bias=False)
+  (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (lstm1): LSTM(160, 128, batch_first=True, bidirectional=True)
+  (lstm2): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm3): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm4): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm5): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (dense1): Linear(in_features=256, out_features=256, bias=True)
+  (output_layer): Linear(in_features=256, out_features=34, bias=True)
+)
+Using device: cuda
+[17-03 01:20] Epoch [1/100], Batch [1000/2225], Train Loss (last batch group): 3.0325
+[17-03 01:23] Epoch [1/100], Batch [2000/2225], Train Loss (last batch group): 2.6193
+[17-03 01:23] Epoch [1/100] - Average Train Loss: 2.7970
+Epoch [1/100] - Validation Loss: 2.5438
+[17-03 01:26] Epoch [2/100], Batch [1000/2225], Train Loss (last batch group): 2.5468
+[17-03 01:28] Epoch [2/100], Batch [2000/2225], Train Loss (last batch group): 2.5327
+[17-03 01:29] Epoch [2/100] - Average Train Loss: 2.5371
+Epoch [2/100] - Validation Loss: 2.5133
+[17-03 01:31] Epoch [3/100], Batch [1000/2225], Train Loss (last batch group): 2.5225
+[17-03 01:34] Epoch [3/100], Batch [2000/2225], Train Loss (last batch group): 2.5343
+[17-03 01:34] Epoch [3/100] - Average Train Loss: 2.5258
+Epoch [3/100] - Validation Loss: 2.5080
+[17-03 01:37] Epoch [4/100], Batch [1000/2225], Train Loss (last batch group): 2.5127
+[17-03 01:39] Epoch [4/100], Batch [2000/2225], Train Loss (last batch group): 2.5153
+[17-03 01:39] Epoch [4/100] - Average Train Loss: 2.5158
+Epoch [4/100] - Validation Loss: 2.5657
+[17-03 01:42] Epoch [5/100], Batch [1000/2225], Train Loss (last batch group): 2.5614
+[17-03 01:44] Epoch [5/100], Batch [2000/2225], Train Loss (last batch group): 2.6006
+[17-03 01:45] Epoch [5/100] - Average Train Loss: 2.5760
+Epoch [5/100] - Validation Loss: 2.5322
+[17-03 01:47] Epoch [6/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 01:50] Epoch [6/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 01:50] Epoch [6/100] - Average Train Loss: nan
+Epoch [6/100] - Validation Loss: nan
+[17-03 01:53] Epoch [7/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 01:55] Epoch [7/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 01:55] Epoch [7/100] - Average Train Loss: nan
+Epoch [7/100] - Validation Loss: nan
+[17-03 01:58] Epoch [8/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:00] Epoch [8/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:00] Epoch [8/100] - Average Train Loss: nan
+Epoch [8/100] - Validation Loss: nan
+[17-03 02:03] Epoch [9/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:05] Epoch [9/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:05] Epoch [9/100] - Average Train Loss: nan
+Epoch [9/100] - Validation Loss: nan
+[17-03 02:08] Epoch [10/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:10] Epoch [10/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:10] Epoch [10/100] - Average Train Loss: nan
+Epoch [10/100] - Validation Loss: nan
+[17-03 02:13] Epoch [11/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:15] Epoch [11/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:15] Epoch [11/100] - Average Train Loss: nan
+Epoch [11/100] - Validation Loss: nan
+[17-03 02:18] Epoch [12/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:20] Epoch [12/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:21] Epoch [12/100] - Average Train Loss: nan
+Epoch [12/100] - Validation Loss: nan
+[17-03 02:23] Epoch [13/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:25] Epoch [13/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:26] Epoch [13/100] - Average Train Loss: nan
+Epoch [13/100] - Validation Loss: nan
+[17-03 02:28] Epoch [14/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:30] Epoch [14/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:31] Epoch [14/100] - Average Train Loss: nan
+Epoch [14/100] - Validation Loss: nan
+[17-03 02:33] Epoch [15/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:35] Epoch [15/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:36] Epoch [15/100] - Average Train Loss: nan
+Epoch [15/100] - Validation Loss: nan
+[17-03 02:38] Epoch [16/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:40] Epoch [16/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:41] Epoch [16/100] - Average Train Loss: nan
+Epoch [16/100] - Validation Loss: nan
+[17-03 02:43] Epoch [17/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:46] Epoch [17/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:46] Epoch [17/100] - Average Train Loss: nan
+Epoch [17/100] - Validation Loss: nan
+[17-03 02:48] Epoch [18/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:51] Epoch [18/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:51] Epoch [18/100] - Average Train Loss: nan
+Epoch [18/100] - Validation Loss: nan
+[17-03 02:53] Epoch [19/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 02:56] Epoch [19/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 02:56] Epoch [19/100] - Average Train Loss: nan
+Epoch [19/100] - Validation Loss: nan
+[17-03 02:59] Epoch [20/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:01] Epoch [20/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:01] Epoch [20/100] - Average Train Loss: nan
+Epoch [20/100] - Validation Loss: nan
+[17-03 03:04] Epoch [21/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:06] Epoch [21/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:06] Epoch [21/100] - Average Train Loss: nan
+Epoch [21/100] - Validation Loss: nan
+[17-03 03:09] Epoch [22/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:11] Epoch [22/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:11] Epoch [22/100] - Average Train Loss: nan
+Epoch [22/100] - Validation Loss: nan
+[17-03 03:14] Epoch [23/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:16] Epoch [23/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:16] Epoch [23/100] - Average Train Loss: nan
+Epoch [23/100] - Validation Loss: nan
+[17-03 03:19] Epoch [24/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:21] Epoch [24/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:22] Epoch [24/100] - Average Train Loss: nan
+Epoch [24/100] - Validation Loss: nan
+[17-03 03:24] Epoch [25/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:26] Epoch [25/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:27] Epoch [25/100] - Average Train Loss: nan
+Epoch [25/100] - Validation Loss: nan
+[17-03 03:29] Epoch [26/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:31] Epoch [26/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:32] Epoch [26/100] - Average Train Loss: nan
+Epoch [26/100] - Validation Loss: nan
+[17-03 03:34] Epoch [27/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:36] Epoch [27/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:37] Epoch [27/100] - Average Train Loss: nan
+Epoch [27/100] - Validation Loss: nan
+[17-03 03:39] Epoch [28/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:41] Epoch [28/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:42] Epoch [28/100] - Average Train Loss: nan
+Epoch [28/100] - Validation Loss: nan
+[17-03 03:44] Epoch [29/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:47] Epoch [29/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:47] Epoch [29/100] - Average Train Loss: nan
+Epoch [29/100] - Validation Loss: nan
+[17-03 03:49] Epoch [30/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:52] Epoch [30/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:52] Epoch [30/100] - Average Train Loss: nan
+Epoch [30/100] - Validation Loss: nan
+[17-03 03:55] Epoch [31/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 03:57] Epoch [31/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 03:57] Epoch [31/100] - Average Train Loss: nan
+Epoch [31/100] - Validation Loss: nan
+[17-03 04:00] Epoch [32/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:02] Epoch [32/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:02] Epoch [32/100] - Average Train Loss: nan
+Epoch [32/100] - Validation Loss: nan
+[17-03 04:05] Epoch [33/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:07] Epoch [33/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:07] Epoch [33/100] - Average Train Loss: nan
+Epoch [33/100] - Validation Loss: nan
+[17-03 04:10] Epoch [34/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:12] Epoch [34/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:12] Epoch [34/100] - Average Train Loss: nan
+Epoch [34/100] - Validation Loss: nan
+[17-03 04:15] Epoch [35/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:17] Epoch [35/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:18] Epoch [35/100] - Average Train Loss: nan
+Epoch [35/100] - Validation Loss: nan
+[17-03 04:20] Epoch [36/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:22] Epoch [36/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:23] Epoch [36/100] - Average Train Loss: nan
+Epoch [36/100] - Validation Loss: nan
+[17-03 04:25] Epoch [37/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:27] Epoch [37/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:28] Epoch [37/100] - Average Train Loss: nan
+Epoch [37/100] - Validation Loss: nan
+[17-03 04:30] Epoch [38/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:32] Epoch [38/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:33] Epoch [38/100] - Average Train Loss: nan
+Epoch [38/100] - Validation Loss: nan
+[17-03 04:35] Epoch [39/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:37] Epoch [39/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:38] Epoch [39/100] - Average Train Loss: nan
+Epoch [39/100] - Validation Loss: nan
+[17-03 04:40] Epoch [40/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:42] Epoch [40/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:43] Epoch [40/100] - Average Train Loss: nan
+Epoch [40/100] - Validation Loss: nan
+[17-03 04:45] Epoch [41/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:48] Epoch [41/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:48] Epoch [41/100] - Average Train Loss: nan
+Epoch [41/100] - Validation Loss: nan
+[17-03 04:50] Epoch [42/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:53] Epoch [42/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:53] Epoch [42/100] - Average Train Loss: nan
+Epoch [42/100] - Validation Loss: nan
+[17-03 04:56] Epoch [43/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 04:58] Epoch [43/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 04:58] Epoch [43/100] - Average Train Loss: nan
+Epoch [43/100] - Validation Loss: nan
+[17-03 05:01] Epoch [44/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:03] Epoch [44/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:03] Epoch [44/100] - Average Train Loss: nan
+Epoch [44/100] - Validation Loss: nan
+[17-03 05:06] Epoch [45/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:08] Epoch [45/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:08] Epoch [45/100] - Average Train Loss: nan
+Epoch [45/100] - Validation Loss: nan
+[17-03 05:11] Epoch [46/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:13] Epoch [46/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:13] Epoch [46/100] - Average Train Loss: nan
+Epoch [46/100] - Validation Loss: nan
+[17-03 05:16] Epoch [47/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:18] Epoch [47/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:19] Epoch [47/100] - Average Train Loss: nan
+Epoch [47/100] - Validation Loss: nan
+[17-03 05:21] Epoch [48/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:23] Epoch [48/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:24] Epoch [48/100] - Average Train Loss: nan
+Epoch [48/100] - Validation Loss: nan
+[17-03 05:26] Epoch [49/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:28] Epoch [49/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:29] Epoch [49/100] - Average Train Loss: nan
+Epoch [49/100] - Validation Loss: nan
+[17-03 05:31] Epoch [50/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:33] Epoch [50/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:34] Epoch [50/100] - Average Train Loss: nan
+Epoch [50/100] - Validation Loss: nan
+[17-03 05:36] Epoch [51/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:38] Epoch [51/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:39] Epoch [51/100] - Average Train Loss: nan
+Epoch [51/100] - Validation Loss: nan
+[17-03 05:41] Epoch [52/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:43] Epoch [52/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:44] Epoch [52/100] - Average Train Loss: nan
+Epoch [52/100] - Validation Loss: nan
+[17-03 05:46] Epoch [53/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:49] Epoch [53/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:49] Epoch [53/100] - Average Train Loss: nan
+Epoch [53/100] - Validation Loss: nan
+[17-03 05:51] Epoch [54/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:54] Epoch [54/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:54] Epoch [54/100] - Average Train Loss: nan
+Epoch [54/100] - Validation Loss: nan
+[17-03 05:56] Epoch [55/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 05:59] Epoch [55/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 05:59] Epoch [55/100] - Average Train Loss: nan
+Epoch [55/100] - Validation Loss: nan
+[17-03 06:02] Epoch [56/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:04] Epoch [56/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:04] Epoch [56/100] - Average Train Loss: nan
+Epoch [56/100] - Validation Loss: nan
+[17-03 06:07] Epoch [57/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:09] Epoch [57/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:09] Epoch [57/100] - Average Train Loss: nan
+Epoch [57/100] - Validation Loss: nan
+[17-03 06:12] Epoch [58/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:14] Epoch [58/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:14] Epoch [58/100] - Average Train Loss: nan
+Epoch [58/100] - Validation Loss: nan
+[17-03 06:17] Epoch [59/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:19] Epoch [59/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:19] Epoch [59/100] - Average Train Loss: nan
+Epoch [59/100] - Validation Loss: nan
+[17-03 06:22] Epoch [60/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:24] Epoch [60/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:25] Epoch [60/100] - Average Train Loss: nan
+Epoch [60/100] - Validation Loss: nan
+[17-03 06:27] Epoch [61/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:29] Epoch [61/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:30] Epoch [61/100] - Average Train Loss: nan
+Epoch [61/100] - Validation Loss: nan
+[17-03 06:32] Epoch [62/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:34] Epoch [62/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:35] Epoch [62/100] - Average Train Loss: nan
+Epoch [62/100] - Validation Loss: nan
+[17-03 06:37] Epoch [63/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:39] Epoch [63/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:40] Epoch [63/100] - Average Train Loss: nan
+Epoch [63/100] - Validation Loss: nan
+[17-03 06:42] Epoch [64/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:44] Epoch [64/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:45] Epoch [64/100] - Average Train Loss: nan
+Epoch [64/100] - Validation Loss: nan
+[17-03 06:47] Epoch [65/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:49] Epoch [65/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:50] Epoch [65/100] - Average Train Loss: nan
+Epoch [65/100] - Validation Loss: nan
+[17-03 06:52] Epoch [66/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 06:55] Epoch [66/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 06:55] Epoch [66/100] - Average Train Loss: nan
+Epoch [66/100] - Validation Loss: nan
+[17-03 06:57] Epoch [67/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:00] Epoch [67/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:00] Epoch [67/100] - Average Train Loss: nan
+Epoch [67/100] - Validation Loss: nan
+[17-03 07:02] Epoch [68/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:05] Epoch [68/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:05] Epoch [68/100] - Average Train Loss: nan
+Epoch [68/100] - Validation Loss: nan
+[17-03 07:08] Epoch [69/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:10] Epoch [69/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:10] Epoch [69/100] - Average Train Loss: nan
+Epoch [69/100] - Validation Loss: nan
+[17-03 07:13] Epoch [70/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:15] Epoch [70/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:15] Epoch [70/100] - Average Train Loss: nan
+Epoch [70/100] - Validation Loss: nan
+[17-03 07:18] Epoch [71/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:20] Epoch [71/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:20] Epoch [71/100] - Average Train Loss: nan
+Epoch [71/100] - Validation Loss: nan
+[17-03 07:23] Epoch [72/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:25] Epoch [72/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:25] Epoch [72/100] - Average Train Loss: nan
+Epoch [72/100] - Validation Loss: nan
+[17-03 07:28] Epoch [73/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:30] Epoch [73/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:31] Epoch [73/100] - Average Train Loss: nan
+Epoch [73/100] - Validation Loss: nan
+[17-03 07:33] Epoch [74/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:35] Epoch [74/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:36] Epoch [74/100] - Average Train Loss: nan
+Epoch [74/100] - Validation Loss: nan
+[17-03 07:38] Epoch [75/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:40] Epoch [75/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:41] Epoch [75/100] - Average Train Loss: nan
+Epoch [75/100] - Validation Loss: nan
+[17-03 07:43] Epoch [76/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:45] Epoch [76/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:46] Epoch [76/100] - Average Train Loss: nan
+Epoch [76/100] - Validation Loss: nan
+[17-03 07:48] Epoch [77/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:50] Epoch [77/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:51] Epoch [77/100] - Average Train Loss: nan
+Epoch [77/100] - Validation Loss: nan
+[17-03 07:53] Epoch [78/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 07:55] Epoch [78/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 07:56] Epoch [78/100] - Average Train Loss: nan
+Epoch [78/100] - Validation Loss: nan
+[17-03 07:58] Epoch [79/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:01] Epoch [79/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:01] Epoch [79/100] - Average Train Loss: nan
+Epoch [79/100] - Validation Loss: nan
+[17-03 08:03] Epoch [80/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:06] Epoch [80/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:06] Epoch [80/100] - Average Train Loss: nan
+Epoch [80/100] - Validation Loss: nan
+[17-03 08:09] Epoch [81/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:11] Epoch [81/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:11] Epoch [81/100] - Average Train Loss: nan
+Epoch [81/100] - Validation Loss: nan
+[17-03 08:14] Epoch [82/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:16] Epoch [82/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:16] Epoch [82/100] - Average Train Loss: nan
+Epoch [82/100] - Validation Loss: nan
+[17-03 08:19] Epoch [83/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:21] Epoch [83/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:21] Epoch [83/100] - Average Train Loss: nan
+Epoch [83/100] - Validation Loss: nan
+[17-03 08:24] Epoch [84/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:26] Epoch [84/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:26] Epoch [84/100] - Average Train Loss: nan
+Epoch [84/100] - Validation Loss: nan
+[17-03 08:29] Epoch [85/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:31] Epoch [85/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:32] Epoch [85/100] - Average Train Loss: nan
+Epoch [85/100] - Validation Loss: nan
+[17-03 08:34] Epoch [86/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:36] Epoch [86/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:37] Epoch [86/100] - Average Train Loss: nan
+Epoch [86/100] - Validation Loss: nan
+[17-03 08:39] Epoch [87/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:41] Epoch [87/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:42] Epoch [87/100] - Average Train Loss: nan
+Epoch [87/100] - Validation Loss: nan
+[17-03 08:44] Epoch [88/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:46] Epoch [88/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:47] Epoch [88/100] - Average Train Loss: nan
+Epoch [88/100] - Validation Loss: nan
+[17-03 08:49] Epoch [89/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:51] Epoch [89/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:52] Epoch [89/100] - Average Train Loss: nan
+Epoch [89/100] - Validation Loss: nan
+[17-03 08:54] Epoch [90/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 08:56] Epoch [90/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 08:57] Epoch [90/100] - Average Train Loss: nan
+Epoch [90/100] - Validation Loss: nan
+[17-03 08:59] Epoch [91/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:02] Epoch [91/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:02] Epoch [91/100] - Average Train Loss: nan
+Epoch [91/100] - Validation Loss: nan
+[17-03 09:04] Epoch [92/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:07] Epoch [92/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:07] Epoch [92/100] - Average Train Loss: nan
+Epoch [92/100] - Validation Loss: nan
+[17-03 09:10] Epoch [93/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:12] Epoch [93/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:12] Epoch [93/100] - Average Train Loss: nan
+Epoch [93/100] - Validation Loss: nan
+[17-03 09:15] Epoch [94/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:17] Epoch [94/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:17] Epoch [94/100] - Average Train Loss: nan
+Epoch [94/100] - Validation Loss: nan
+[17-03 09:20] Epoch [95/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:22] Epoch [95/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:22] Epoch [95/100] - Average Train Loss: nan
+Epoch [95/100] - Validation Loss: nan
+[17-03 09:25] Epoch [96/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:27] Epoch [96/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:27] Epoch [96/100] - Average Train Loss: nan
+Epoch [96/100] - Validation Loss: nan
+[17-03 09:30] Epoch [97/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:32] Epoch [97/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:33] Epoch [97/100] - Average Train Loss: nan
+Epoch [97/100] - Validation Loss: nan
+[17-03 09:35] Epoch [98/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:37] Epoch [98/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:38] Epoch [98/100] - Average Train Loss: nan
+Epoch [98/100] - Validation Loss: nan
+[17-03 09:40] Epoch [99/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:42] Epoch [99/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:43] Epoch [99/100] - Average Train Loss: nan
+Epoch [99/100] - Validation Loss: nan
+[17-03 09:45] Epoch [100/100], Batch [1000/2225], Train Loss (last batch group): nan
+[17-03 09:47] Epoch [100/100], Batch [2000/2225], Train Loss (last batch group): nan
+[17-03 09:48] Epoch [100/100] - Average Train Loss: nan
+Epoch [100/100] - Validation Loss: nan
+Training finished!
+
+learning_rate: 0.001

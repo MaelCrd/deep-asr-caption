@@ -1,0 +1,90 @@
+Processing file: dataset/valid-00000-of-00001.parquet
+Dataframe shape: (5559, 5)
+Total dataset size: 5559
+Shuffling dataset...
+MediumASR(
+  (conv1): Conv2d(1, 32, kernel_size=(11, 41), stride=(2, 2), padding=(5, 20), bias=False)
+  (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv2): Conv2d(32, 32, kernel_size=(11, 21), stride=(1, 2), padding=(5, 10), bias=False)
+  (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (lstm1): LSTM(160, 128, batch_first=True, bidirectional=True)
+  (lstm2): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm3): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm4): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm5): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (dense1): Linear(in_features=256, out_features=256, bias=True)
+  (output_layer): Linear(in_features=256, out_features=34, bias=True)
+)
+Using device: cuda
+[16-03 20:50] Epoch [1/100], Batch [30/157], Train Loss (last batch group): 13.6331
+[16-03 20:50] Epoch [1/100], Batch [60/157], Train Loss (last batch group): 3.2850
+[16-03 20:50] Epoch [1/100], Batch [90/157], Train Loss (last batch group): 3.3221
+[16-03 20:50] Epoch [1/100], Batch [120/157], Train Loss (last batch group): 3.3448
+[16-03 20:50] Epoch [1/100], Batch [150/157], Train Loss (last batch group): 3.2826
+[16-03 20:50] Epoch [1/100] - Average Train Loss: 5.2543
+Epoch [1/100] - Validation Loss: 3.2685
+[16-03 20:50] Epoch [2/100], Batch [30/157], Train Loss (last batch group): 3.1346
+[16-03 20:50] Epoch [2/100], Batch [60/157], Train Loss (last batch group): 2.9669
+[16-03 20:50] Epoch [2/100], Batch [90/157], Train Loss (last batch group): 2.9320
+[16-03 20:50] Epoch [2/100], Batch [120/157], Train Loss (last batch group): 2.9295
+[16-03 20:51] Epoch [2/100], Batch [150/157], Train Loss (last batch group): 2.9184
+[16-03 20:51] Epoch [2/100] - Average Train Loss: 2.9557
+Epoch [2/100] - Validation Loss: 2.9396
+[16-03 20:51] Epoch [3/100], Batch [30/157], Train Loss (last batch group): 3.0100
+[16-03 20:51] Epoch [3/100], Batch [60/157], Train Loss (last batch group): 3.0048
+[16-03 20:51] Epoch [3/100], Batch [90/157], Train Loss (last batch group): 2.9138
+[16-03 20:51] Epoch [3/100], Batch [120/157], Train Loss (last batch group): 2.9009
+[16-03 20:51] Epoch [3/100], Batch [150/157], Train Loss (last batch group): 2.8988
+[16-03 20:51] Epoch [3/100] - Average Train Loss: 2.9252
+Epoch [3/100] - Validation Loss: 2.9027
+[16-03 20:51] Epoch [4/100], Batch [30/157], Train Loss (last batch group): 2.9943
+[16-03 20:51] Epoch [4/100], Batch [60/157], Train Loss (last batch group): 2.8858
+[16-03 20:51] Epoch [4/100], Batch [90/157], Train Loss (last batch group): 2.8864
+[16-03 20:51] Epoch [4/100], Batch [120/157], Train Loss (last batch group): 2.8794
+[16-03 20:51] Epoch [4/100], Batch [150/157], Train Loss (last batch group): 2.8844
+[16-03 20:52] Epoch [4/100] - Average Train Loss: 2.8865
+Epoch [4/100] - Validation Loss: 2.8828
+[16-03 20:52] Epoch [5/100], Batch [30/157], Train Loss (last batch group): 2.9611
+[16-03 20:52] Epoch [5/100], Batch [60/157], Train Loss (last batch group): 2.7894
+[16-03 20:52] Epoch [5/100], Batch [90/157], Train Loss (last batch group): 2.7636
+[16-03 20:52] Epoch [5/100], Batch [120/157], Train Loss (last batch group): 2.7155
+[16-03 20:52] Epoch [5/100], Batch [150/157], Train Loss (last batch group): 2.6907
+[16-03 20:52] Epoch [5/100] - Average Train Loss: 2.7633
+Epoch [5/100] - Validation Loss: 2.6808
+[16-03 20:52] Epoch [6/100], Batch [30/157], Train Loss (last batch group): 2.7812
+[16-03 20:52] Epoch [6/100], Batch [60/157], Train Loss (last batch group): 2.6790
+[16-03 20:52] Epoch [6/100], Batch [90/157], Train Loss (last batch group): 2.6859
+[16-03 20:52] Epoch [6/100], Batch [120/157], Train Loss (last batch group): 2.6687
+[16-03 20:52] Epoch [6/100], Batch [150/157], Train Loss (last batch group): 2.6456
+[16-03 20:52] Epoch [6/100] - Average Train Loss: 2.6738
+Epoch [6/100] - Validation Loss: 2.6486
+[16-03 20:53] Epoch [7/100], Batch [30/157], Train Loss (last batch group): 2.7477
+[16-03 20:53] Epoch [7/100], Batch [60/157], Train Loss (last batch group): 2.6519
+[16-03 20:53] Epoch [7/100], Batch [90/157], Train Loss (last batch group): 2.6315
+[16-03 20:53] Epoch [7/100], Batch [120/157], Train Loss (last batch group): 2.6219
+[16-03 20:53] Epoch [7/100], Batch [150/157], Train Loss (last batch group): 2.7053
+[16-03 20:53] Epoch [7/100] - Average Train Loss: 2.6536
+Epoch [7/100] - Validation Loss: 2.7074
+[16-03 20:53] Epoch [8/100], Batch [30/157], Train Loss (last batch group): 2.7311
+[16-03 20:53] Epoch [8/100], Batch [60/157], Train Loss (last batch group): 2.7351
+[16-03 20:53] Epoch [8/100], Batch [90/157], Train Loss (last batch group): 2.6982
+[16-03 20:53] Epoch [8/100], Batch [120/157], Train Loss (last batch group): 2.6748
+[16-03 20:53] Epoch [8/100], Batch [150/157], Train Loss (last batch group): 2.6610
+[16-03 20:53] Epoch [8/100] - Average Train Loss: 2.6807
+Epoch [8/100] - Validation Loss: 2.6461
+[16-03 20:54] Epoch [9/100], Batch [30/157], Train Loss (last batch group): 2.7395
+[16-03 20:54] Epoch [9/100], Batch [60/157], Train Loss (last batch group): 2.6391
+[16-03 20:54] Epoch [9/100], Batch [90/157], Train Loss (last batch group): 2.6223
+[16-03 20:54] Epoch [9/100], Batch [120/157], Train Loss (last batch group): 2.6295
+[16-03 20:54] Epoch [9/100], Batch [150/157], Train Loss (last batch group): 2.6100
+[16-03 20:54] Epoch [9/100] - Average Train Loss: 2.6303
+Epoch [9/100] - Validation Loss: 2.5951
+[16-03 20:54] Epoch [10/100], Batch [30/157], Train Loss (last batch group): 2.6768
+[16-03 20:54] Epoch [10/100], Batch [60/157], Train Loss (last batch group): 2.6050
+[16-03 20:54] Epoch [10/100], Batch [90/157], Train Loss (last batch group): 2.5987
+[16-03 20:54] Epoch [10/100], Batch [120/157], Train Loss (last batch group): 2.5969
+[16-03 20:54] Epoch [10/100], Batch [150/157], Train Loss (last batch group): 2.5882
+[16-03 20:54] Epoch [10/100] - Average Train Loss: 2.5956
+Epoch [10/100] - Validation Loss: 2.5833
+
+learning rate : 0.001
