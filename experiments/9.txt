@@ -1,0 +1,61 @@
+Processing file: dataset/train-00000-of-00044.parquet
+Dataframe shape: (21563, 5)
+Processing file: dataset/train-00000-of-00056.parquet
+Dataframe shape: (4440, 5)
+Processing file: dataset/train-00000-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00000-of-01033.parquet
+Dataframe shape: (8019, 5)
+Processing file: dataset/train-00001-of-00044.parquet
+Dataframe shape: (21563, 5)
+Processing file: dataset/train-00001-of-00056.parquet
+Dataframe shape: (4440, 5)
+Processing file: dataset/train-00001-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00001-of-01033.parquet
+Dataframe shape: (8019, 5)
+Processing file: dataset/train-00002-of-00044.parquet
+Dataframe shape: (21563, 5)
+Processing file: dataset/train-00002-of-00056.parquet
+Dataframe shape: (4440, 5)
+Processing file: dataset/train-00002-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00002-of-01033.parquet
+Dataframe shape: (8019, 5)
+Processing file: dataset/train-00003-of-00044.parquet
+Dataframe shape: (21563, 5)
+Processing file: dataset/train-00003-of-00056.parquet
+Dataframe shape: (4440, 5)
+Processing file: dataset/train-00003-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00003-of-01033.parquet
+Dataframe shape: (8019, 5)
+Processing file: dataset/train-00004-of-00044.parquet
+Dataframe shape: (21563, 5)
+Processing file: dataset/train-00004-of-00056.parquet
+Dataframe shape: (4440, 5)
+Processing file: dataset/train-00004-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00004-of-01033.parquet
+Dataframe shape: (8019, 5)
+Processing file: dataset/train-00011-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00012-of-00064.parquet
+Dataframe shape: (4395, 5)
+Total dataset size: 200875
+Shuffling dataset...
+MediumASR(
+  (conv1): Conv2d(1, 32, kernel_size=(11, 41), stride=(2, 2), padding=(5, 20), bias=False)
+  (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv2): Conv2d(32, 32, kernel_size=(11, 21), stride=(1, 2), padding=(5, 10), bias=False)
+  (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (lstm1): LSTM(160, 128, batch_first=True, bidirectional=True)
+  (lstm2): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm3): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm4): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm5): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (dense1): Linear(in_features=256, out_features=256, bias=True)
+  (output_layer): Linear(in_features=256, out_features=34, bias=True)
+)
+Using device: cuda
+[17-03 23:51] Epoch [1/100], Batch [1000/5650], Train Loss (last batch group): 3.6190

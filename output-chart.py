@@ -6,7 +6,7 @@ with open('output.txt') as f:
     data = f.readlines()
     
 data = [x.strip() for x in data]
-data = [x if '-' in x else None for x in data]
+data = [x if ' - ' in x else None for x in data]
 data = list(filter(None, data))
 
 train = []

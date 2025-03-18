@@ -1,0 +1,2 @@
+2025-03-17 14:21:16,726 - tensorflow - WARNING - From C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\venv\Lib\site-packages\tf2onnx\tf_loader.py:72: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+

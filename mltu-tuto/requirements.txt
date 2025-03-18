@@ -1,0 +1,7 @@
+tensorflow[and-cuda]
+pandas
+numpy
+keras
+mltu
+librosa
+tf2onnx
