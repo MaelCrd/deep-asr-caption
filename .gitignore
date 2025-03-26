@@ -7,3 +7,7 @@ __pycache__
 *.parquet
 *.csv
 Datasets
+*.wav
+*.mp3
+*.zip
+*.tar.gz

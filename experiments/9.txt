@@ -59,3 +59,39 @@ MediumASR(
 )
 Using device: cuda
 [17-03 23:51] Epoch [1/100], Batch [1000/5650], Train Loss (last batch group): 3.6190
+[18-03 00:13] Epoch [1/100], Batch [2000/5650], Train Loss (last batch group): 2.8891
+[18-03 00:35] Epoch [1/100], Batch [3000/5650], Train Loss (last batch group): 2.7619
+[18-03 00:58] Epoch [1/100], Batch [4000/5650], Train Loss (last batch group): 2.7563
+[18-03 01:21] Epoch [1/100], Batch [5000/5650], Train Loss (last batch group): 2.7459
+[18-03 01:35] Epoch [1/100] - Average Train Loss: 2.9216
+Epoch [1/100] - Validation Loss: 2.6409
+[18-03 02:07] Epoch [2/100], Batch [1000/5650], Train Loss (last batch group): 2.6462
+[18-03 02:31] Epoch [2/100], Batch [2000/5650], Train Loss (last batch group): 2.6560
+[18-03 02:53] Epoch [2/100], Batch [3000/5650], Train Loss (last batch group): 2.6175
+[18-03 03:15] Epoch [2/100], Batch [4000/5650], Train Loss (last batch group): 2.6207
+[18-03 03:38] Epoch [2/100], Batch [5000/5650], Train Loss (last batch group): 2.5865
+[18-03 03:53] Epoch [2/100] - Average Train Loss: 2.6193
+Epoch [2/100] - Validation Loss: 2.5504
+[18-03 04:25] Epoch [3/100], Batch [1000/5650], Train Loss (last batch group): 2.5558
+[18-03 04:48] Epoch [3/100], Batch [2000/5650], Train Loss (last batch group): 2.5319
+[18-03 05:11] Epoch [3/100], Batch [3000/5650], Train Loss (last batch group): 2.4857
+[18-03 05:34] Epoch [3/100], Batch [4000/5650], Train Loss (last batch group): 2.4028
+[18-03 05:56] Epoch [3/100], Batch [5000/5650], Train Loss (last batch group): 2.3102
+[18-03 06:11] Epoch [3/100] - Average Train Loss: 2.4301
+Epoch [3/100] - Validation Loss: 2.1401
+[18-03 06:43] Epoch [4/100], Batch [1000/5650], Train Loss (last batch group): 2.1194
+[18-03 07:06] Epoch [4/100], Batch [2000/5650], Train Loss (last batch group): 2.0153
+[18-03 07:28] Epoch [4/100], Batch [3000/5650], Train Loss (last batch group): 1.9078
+[18-03 07:51] Epoch [4/100], Batch [4000/5650], Train Loss (last batch group): 1.8151
+[18-03 08:13] Epoch [4/100], Batch [5000/5650], Train Loss (last batch group): 1.7480
+[18-03 08:28] Epoch [4/100] - Average Train Loss: 1.9071
+Epoch [4/100] - Validation Loss: 2.1099
+[18-03 09:01] Epoch [5/100], Batch [1000/5650], Train Loss (last batch group): 1.9410
+[18-03 09:23] Epoch [5/100], Batch [2000/5650], Train Loss (last batch group): 1.8279
+[18-03 09:46] Epoch [5/100], Batch [3000/5650], Train Loss (last batch group): 1.7895
+[18-03 10:08] Epoch [5/100], Batch [4000/5650], Train Loss (last batch group): 1.7276
+[18-03 10:31] Epoch [5/100], Batch [5000/5650], Train Loss (last batch group): 1.7302
+[18-03 10:46] Epoch [5/100] - Average Train Loss: 1.7894
+Epoch [5/100] - Validation Loss: 1.6155
+
+restart parce que multiprocessing sans doute ralentit le reste

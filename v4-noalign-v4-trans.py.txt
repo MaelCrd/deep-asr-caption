@@ -16,16 +16,6 @@ import os
 import parquet_dataframe
 
 if __name__ == '__main__':
-    # print("ajouter un random sur les batch ?")
-    # print("ajouter un random sur les batch ?")
-    # print("ajouter un random sur les batch ?")
-    # print("ajouter un random sur les batch ?")
-
-    # 1. Prerequisites and Setup (Libraries already imported above)
-    #    Install: pip install torch torchaudio torchtext librosa jiwer
-
-    # 2. Dataset: LibriSpeech Download
-
     # 3. Data Preprocessing
     # 3.1 Audio Feature Extraction (MFCCs)
     n_mfcc = 20
