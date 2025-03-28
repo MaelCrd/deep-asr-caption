@@ -1,3 +1,120 @@
+PS C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests> python .\v4-noalign-v3.py
+Files source: ['train-00000-of-00064.parquet', 'train-00001-of-00064.parquet', 'train-00002-of-00064.parquet', 'train-00003-of-00064.parquet', 'train-00004-of-00064.parquet', 'train-00005-of-00064.parquet', 'train-00006-of-00064.parquet', 'train-00007-of-00064.parquet', 'train-00008-of-00064.parquet', 'train-00009-of-00064.parquet', 'train-00010-of-00064.parquet', 'train-00011-of-00064.parquet', 'train-00012-of-00064.parquet', 'train-00013-of-00064.parquet', 'train-00014-of-00064.parquet', 'train-00015-of-00064.parquet', 'train-00016-of-00064.parquet', 'train-00017-of-00064.parquet', 'train-00018-of-00064.parquet', 'train-00019-of-00064.parquet', 'train-00020-of-00064.parquet', 'train-00021-of-00064.parquet', 'train-00022-of-00064.parquet', 'train-00023-of-00064.parquet', 'train-00024-of-00064.parquet', 'train-00025-of-00064.parquet', 'train-00026-of-00064.parquet', 'train-00027-of-00064.parquet', 'train-00028-of-00064.parquet', 'train-00029-of-00064.parquet', 'train-00030-of-00064.parquet', 'train-00031-of-00064.parquet', 'train-00032-of-00064.parquet', 'train-00033-of-00064.parquet', 'train-00034-of-00064.parquet', 'train-00035-of-00064.parquet', 'train-00036-of-00064.parquet', 'train-00037-of-00064.parquet', 'train-00038-of-00064.parquet', 'train-00039-of-00064.parquet', 'train-00040-of-00064.parquet', 'train-00041-of-00064.parquet', 'train-00042-of-00064.parquet', 'train-00043-of-00064.parquet', 'train-00044-of-00064.parquet', 'train-00045-of-00064.parquet', 'train-00046-of-00064.parquet', 'train-00047-of-00064.parquet', 'train-00048-of-00064.parquet']
+Processing file: dataset/train-00000-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00001-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00002-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00003-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00004-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00005-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00006-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00007-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00008-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00009-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00010-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00011-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00012-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00013-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00014-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00015-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00016-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00017-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00018-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00019-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00020-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00021-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00022-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00023-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00024-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00025-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00026-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00027-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00028-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00029-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00030-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00031-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00032-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00033-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00034-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00035-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00036-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00037-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00038-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00039-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00040-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00041-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00042-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00043-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00044-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00045-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00046-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00047-of-00064.parquet
+Dataframe shape: (4394, 5)
+Processing file: dataset/train-00048-of-00064.parquet
+Dataframe shape: (4394, 5)
+Total dataset size: 215331
+Shuffling dataset...
+MediumASR(
+  (conv1): Conv2d(1, 32, kernel_size=(11, 41), stride=(2, 2), padding=(5, 20), bias=False)
+  (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv2): Conv2d(32, 32, kernel_size=(11, 21), stride=(1, 2), padding=(5, 10), bias=False)
+  (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (lstm1): LSTM(160, 128, batch_first=True, bidirectional=True)
+  (lstm2): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm3): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm4): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (lstm5): LSTM(256, 128, batch_first=True, bidirectional=True)
+  (dense1): Linear(in_features=256, out_features=256, bias=True)
+  (output_layer): Linear(in_features=256, out_features=34, bias=True)
+)
+Learning rate: 0.001
+Using device: cuda
 [25-03 23:19] Epoch [1/1000], Batch [800/6191], Train Loss (last batch group): 3.0534
 [25-03 23:21] Epoch [1/1000], Batch [1600/6191], Train Loss (last batch group): 2.5880
 [25-03 23:23] Epoch [1/1000], Batch [2400/6191], Train Loss (last batch group): 2.5026
@@ -507,6 +624,8 @@ Epoch [56/1000] - Validation Loss: 0.2728
 [26-03 13:29] Epoch [57/1000], Batch [2400/6191], Train Loss (last batch group): 0.2988
 [26-03 13:31] Epoch [57/1000], Batch [3200/6191], Train Loss (last batch group): 0.2917
 [26-03 13:33] Epoch [57/1000], Batch [4000/6191], Train Loss (last batch group): 0.2948
+[26-03 13:35] Epoch [57/1000], Batch [4800/6191], Train Loss (last batch group): 0.2955
+[26-03 13:36] Epoch [57/1000], Batch [5600/6191], Train Loss (last batch group): 0.2992
 [26-03 13:38] Epoch [57/1000] - Average Train Loss: 0.2957
 Epoch [57/1000] - Validation Loss: 0.2756
 [26-03 13:40] Epoch [58/1000], Batch [800/6191], Train Loss (last batch group): 0.2876
@@ -522,19 +641,64 @@ Epoch [58/1000] - Validation Loss: 0.2766
 [26-03 13:57] Epoch [59/1000], Batch [1600/6191], Train Loss (last batch group): 0.2931
 [26-03 13:59] Epoch [59/1000], Batch [2400/6191], Train Loss (last batch group): 0.2969
 [26-03 14:01] Epoch [59/1000], Batch [3200/6191], Train Loss (last batch group): 0.2932
-[26-03 14:02] Epoch [59/1000], Batch [3535/6191]
+[26-03 14:03] Epoch [59/1000], Batch [4000/6191], Train Loss (last batch group): 0.2931
+[26-03 14:05] Epoch [59/1000], Batch [4800/6191], Train Loss (last batch group): 0.2979
 [26-03 14:07] Epoch [59/1000], Batch [5600/6191], Train Loss (last batch group): 0.2977
 [26-03 14:08] Epoch [59/1000] - Average Train Loss: 0.2948
 Epoch [59/1000] - Validation Loss: 0.2714
-[26-03 14:09] Epoch [60/1000], Batch [65/6191]
+[26-03 14:11] Epoch [60/1000], Batch [800/6191], Train Loss (last batch group): 0.2901
+[26-03 14:13] Epoch [60/1000], Batch [1600/6191], Train Loss (last batch group): 0.2904
+[26-03 14:14] Epoch [60/1000], Batch [2400/6191], Train Loss (last batch group): 0.2917
+[26-03 14:16] Epoch [60/1000], Batch [3200/6191], Train Loss (last batch group): 0.2979
+[26-03 14:18] Epoch [60/1000], Batch [4000/6191], Train Loss (last batch group): 0.2955
+[26-03 14:20] Epoch [60/1000], Batch [4800/6191], Train Loss (last batch group): 0.2985
 [26-03 14:22] Epoch [60/1000], Batch [5600/6191], Train Loss (last batch group): 0.2954
 [26-03 14:23] Epoch [60/1000] - Average Train Loss: 0.2948
 Epoch [60/1000] - Validation Loss: 0.2765
 [26-03 14:26] Epoch [61/1000], Batch [800/6191], Train Loss (last batch group): 0.2917
 [26-03 14:28] Epoch [61/1000], Batch [1600/6191], Train Loss (last batch group): 0.2927
-[26-03 14:30] Epoch [61/1000], Batch [2400/6191], Train Loss (last batch group): 0.294
+[26-03 14:30] Epoch [61/1000], Batch [2400/6191], Train Loss (last batch group): 0.2945
+[26-03 14:32] Epoch [61/1000], Batch [3200/6191], Train Loss (last batch group): 0.2955
+[26-03 14:33] Epoch [61/1000], Batch [4000/6191], Train Loss (last batch group): 0.2966
 [26-03 14:35] Epoch [61/1000], Batch [4800/6191], Train Loss (last batch group): 0.2953
 [26-03 14:37] Epoch [61/1000], Batch [5600/6191], Train Loss (last batch group): 0.2992
 [26-03 14:39] Epoch [61/1000] - Average Train Loss: 0.2953
 Epoch [61/1000] - Validation Loss: 0.2760
-[26-03 14:39] Epoch [62/1000], Batch [30/6191]
+[26-03 14:41] Epoch [62/1000], Batch [800/6191], Train Loss (last batch group): 0.2918
+[26-03 14:43] Epoch [62/1000], Batch [1600/6191], Train Loss (last batch group): 0.2891
+[26-03 14:45] Epoch [62/1000], Batch [2400/6191], Train Loss (last batch group): 0.2917
+[26-03 14:47] Epoch [62/1000], Batch [3200/6191], Train Loss (last batch group): 0.2906
+[26-03 14:49] Epoch [62/1000], Batch [4000/6191], Train Loss (last batch group): 0.2916
+[26-03 14:51] Epoch [62/1000], Batch [4800/6191], Train Loss (last batch group): 0.2979
+[26-03 14:52] Epoch [62/1000], Batch [5600/6191], Train Loss (last batch group): 0.2965
+[26-03 14:54] Epoch [62/1000] - Average Train Loss: 0.2930
+Epoch [62/1000] - Validation Loss: 0.2783
+[26-03 14:56] Epoch [63/1000], Batch [800/6191], Train Loss (last batch group): 0.2857
+[26-03 14:58] Epoch [63/1000], Batch [1600/6191], Train Loss (last batch group): 0.2869
+[26-03 15:00] Epoch [63/1000], Batch [2400/6191], Train Loss (last batch group): 0.2886
+Traceback (most recent call last):ch [2605/6191]
+
+earning rate: 0.001
+Model loaded.
+Using device: cuda
+[26-03 20:48] Epoch [1/1000], Batch [800/6191], Train Loss (last batch group): 0.2909
+[26-03 20:50] Epoch [1/1000], Batch [1600/6191], Train Loss (last batch group): 0.2966
+[26-03 20:52] Epoch [1/1000], Batch [2400/6191], Train Loss (last batch group): 0.2950
+[26-03 20:54] Epoch [1/1000], Batch [3200/6191], Train Loss (last batch group): 0.2936
+[26-03 20:58] Epoch [1/1000], Batch [4000/6191], Train Loss (last batch group): 0.2915
+[26-03 21:06] Epoch [1/1000], Batch [4800/6191], Train Loss (last batch group): 0.2974
+[26-03 21:14] Epoch [1/1000], Batch [5600/6191], Train Loss (last batch group): 0.2942
+[26-03 21:20] Epoch [1/1000] - Average Train Loss: 0.2944
+Epoch [1/1000] - Validation Loss: 0.2528
+[26-03 21:32] Epoch [2/1000], Batch [800/6191], Train Loss (last batch group): 0.2908
+[26-03 21:39] Epoch [2/1000], Batch [1600/6191], Train Loss (last batch group): 0.2877
+[26-03 21:47] Epoch [2/1000], Batch [2400/6191], Train Loss (last batch group): 0.2930
+[26-03 21:55] Epoch [2/1000], Batch [3200/6191], Train Loss (last batch group): 0.2903
+[26-03 22:03] Epoch [2/1000], Batch [4000/6191], Train Loss (last batch group): 0.2920
+[26-03 22:11] Epoch [2/1000], Batch [4800/6191], Train Loss (last batch group): 0.2945
+[26-03 22:19] Epoch [2/1000], Batch [5600/6191], Train Loss (last batch group): 0.2966
+[26-03 22:25] Epoch [2/1000] - Average Train Loss: 0.2922
+Epoch [2/1000] - Validation Loss: 0.2584
+Traceback (most recent call last):h [630/6191]
+  File "C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\v4-noalign-v3.py", line 633, in <module>
+    main()

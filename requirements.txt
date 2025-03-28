@@ -12,6 +12,7 @@ keras
 mltu
 tf2onnx
 playsound
+transformers
 
 --index-url https://download.pytorch.org/whl/cu126
 torch

@@ -13,31 +13,28 @@ from datetime import datetime
 import soundfile as sf
 import os
 
-import parquet_dataframe
+import datasets
+import datasets.hub
+from torch.utils.data import DataLoader
+
 
 if __name__ == '__main__':
-    # print("ajouter un random sur les batch ?")
-    # print("ajouter un random sur les batch ?")
-    # print("ajouter un random sur les batch ?")
-    # print("ajouter un random sur les batch ?")
-
-    # 1. Prerequisites and Setup (Libraries already imported above)
-    #    Install: pip install torch torchaudio torchtext librosa jiwer
-
-    # 2. Dataset: LibriSpeech Download
-
     # 3. Data Preprocessing
     # 3.1 Audio Feature Extraction (MFCCs)
-    n_mfcc = 20
-    sample_rate = 16000
+    n_mfcc = 30
+    sample_rate = 48000
+    melkwargs = {
+        'n_mels': 32,  # Number of Mel filter banks
+        # 'n_fft': 512,  # Number of FFT points
+    }
     mfcc_transform = MFCC(
         sample_rate=sample_rate,
         n_mfcc=n_mfcc,
-        melkwargs={"n_fft": 400, "hop_length": 160, "n_mels": 22}
+        melkwargs=melkwargs,
     )
 
     # 3.2 Text Processing (Character Vocabulary and Tokenization)
-    characters = ["<blank>", " ", "'", ".", ",", "!", "?", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    characters = [" ", "'", ".", ",", "!", "?", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     char_to_index = {char: index for index, char in enumerate(characters)}
     index_to_char = {index: char for index, char in enumerate(characters)}
 
@@ -57,12 +54,6 @@ if __name__ == '__main__':
             return len(self.dataset)
 
         def __getitem__(self, idx):
-            # audio, sample_rate, transcript, _, _, _ = self.dataset[idx]
-            # mfccs_untransposed = self.mfcc_transform(resample(audio, sample_rate, 16000)) # Keep untransposed for length
-            # mfccs = mfccs_untransposed.transpose(0, 1) # THEN transpose
-            # tokens = self.tokenizer(transcript)
-            # return mfccs, torch.tensor(tokens), mfccs_untransposed # Return untransposed MFCC for length
-            
             audio_mfccs_untransposed, mfccs, transcript = self.dataset[idx]
             tokens = self.tokenizer(transcript)
             return mfccs, torch.tensor(tokens), audio_mfccs_untransposed # Return untransposed MFCC for length
@@ -77,128 +68,52 @@ if __name__ == '__main__':
         input_lengths = torch.tensor([mfcc.shape[1] for mfcc in mfccs_untransposed_batch]) # Use untransposed for length (shape[1] is time_frames)
         target_lengths = torch.tensor([len(tokens) for tokens in tokens_batch])
 
-        # print("--- Batch Data Inspection ---") # Keep print statements for now to verify
-        # print("MFCCs padded shape:", mfccs_padded.shape)
-        # print("Tokens padded shape:", tokens_padded.shape)
-        # print("Input lengths:", input_lengths)
-        # print("Target lengths:", target_lengths)
-        # print("MFCCs batch min/max:", mfccs_padded.min(), mfccs_padded.max())
-        # if torch.isnan(mfccs_padded).any() or torch.isinf(mfccs_padded).any():
-        #     print("WARNING: NaN or Inf values in MFCCs_padded!")
-        # print("Tokens batch min/max:", tokens_padded.min(), tokens_padded.max())
-        # if torch.isnan(tokens_padded).any() or torch.isinf(tokens_padded).any():
-        #     print("WARNING: NaN or Inf values in tokens_padded!")
-
         return mfccs_padded, tokens_padded, input_lengths, target_lengths
 
-
-    # # parquet_filename = "valid-00000-of-00001.parquet" #
-    # parquet_filename = "train-00000-of-00064.parquet" #
-    # parquet_filename = "train-00001-of-00064.parquet" #
-    # parquet_filename = "train-00063-of-00064.parquet" #
-
-    files_source = []
-    # files_source.append("train-00000-of-00064.parquet")
-    # files_source.append("train-00001-of-00064.parquet")
-    # files_source.append("train-00002-of-00064.parquet")
-    # files_source.append("train-00003-of-00064.parquet")
-    # files_source.append("train-00004-of-00064.parquet")
-    # files_source.append("train-00005-of-00064.parquet")
-    # files_source.append("train-00006-of-00064.parquet")
-    # files_source.append("train-00007-of-00064.parquet")
-    # files_source.append("train-00008-of-00064.parquet")
-    # files_source.append("train-00009-of-00064.parquet")
-    # files_source.append("train-00010-of-00064.parquet")
-    # files_source.append("train-00011-of-00064.parquet")
-    # files_source.append("train-00012-of-00064.parquet")
-    # files_source.append("train-00013-of-00064.parquet")
-    # files_source.append("train-00014-of-00064.parquet")
-    # files_source.append("train-00015-of-00064.parquet")
-    # files_source.append("train-00016-of-00064.parquet")
-    # files_source.append("train-00017-of-00064.parquet")
-    # files_source.append("train-00018-of-00064.parquet")
-    # files_source.append("train-00019-of-00064.parquet")
-    # files_source.append("train-00020-of-00064.parquet")
-    # files_source.append("train-00021-of-00064.parquet")
-    # files_source.append("train-00022-of-00064.parquet")
-    # files_source.append("train-00023-of-00064.parquet")
-    # files_source.append("train-00024-of-00064.parquet")
-    # files_source.append("train-00025-of-00064.parquet")
-    # files_source.append("train-00026-of-00064.parquet")
-    # files_source.append("train-00027-of-00064.parquet")
-    # files_source.append("train-00028-of-00064.parquet")
-    # files_source.append("train-00029-of-00064.parquet")
-    # files_source.append("train-00030-of-00064.parquet")
-    # files_source.append("train-00031-of-00064.parquet")
-    # files_source.append("train-00032-of-00064.parquet")
-    # files_source.append("train-00033-of-00064.parquet")
-    # files_source.append("train-00034-of-00064.parquet")
-    # files_source.append("train-00035-of-00064.parquet")
-    # files_source.append("train-00036-of-00064.parquet")
-    # files_source.append("train-00037-of-00064.parquet")
-    # files_source.append("train-00038-of-00064.parquet")
-    # files_source.append("train-00039-of-00064.parquet")
-    # files_source.append("train-00040-of-00064.parquet")
-    # files_source.append("train-00041-of-00064.parquet")
-    # files_source.append("train-00042-of-00064.parquet")
-    # files_source.append("train-00043-of-00064.parquet")
-    # files_source.append("train-00044-of-00064.parquet")
-    # files_source.append("train-00045-of-00064.parquet")
-    # files_source.append("train-00046-of-00064.parquet")
-    # files_source.append("train-00047-of-00064.parquet")
-    # files_source.append("train-00048-of-00064.parquet")
     
+    cv_17 = datasets.load_dataset(
+        "mozilla-foundation/common_voice_17_0", 
+        "en",
+        split='train', 
+        streaming=True,
+        # trust_remote_code=True, 
+        save_infos=True,
+        keep_in_memory=True,
+    )
+
+    take_len = 100_000
+    cv_17 = iter(cv_17.take(take_len))
     
-    # files_source.append("train-00000-of-00044.parquet") #
-    # files_source.append("train-00001-of-00044.parquet")
-    # files_source.append("train-00002-of-00044.parquet")
-    # files_source.append("train-00003-of-00044.parquet")
-    # files_source.append("train-00004-of-00044.parquet")
-    # files_source.append("train-00005-of-00044.parquet")
-
-    # for i in range(0, 0+1):
-    #     for end in ['44', '56', '64', '1033']:
-    #         files_source.append(f"train-{str(i).zfill(5)}-of-{str(end).zfill(5)}.parquet")
-
-    # files_source.append("train-00011-of-00064.parquet")
-    # files_source.append("train-00012-of-00064.parquet")
-
-    files_source.append("valid-00000-of-00001.parquet")
-    
-    # files_source.append("train-00000-of-00056.parquet")
-
-    print("Files source:", files_source)
-
-    # import multiprocessing as mp
-    # from functools import partial
-    
-
     dataset = []
-    for filename in files_source:
-        filename = "dataset/" + filename
-        print("Processing file:", filename)
-        dataframe = parquet_dataframe.dataframe_from_parquet(filename) # Load a subset for testing
-
-        print("Dataframe shape:", dataframe.shape)
-
-        for i in range(0, len(dataframe)):
-            mfccs_untransposed = mfcc_transform(torch.tensor(np.array(parquet_dataframe.audio_bytes_to_ndarray(dataframe.iloc[i]['audio']['bytes']))).float())
-            dataset.append([
-                mfccs_untransposed, # mfccs untransposed
-                mfccs_untransposed.transpose(0, 1), # mfccs transposed
-                dataframe.iloc[i]['text'], # transcript
-            ])
-            
-            # # Save to file the audio
-            # audio_path = f"audio_{i}.wav"
-            # sf.write(audio_path, np.array(parquet_dataframe.audio_bytes_to_ndarray(dataframe.iloc[i]['audio']['bytes'])), 16000)
-            # with open(f"audio_{i}_transcript.txt", "w") as f:
-            #     f.write(dataframe.iloc[i]['text'])
-            
-            if i > 30:
-                break
+    for i in range(take_len):
+        row = next(cv_17)
+        audio, temp_sample_rate = row['audio']['array'], row['audio']['sampling_rate']
+        # print(f"Sample Rate: {temp_sample_rate}")
+        if temp_sample_rate != sample_rate:
+            raise ValueError(f"Sample rate mismatch: {temp_sample_rate} vs. {sample_rate}")
+        mfccs_untransposed = mfcc_transform(torch.tensor(np.array(audio)).float())
+        dataset.append([
+            mfccs_untransposed, # mfccs untransposed
+            mfccs_untransposed.transpose(0, 1), # mfccs transposed
+            row['sentence'],
+        ])
         
-        del dataframe
+        if i % 1000 == 0:
+            print(f"Processed {i}/{take_len}", end="\r")
+        
+        # # Save to file the audio
+        # audio_path = f"audio_{i}.wav"
+        # sf.write(audio_path, np.array(parquet_dataframe.audio_bytes_to_ndarray(dataframe.iloc[i]['audio']['bytes'])), 16000)
+        # with open(f"audio_{i}_transcript.txt", "w") as f:
+        #     f.write(dataframe.iloc[i]['text'])
+        
+        # if i > 30:
+        #     break
+    
+    # print(dataset)
+    # quit()
+    
+    del cv_17
 
     print("Total dataset size:", len(dataset))
 
@@ -214,23 +129,9 @@ if __name__ == '__main__':
     train_asr_dataset = ASRDataset(train_dataset, mfcc_transform, tokenize_text)
     dev_asr_dataset = ASRDataset(dev_dataset, mfcc_transform, tokenize_text)
 
-    batch_size = 32
+    batch_size = 22
     train_dataloader = DataLoader(train_asr_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn_asr)
     dev_dataloader = DataLoader(dev_asr_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn_asr)
-
-    # 8. Evaluation (Word Error Rate - WER)
-    def decode_predictions(log_probs, input_lengths):
-        predicted_tokens = torch.argmax(log_probs, dim=2)
-        decoded_sentences = []
-        for i in range(predicted_tokens.shape[0]):
-            tokens = predicted_tokens[i, :input_lengths[i]]
-            sentence = ""
-            for t in tokens:
-                char = index_to_char[t.item()]
-                if char != '<blank>': # Assuming no blank token in this simple example, adjust if needed
-                    sentence += char
-            decoded_sentences.append(sentence)
-        return decoded_sentences
 
     from itertools import groupby
 
@@ -255,10 +156,7 @@ if __name__ == '__main__':
         return decoded_sentences
     
     def ctc_decoder_predict(log_probs):
-        # print(log_probs.shape)
         predicted_tokens = torch.argmax(log_probs, dim=2).cpu().numpy()
-        # print(predicted_tokens.shape)
-        # print(predicted_tokens)
         
         decoded_sentences = []
         for i in range(1):
@@ -272,31 +170,6 @@ if __name__ == '__main__':
                 #     sentence += char
                 sentence += char if char != '<blank>' else '-'
             decoded_sentences.append(sentence)
-        return decoded_sentences
-
-    def ctc_decoder_multiple(log_probs, input_lengths, n=3):
-        # Get top n predictions
-        # print(log_probs.shape)
-        _, top_n_indices = torch.topk(log_probs, n, dim=2)
-        top_n_indices = top_n_indices.cpu().numpy()
-        
-        # print(top_n_indices.shape)
-        
-        decoded_sentences = []
-        for i in range(top_n_indices.shape[0]):
-            tokens = top_n_indices[i, :input_lengths[i]]
-            # print(tokens)
-            decoded_sentences.append([])
-            for j in range(n):
-                tokens_j = tokens[:, j]
-                # use groupby to find continuous same indexes
-                tokens_j = [k for k, g in groupby(tokens_j)]
-                sentence = ""
-                for t in tokens_j:
-                    char = index_to_char[t.item()]
-                    if char != '<blank>': # Assuming no blank token in this simple example, adjust if needed
-                        sentence += char
-                decoded_sentences[-1].append(sentence)
         return decoded_sentences
 
     def calculate_wer(predicted_sentences, reference_sentences):
@@ -353,7 +226,7 @@ if __name__ == '__main__':
             self.bn2 = nn.BatchNorm2d(32)
 
             # RNN Layers
-            self.lstm1 = nn.LSTM(160, 128, bidirectional=True, batch_first=True)
+            self.lstm1 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
             self.lstm2 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
             self.lstm3 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
             self.lstm4 = nn.LSTM(256, 128, bidirectional=True, batch_first=True)
@@ -361,7 +234,7 @@ if __name__ == '__main__':
 
             # Dense Layers
             self.dense1 = nn.Linear(256, 256)
-            self.output_layer = nn.Linear(256, output_dim + 1)  # +1 for blank
+            self.output_layer = nn.Linear(256, output_dim)
 
         def forward(self, x):
             # Expand dimensions
@@ -421,16 +294,16 @@ if __name__ == '__main__':
     model = MediumASR(input_dim, output_dim)
     print(model)
     
-    learning_rate = 0.001
+    learning_rate = 0.0001
     print(f"Learning rate: {learning_rate}")
     
     # 5. Loss Function and Optimizer (CTC Loss and Adam)
     criterion = nn.CTCLoss(blank=0)
     optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
     
-    # Load
-    model.load_state_dict(torch.load("asr_v3.pth"))
-    print("Model loaded.")
+    # # Load
+    # model.load_state_dict(torch.load("asr_v3.pth"))
+    # print("Model loaded.")
 
     # 6. Training Loop
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -438,7 +311,7 @@ if __name__ == '__main__':
     model.to(device)
     criterion.to(device)
 
-    TRAIN = False # Set to True to train the model
+    TRAIN = True # Set to True to train the model
 
     def main():
         if TRAIN:
@@ -474,7 +347,7 @@ if __name__ == '__main__':
                     train_loss += loss.item()
                     batch_group_loss += loss.item()
 
-                    batch_interval = 800
+                    batch_interval = 150
                     if batch_idx % batch_interval == 0 and batch_idx > 0:
                         # avg_loss = train_loss / (batch_idx + 1)
                         avg_loss = batch_group_loss / batch_interval # Print average loss over last few batches
@@ -631,7 +504,7 @@ if __name__ == '__main__':
             print("Reference:", transcript)
         
     main()
-    # evaluate()
+    evaluate()
     
     audio_files = [
         # "audio_0.wav",

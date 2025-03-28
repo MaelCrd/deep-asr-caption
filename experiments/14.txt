@@ -1,0 +1,116 @@
+PS C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests> python .\v4-noalign-v4-trans.py
+Files source: ['train-00000-of-00064.parquet', 'train-00001-of-00064.parquet', 'train-00002-of-00064.parquet']
+Processing file: dataset/train-00000-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00001-of-00064.parquet
+Dataframe shape: (4395, 5)
+Processing file: dataset/train-00002-of-00064.parquet
+Dataframe shape: (4395, 5)
+Total dataset size: 13185
+Shuffling dataset...
+TransformerASR(
+  (embedding): Linear(in_features=20, out_features=64, bias=True)
+  (transformer_encoder): TransformerEncoder(
+    (layers): ModuleList(
+      (0-2): 3 x TransformerEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=64, out_features=64, bias=True)
+        )
+        (linear1): Linear(in_features=64, out_features=2048, bias=True)
+        (dropout): Dropout(p=0.2, inplace=False)
+        (linear2): Linear(in_features=2048, out_features=64, bias=True)
+        (norm1): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.2, inplace=False)
+        (dropout2): Dropout(p=0.2, inplace=False)
+      )
+    )
+  )
+  (output_layer): Linear(in_features=64, out_features=34, bias=True)
+  (dropout): Dropout(p=0.2, inplace=False)
+)
+Using device: cuda
+[25-03 21:55] Epoch [1/100], Batch [5/371], Train Loss (last batch group): 19.7371
+[25-03 21:55] Epoch [1/100], Batch [10/371], Train Loss (last batch group): 8.1365
+[25-03 21:56] Epoch [1/100], Batch [15/371], Train Loss (last batch group): 6.7837
+[25-03 21:56] Epoch [1/100], Batch [20/371], Train Loss (last batch group): 6.7628
+[25-03 21:56] Epoch [1/100], Batch [25/371], Train Loss (last batch group): 6.6066
+[25-03 21:56] Epoch [1/100], Batch [30/371], Train Loss (last batch group): 8.0911
+[25-03 21:56] Epoch [1/100], Batch [35/371], Train Loss (last batch group): 6.2007
+[25-03 21:56] Epoch [1/100], Batch [40/371], Train Loss (last batch group): 6.2005
+[25-03 21:56] Epoch [1/100], Batch [45/371], Train Loss (last batch group): 7.0722
+[25-03 21:56] Epoch [1/100], Batch [50/371], Train Loss (last batch group): 8.6176
+[25-03 21:56] Epoch [1/100], Batch [55/371], Train Loss (last batch group): 6.9115
+[25-03 21:57] Epoch [1/100], Batch [60/371], Train Loss (last batch group): 6.1868
+[25-03 21:57] Epoch [1/100], Batch [65/371], Train Loss (last batch group): 5.9540
+[25-03 21:57] Epoch [1/100], Batch [70/371], Train Loss (last batch group): 5.9296
+[25-03 21:57] Epoch [1/100], Batch [75/371], Train Loss (last batch group): 5.8708
+[25-03 21:57] Epoch [1/100], Batch [80/371], Train Loss (last batch group): 5.5551
+[25-03 21:57] Epoch [1/100], Batch [85/371], Train Loss (last batch group): 6.3394
+[25-03 21:57] Epoch [1/100], Batch [90/371], Train Loss (last batch group): 6.2676
+[25-03 21:57] Epoch [1/100], Batch [95/371], Train Loss (last batch group): 6.6226
+[25-03 21:57] Epoch [1/100], Batch [100/371], Train Loss (last batch group): 5.0120
+[25-03 21:57] Epoch [1/100], Batch [105/371], Train Loss (last batch group): 8.2711
+[25-03 21:57] Epoch [1/100], Batch [110/371], Train Loss (last batch group): 4.9146
+[25-03 21:57] Epoch [1/100], Batch [115/371], Train Loss (last batch group): 6.3112
+[25-03 21:58] Epoch [1/100], Batch [120/371], Train Loss (last batch group): 7.4696
+[25-03 21:58] Epoch [1/100], Batch [125/371], Train Loss (last batch group): 6.6609
+[25-03 21:58] Epoch [1/100], Batch [130/371], Train Loss (last batch group): 4.8393
+[25-03 21:58] Epoch [1/100], Batch [135/371], Train Loss (last batch group): 4.8361
+[25-03 21:58] Epoch [1/100], Batch [140/371], Train Loss (last batch group): 6.0974
+[25-03 21:58] Epoch [1/100], Batch [145/371], Train Loss (last batch group): 6.2443
+[25-03 21:58] Epoch [1/100], Batch [150/371], Train Loss (last batch group): 6.9188
+[25-03 21:58] Epoch [1/100], Batch [155/371], Train Loss (last batch group): 4.6899
+[25-03 21:58] Epoch [1/100], Batch [160/371], Train Loss (last batch group): 6.0230
+[25-03 21:58] Epoch [1/100], Batch [165/371], Train Loss (last batch group): 7.2513
+[25-03 21:59] Epoch [1/100], Batch [170/371], Train Loss (last batch group): 4.4903
+[25-03 21:59] Epoch [1/100], Batch [175/371], Train Loss (last batch group): 8.6054
+[25-03 21:59] Epoch [1/100], Batch [180/371], Train Loss (last batch group): 4.6028
+[25-03 21:59] Epoch [1/100], Batch [185/371], Train Loss (last batch group): 4.5669
+[25-03 21:59] Epoch [1/100], Batch [190/371], Train Loss (last batch group): 6.6782
+[25-03 21:59] Epoch [1/100], Batch [195/371], Train Loss (last batch group): 7.5353
+[25-03 21:59] Epoch [1/100], Batch [200/371], Train Loss (last batch group): 6.0101
+[25-03 22:00] Epoch [1/100], Batch [205/371], Train Loss (last batch group): 4.4947
+[25-03 22:01] Epoch [1/100], Batch [210/371], Train Loss (last batch group): 5.8126
+[25-03 22:01] Epoch [1/100], Batch [215/371], Train Loss (last batch group): 4.4194
+[25-03 22:02] Epoch [1/100], Batch [220/371], Train Loss (last batch group): 6.3914
+[25-03 22:02] Epoch [1/100], Batch [225/371], Train Loss (last batch group): 4.4276
+[25-03 22:03] Epoch [1/100], Batch [230/371], Train Loss (last batch group): 4.5793
+[25-03 22:04] Epoch [1/100], Batch [235/371], Train Loss (last batch group): 4.4728
+[25-03 22:04] Epoch [1/100], Batch [240/371], Train Loss (last batch group): 4.5025
+[25-03 22:05] Epoch [1/100], Batch [245/371], Train Loss (last batch group): 4.5130
+[25-03 22:05] Epoch [1/100], Batch [250/371], Train Loss (last batch group): 10.2046
+[25-03 22:06] Epoch [1/100], Batch [255/371], Train Loss (last batch group): 7.2557
+[25-03 22:07] Epoch [1/100], Batch [260/371], Train Loss (last batch group): 5.9001
+[25-03 22:07] Epoch [1/100], Batch [265/371], Train Loss (last batch group): 4.4175
+[25-03 22:08] Epoch [1/100], Batch [270/371], Train Loss (last batch group): 4.4322
+[25-03 22:09] Epoch [1/100], Batch [275/371], Train Loss (last batch group): 6.4367
+[25-03 22:09] Epoch [1/100], Batch [280/371], Train Loss (last batch group): 4.3471
+[25-03 22:10] Epoch [1/100], Batch [285/371], Train Loss (last batch group): 9.1730
+[25-03 22:10] Epoch [1/100], Batch [290/371], Train Loss (last batch group): 5.4639
+[25-03 22:11] Epoch [1/100], Batch [295/371], Train Loss (last batch group): 7.4365
+[25-03 22:12] Epoch [1/100], Batch [300/371], Train Loss (last batch group): 5.3600
+[25-03 22:12] Epoch [1/100], Batch [305/371], Train Loss (last batch group): 5.1496
+[25-03 22:13] Epoch [1/100], Batch [310/371], Train Loss (last batch group): 4.2872
+[25-03 22:14] Epoch [1/100], Batch [315/371], Train Loss (last batch group): 4.3188
+[25-03 22:14] Epoch [1/100], Batch [320/371], Train Loss (last batch group): 4.3358
+[25-03 22:15] Epoch [1/100], Batch [325/371], Train Loss (last batch group): 6.7018
+[25-03 22:15] Epoch [1/100], Batch [330/371], Train Loss (last batch group): 6.0214
+[25-03 22:16] Epoch [1/100], Batch [335/371], Train Loss (last batch group): 4.3581
+[25-03 22:17] Epoch [1/100], Batch [340/371], Train Loss (last batch group): 4.3302
+[25-03 22:17] Epoch [1/100], Batch [345/371], Train Loss (last batch group): 4.9522
+[25-03 22:18] Epoch [1/100], Batch [350/371], Train Loss (last batch group): 6.2961
+[25-03 22:19] Epoch [1/100], Batch [355/371], Train Loss (last batch group): 4.3383
+[25-03 22:19] Epoch [1/100], Batch [360/371], Train Loss (last batch group): 4.2279
+[25-03 22:20] Epoch [1/100], Batch [365/371], Train Loss (last batch group): 4.3542
+[25-03 22:21] Epoch [1/100], Batch [370/371], Train Loss (last batch group): 4.2798
+[25-03 22:21] Epoch [1/100] - Average Train Loss: 6.0629
+C:\Users\mael\Desktop\UQAC\Deep learning\Projet\Tests\venv\Lib\site-packages\torch\nn\modules\transformer.py:508: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. We recommend specifying layout=torch.jagged when constructing a nested tensor, as this layout receives active development, has better operator coverage, and works with torch.compile. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\NestedTensorImpl.cpp:182.)
+  output = torch._nested_tensor_from_mask(
+Epoch [1/100] - Validation Loss: 12.0730
+[25-03 22:24] Epoch [2/100], Batch [5/371], Train Loss (last batch group): 5.2241
+[25-03 22:25] Epoch [2/100], Batch [10/371], Train Loss (last batch group): 4.3626
+[25-03 22:25] Epoch [2/100], Batch [15/371], Train Loss (last batch group): 5.7330
+[25-03 22:26] Epoch [2/100], Batch [20/371], Train Loss (last batch group): 4.3083
+
+

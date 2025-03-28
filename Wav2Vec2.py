@@ -14,7 +14,9 @@ import matplotlib.pyplot as plt
 from torchaudio.utils import download_asset
 
 # SPEECH_FILE = download_asset("tutorial-assets/Lab41-SRI-VOiCES-src-sp0307-ch127535-sg0042.wav")
-SPEECH_FILE = "audio0.wav"
+# SPEECH_FILE = "youtube_AaCnBOqyvIM_audio_fireship_exploit.mp3"
+# SPEECH_FILE = "god-call.mp3"
+SPEECH_FILE = "youtube_Ni82f1-cAXg_audio_glue.mp3"
 
 bundle = torchaudio.pipelines.WAV2VEC2_ASR_BASE_960H
 
@@ -31,7 +33,9 @@ waveform = waveform.to(device)
 
 if sample_rate != bundle.sample_rate:
     waveform = torchaudio.functional.resample(waveform, sample_rate, bundle.sample_rate)
-    
+
+# Crop to 100 seconds
+waveform = waveform[:, :100 * bundle.sample_rate]
 
 with torch.inference_mode():
     features, _ = model.extract_features(waveform)
