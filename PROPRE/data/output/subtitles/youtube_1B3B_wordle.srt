@@ -1,0 +1,760 @@
+1
+00:00:00,140 --> 00:00:03,439
+Last weak i put up this video about solling the game word oll,
+
+2
+00:00:03,440 --> 00:00:04,920
+or lest trying to solfe it,
+
+3
+00:00:04,960 --> 00:00:06,420
+using information tho,
+
+4
+00:00:06,600 --> 00:00:07,820
+and i wanted to ata quick,
+
+5
+00:00:08,060 --> 00:00:09,900
+a what you becallus and adendom,
+
+6
+00:00:10,060 --> 00:00:11,819
+a confessiono basically,
+
+7
+00:00:11,820 --> 00:00:14,080
+id just one explaine a place where by made a istake.
+
+8
+00:00:14,420 --> 00:00:18,919
+E turned out, there was iing slate bug in the coat that i was running two recreate wortl
+
+9
+00:00:18,920 --> 00:00:22,080
+in then bron al of the outer thems tissovit and test their performance,
+
+10
+00:00:22,640 --> 00:00:25,640
+and is one of those bugs that effects every small prersentade of cases,
+
+11
+00:00:25,660 --> 00:00:27,099
+so hey was easy to miss,
+
+12
+00:00:27,100 --> 00:00:31,819
+and it has only very slight effect that for the most part dosn early matter basically it
+
+13
+00:00:31,820 --> 00:00:36,460
+had to do with how you assin a color to a guess that has multan differet letters in it.
+
+14
+00:00:36,600 --> 00:00:39,660
+Reseptleith you guess speed and the truancser is abide,
+
+15
+00:00:40,100 --> 00:00:42,380
+how should you color those two ease from the gues,
+
+16
+00:00:43,060 --> 00:00:46,739
+will a wa that it works with the wortl conventions is that the first ea would be colored
+
+17
+00:00:46,740 --> 00:00:49,380
+yellow, and the second one would be colored gray.
+
+18
+00:00:49,580 --> 00:00:52,680
+You mi think of that first one is matching up with something from the true answer,
+
+19
+00:00:52,960 --> 00:00:54,359
+and the greenness as telling you,
+
+20
+00:00:54,360 --> 00:00:55,880
+there is no second e,
+
+21
+00:00:56,220 --> 00:00:58,740
+by contrast, if the answer was something liked inrace,
+
+22
+00:00:59,280 --> 00:01:01,120
+both of those ease would be coloer gillow,
+
+23
+00:01:01,380 --> 00:01:03,920
+helling you that there is a first e in indifferent location,
+
+24
+00:01:04,280 --> 00:01:05,498
+and there s a second e,
+
+25
+00:01:05,499 --> 00:01:06,819
+also in a different location,
+
+26
+00:01:07,299 --> 00:01:09,779
+the morely if one of the ease hits and its green,
+
+27
+00:01:10,019 --> 00:01:15,039
+then that second one would be gray in the case were the true answer has no second nen,
+
+28
+00:01:15,299 --> 00:01:18,578
+but it would be yellow in the case where there is a second e,
+
+29
+00:01:18,579 --> 00:01:21,359
+and it s jist in a diffeet mocation one stoicshwoard,
+
+30
+00:01:21,459 --> 00:01:25,939
+somewore along the way i axtently introduced behavior that differs from these convention
+
+31
+00:01:25,979 --> 00:01:28,819
+slightly. Nhonesly, it was really dumb,
+
+32
+00:01:28,839 --> 00:01:31,218
+bey sicly at some point in the middle of the project,
+
+33
+00:01:31,219 --> 00:01:33,179
+i ont an two speed up some of the computations,
+
+34
+00:01:33,819 --> 00:01:37,618
+and a strang a little trick for how computed the value for this pattering between any
+
+35
+00:01:37,619 --> 00:01:38,699
+given pair of words,
+
+36
+00:01:39,399 --> 00:01:41,158
+and you noi disdintreally think it through,
+
+37
+00:01:41,159 --> 00:01:42,879
+and it introduce the slight change.
+
+38
+00:01:43,259 --> 00:01:44,978
+The aronic part is it in the end,
+
+39
+00:01:44,979 --> 00:01:48,858
+the actual way to make things fastist is to precebute all those patterns d so tit
+
+40
+00:01:48,859 --> 00:01:50,298
+everything is dist a look up,
+
+41
+00:01:50,299 --> 00:01:52,778
+and so it wouldn t matter how long a takes to do each one,
+
+42
+00:01:52,779 --> 00:01:55,999
+especially a fe rating hard toread buggy coad to make it happen.
+
+43
+00:01:56,339 --> 00:01:57,419
+En are you live an elarn.
+
+44
+00:01:58,039 --> 00:01:59,218
+Mi hars how this effects,
+
+45
+00:01:59,219 --> 00:02:02,459
+the actual video, in very little of substance realy changes,
+
+46
+00:02:02,699 --> 00:02:06,278
+of course the mai lessons about what is information what is entripe all that s das the
+
+47
+00:02:06,279 --> 00:02:10,778
+same, every now ind them if hem showing on screen some distribution associated with ta
+
+48
+00:02:10,779 --> 00:02:15,218
+given word, that distribution might actually be a little bet off because some of the
+
+49
+00:02:15,219 --> 00:02:19,598
+buckets assucied woith batharious patterns should include either more or fewer,
+
+50
+00:02:19,599 --> 00:02:24,018
+true answers, even then it as a grealy come upcus as veryrare that i would be showing a
+
+51
+00:02:24,019 --> 00:02:27,099
+word that had munbl letters that also hit this edge case,
+
+52
+00:02:27,679 --> 00:02:31,039
+by orne of the very futhings of substance that does change,
+
+53
+00:02:31,079 --> 00:02:36,018
+and that arguably does manner a fair bit was the final conclision around how if we want
+
+54
+00:02:36,019 --> 00:02:39,999
+to find the optimal possible score for the wordl answerliss,
+
+55
+00:02:40,439 --> 00:02:43,899
+what open and guessed to such an olger the muse in the video,
+
+56
+00:02:43,919 --> 00:02:48,079
+i said the best performance that i confined came from opening with the word crane,
+
+57
+00:02:48,479 --> 00:02:51,998
+which was trew only in the sinte that the outer thems were playing a very slightly
+
+58
+00:02:51,999 --> 00:02:53,978
+different game. After fixing it,
+
+59
+00:02:53,979 --> 00:02:55,099
+and we running at all,
+
+60
+00:02:55,119 --> 00:02:59,278
+there is a different answer for what thef the aredically optimal first guess is for this
+
+61
+00:02:59,279 --> 00:03:01,919
+particular lift, an look,
+
+62
+00:03:02,059 --> 00:03:07,178
+i know tit you know that the point of te video is not to find some technically optimal
+
+63
+00:03:07,179 --> 00:03:09,319
+answer to some random on lane game.
+
+64
+00:03:09,739 --> 00:03:13,498
+The point of the video is deshamelessly hop on the bandwagon of an internet trind
+
+65
+00:03:13,499 --> 00:03:16,098
+tosneaek attack people with an information thery lesson.
+
+66
+00:03:16,478 --> 00:03:18,298
+A at a good, i stand by that pert,
+
+67
+00:03:18,318 --> 00:03:19,697
+but i nowhow the ininat works,
+
+68
+00:03:19,698 --> 00:03:24,277
+and for lot a people to one mayne take away was what is the best opener for the gave
+
+69
+00:03:24,278 --> 00:03:25,977
+wordl, and i get it,
+
+70
+00:03:25,978 --> 00:03:28,318
+i walked into that cas the puttit in that them now,
+
+71
+00:03:28,378 --> 00:03:31,798
+but presondly you can forgive me if i want ad a little correction here,
+
+72
+00:03:32,018 --> 00:03:35,098
+and a more meaning for reason to circle back to all this ecurally,
+
+73
+00:03:35,378 --> 00:03:38,358
+i that i never belly packed about what went i into that final analysis,
+
+74
+00:03:38,918 --> 00:03:42,358
+tan its intresting as a sublesson in it own right sopniths worth dowing here.
+
+75
+00:03:43,138 --> 00:03:47,517
+No if you'll recall most of our time last video was spent on the challenge of trying to
+
+76
+00:03:47,518 --> 00:03:49,198
+rate an olger them to solv wordol,
+
+77
+00:03:49,278 --> 00:03:52,578
+thit did not use the official list of all possible answers,
+
+78
+00:03:53,058 --> 00:03:56,158
+an i taste that feels a bit like overfitting to attest set,
+
+79
+00:03:56,278 --> 00:03:58,598
+and with morefine is building something bet s rasiliant.
+
+80
+00:03:58,958 --> 00:04:02,837
+This is why we went through the whole process of looking at relative word frequencies in
+
+81
+00:04:02,838 --> 00:04:07,497
+the english language to come up at some notion of how likely each on willict be toul be
+
+82
+00:04:07,498 --> 00:04:08,958
+included as a final anser.
+
+83
+00:04:09,338 --> 00:04:11,198
+However, bor what were doing here,
+
+84
+00:04:11,298 --> 00:04:14,318
+where weld dutrying to find an absolute best performance period,
+
+85
+00:04:14,638 --> 00:04:19,198
+i am inquorperating that official list and jus shame wasle overfitting to the test tat,
+
+86
+00:04:19,338 --> 00:04:22,818
+which is to say, we know with certainty whether a word as included or not,
+
+87
+00:04:22,878 --> 00:04:25,638
+and we can assigne a uniform probability to each one.
+
+88
+00:04:26,478 --> 00:04:30,738
+If you remember, the firt step ind all ofthis was to sai for a particular open and guess,
+
+89
+00:04:30,878 --> 00:04:32,878
+ay bo something like my old favourte cran,
+
+90
+00:04:33,058 --> 00:04:36,258
+po lingkly is it that you would see each of the possible patterns,
+
+91
+00:04:36,798 --> 00:04:40,658
+and in this context where we are shamelessly overfitting to the wordl answer list,
+
+92
+00:04:40,698 --> 00:04:44,058
+all that involvse is counting how many of the possible answers,
+
+93
+00:04:44,238 --> 00:04:45,478
+give euth one of these pats,
+
+94
+00:04:45,998 --> 00:04:49,737
+and then of course most of our time was peent on this canefany looking formula to
+
+95
+00:04:49,738 --> 00:04:52,958
+quantify the ament of information that you had get from this guess.
+
+96
+00:04:53,318 --> 00:04:57,117
+The basically involvse going through ech tont of those buckets and saying how much
+
+97
+00:04:57,118 --> 00:04:58,518
+information would you gain.
+
+98
+00:04:58,758 --> 00:05:02,997
+Tit has this log expression that is af fanciful way of saying how many times whould you
+
+99
+00:05:02,998 --> 00:05:06,978
+cut your space of possibilities in half if you observe to given pattern.
+
+100
+00:05:07,558 --> 00:05:09,538
+We take a waited average of all of those,
+
+101
+00:05:09,798 --> 00:05:13,418
+and it gives this amesure of how much we expects tolern from this first gess,
+
+102
+00:05:13,578 --> 00:05:15,177
+in a moment will go deeper than this,
+
+103
+00:05:15,178 --> 00:05:18,997
+but if he simply search through all thirteen thousand different words thay you could
+
+104
+00:05:18,998 --> 00:05:22,378
+start with, and you asked which one has the highest expected information,
+
+105
+00:05:23,058 --> 00:05:26,417
+etturnes out, the best possible answer is sore,
+
+106
+00:05:26,897 --> 00:05:28,737
+which does t really look like a real word,
+
+107
+00:05:30,377 --> 00:05:33,257
+but i guessot an obsolete term for a baby hack,
+
+108
+00:05:34,057 --> 00:05:36,337
+the top sifteen openers by this metric,
+
+109
+00:05:36,577 --> 00:05:37,757
+apendto look like tis,
+
+110
+00:05:38,177 --> 00:05:39,257
+but these are not necessarily,
+
+111
+00:05:39,697 --> 00:05:40,937
+the best open ind guesses,
+
+112
+00:05:41,097 --> 00:05:44,977
+because their only looking one step in with tha heristic of expected information,
+
+113
+00:05:45,497 --> 00:05:47,717
+the try to estimate what the two score will be,
+
+114
+00:05:47,897 --> 00:05:49,277
+but there s few enough patterns,
+
+115
+00:05:49,357 --> 00:05:51,897
+that we can do an exast of search two steps in,
+
+116
+00:05:52,197 --> 00:05:54,317
+resemble letsar you opened with sore,
+
+117
+00:05:54,657 --> 00:05:59,076
+and the pattern he happened a sea was temos likely one all grays then he can run
+
+118
+00:05:59,077 --> 00:06:01,077
+identical an lysis from that quint,
+
+119
+00:06:01,217 --> 00:06:03,136
+for a given proposed second guess,
+
+120
+00:06:03,137 --> 00:06:04,297
+something like kity,
+
+121
+00:06:04,637 --> 00:06:08,577
+what s the distribution across all patterns in that restricted case where were restricted
+
+122
+00:06:08,657 --> 00:06:11,417
+only to the words that would produce all grays for sore,
+
+123
+00:06:11,757 --> 00:06:15,857
+and then we measure the flatness of that distribution musing this te expected information
+
+124
+00:06:15,897 --> 00:06:20,776
+formila, and we do that for all thirteen thousand possible words that we could use as a
+
+125
+00:06:20,777 --> 00:06:25,277
+second guess, douing this we can find the opotible second guess in that scenario,
+
+126
+00:06:25,497 --> 00:06:28,537
+and the amount of information we ware expected to get from it,
+
+127
+00:06:28,837 --> 00:06:32,736
+and if wee washerancs and repeat and do this for all of the different possible pattens
+
+128
+00:06:32,737 --> 00:06:37,537
+that you might see, we get a full map of all the best possible second guesses together
+
+129
+00:06:37,557 --> 00:06:45,996
+with thexpected information of each e arn from there if you take a waited average of all
+
+130
+00:06:45,997 --> 00:06:50,737
+thee seconstep values weaded according to held likely you are to fall into that bucket.
+
+131
+00:06:50,997 --> 00:06:52,857
+They gives you a measure of how much information,
+
+132
+00:06:53,017 --> 00:06:58,616
+youre likely to gain from the guess sore after the second step when we use this two stepp
+
+133
+00:06:58,617 --> 00:07:00,277
+metric as our new means of ranking.
+
+134
+00:07:00,597 --> 00:07:02,036
+The list gets jacon up abit,
+
+135
+00:07:02,037 --> 00:07:04,957
+sor is no longer first place it fals back to fourteenth,
+
+136
+00:07:05,457 --> 00:07:07,777
+e instead what rises to the top is slanagain,
+
+137
+00:07:09,277 --> 00:07:12,777
+does t feel very real i am it looked like yit his at,
+
+138
+00:07:13,037 --> 00:07:14,917
+british carm for a speed.
+
+139
+00:07:15,137 --> 00:07:16,617
+Tit s used for cutting tush,
+
+140
+00:07:17,037 --> 00:07:22,476
+at, but as i can see it is of really tight race among all of hese top contenders sburt
+
+141
+00:07:22,477 --> 00:07:25,137
+who gains the most information after those toekh steps,
+
+142
+00:07:25,657 --> 00:07:28,917
+and even still these ar not necessarily the best open and guesses,
+
+143
+00:07:29,237 --> 00:07:33,076
+because information is just the heristic it s not telling as the actual score if you
+
+144
+00:07:33,077 --> 00:07:34,236
+actually play the game.
+
+145
+00:07:34,576 --> 00:07:39,435
+What i did as i ran the sibulation of playing all two thousand te underd fifteen possible
+
+146
+00:07:39,436 --> 00:07:44,696
+wortl games with all possible answers on the top two hundred fifty from this list,
+
+147
+00:07:46,416 --> 00:07:48,856
+then by doing this seeing how they actually perform,
+
+148
+00:07:49,336 --> 00:07:52,896
+the one that ins up very margnaltly with the best possible score,
+
+149
+00:07:53,336 --> 00:08:03,336
+on that to be sale, which is lit s e sale an alternate spelling for salla,
+
+150
+00:08:04,456 --> 00:08:06,196
+which is a lats maeval helmets.
+
+151
+00:08:07,016 --> 00:08:10,255
+As, if that feels little to to fakh for yout,
+
+152
+00:08:10,256 --> 00:08:11,436
+which it does for me,
+
+153
+00:08:11,536 --> 00:08:15,796
+wiut be happy to know that trace and creat div almost andintical performance,
+
+154
+00:08:16,356 --> 00:08:19,436
+each of them has the benefit of obviously being orea word,
+
+155
+00:08:19,636 --> 00:08:23,675
+so there is one day when you get it right on the first guess sance both our actual wordl
+
+156
+00:08:23,676 --> 00:08:28,855
+answers. This move from sorting bist on the best two step intrepeas to sworting bist on
+
+157
+00:08:28,856 --> 00:08:30,216
+thelowest avearad score,
+
+158
+00:08:30,336 --> 00:08:32,676
+also sheexep the list but not nearly as much,
+
+159
+00:08:32,716 --> 00:08:36,616
+for exemple, sale was previously third place before a bubles to the top,
+
+160
+00:08:36,836 --> 00:08:39,236
+and creat and trace were both forth and fifth.
+
+161
+00:08:39,676 --> 00:08:43,175
+If your curious, you can t get slightly better performance from here by doing a little
+
+162
+00:08:43,176 --> 00:08:47,556
+brote forcing. This arynice block tous by joneth and olson if you curious about this,
+
+163
+00:08:47,636 --> 00:08:51,415
+where he also that s you explore what the opotimale following guesses are fer a few of
+
+164
+00:08:51,416 --> 00:08:56,275
+distorting word based on these optomol elgar thems stepping back from all this,
+
+165
+00:08:56,276 --> 00:09:01,655
+though andtold by some people that at clot ruins the game to over aniline it like this
+
+166
+00:09:01,656 --> 00:09:03,876
+and try to find an optimal ok an a guess.
+
+167
+00:09:04,276 --> 00:09:07,895
+Not feels canna dirty if you huse that open ing guess after learning it,
+
+168
+00:09:07,896 --> 00:09:09,815
+and if yeel inefficient if you don t,
+
+169
+00:09:09,816 --> 00:09:14,135
+b the thing is, i don t actually think this is the best opener forar human playing the
+
+170
+00:09:14,136 --> 00:09:18,635
+game, foon thing, you would bee to know what the optimal second guess is fre eacht one of
+
+171
+00:09:18,636 --> 00:09:19,876
+the pardons that you see,
+
+172
+00:09:20,316 --> 00:09:25,035
+a more importantly all of this isi t a setting where we are absuredly overfit to the
+
+173
+00:09:25,036 --> 00:09:26,296
+official wirl answerless,
+
+174
+00:09:26,716 --> 00:09:31,336
+the moment it sayd the ne ork tines choeses to change what that list is under the hood,
+
+175
+00:09:31,576 --> 00:09:33,096
+all of this would go out the window,
+
+176
+00:09:33,616 --> 00:09:35,295
+beway that we humans play the game.
+
+177
+00:09:35,296 --> 00:09:37,796
+Is just very different from what any of these ouger hand sirdoing.
+
+178
+00:09:38,056 --> 00:09:41,316
+We don t have the worthlest memorized were not doing exast of searches,
+
+179
+00:09:41,636 --> 00:09:45,235
+we have ientuithion from things like what are the vocals and how wher they placed.
+
+180
+00:09:45,735 --> 00:09:48,475
+I would actually be most happy if those af you watching this midio,
+
+181
+00:09:48,615 --> 00:09:52,575
+pumply forgot what happens to be the technically best opening guess,
+
+182
+00:09:52,895 --> 00:09:56,974
+and instead came out remembering things like how do you quant to fy information ore the
+
+183
+00:09:56,975 --> 00:09:59,575
+fact that you should look out for when a greedy outwe them,
+
+184
+00:09:59,615 --> 00:10:03,275
+fal short of the glibly best performance that you a get from a eper search,
+
+185
+00:10:03,775 --> 00:10:07,295
+to my tast at least the joy of writing outwer thems to try to ple games,
+
+186
+00:10:07,395 --> 00:10:11,015
+acuias very little bearing on how i like to play those games as a human,
+
+187
+00:10:11,355 --> 00:10:15,074
+the point of riting ougerthams fr al this is not to effect the way that we played the
+
+188
+00:10:15,075 --> 00:10:17,055
+game, and still dus to fundwart gam.
+
+189
+00:10:17,275 --> 00:10:20,755
+It s te hone in our muscles for writing out wer thems an more meeting ful context
+
+190
+00:10:20,775 --> 00:10:40,715
+telswerer a ad d a, e hd a oo o i a olo lan iaa lin o loalololmloelon.
+

@@ -11,3 +11,7 @@ Datasets
 *.mp3
 *.zip
 *.tar.gz
+*.pkl
+venv-wsl
+*.mp4
+.tsv

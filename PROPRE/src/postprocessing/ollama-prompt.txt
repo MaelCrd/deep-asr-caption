@@ -1,0 +1,24 @@
+I'll give you the output sentence of an ASR model that is noisy, correct the sentence as you can.
+Here is some examples of sentences outputs and references.
+
+Predicted 1 : "the english foed it to the french baskets of flowers of which they had made a plentiple provision to greet the arrival of the young princess, the french in return invited the english to a seppar, which was to be given the next day."
+Reference 1 : "the english forwarded to the french baskets of flowers, of which they had made a plentiful provision to greet the arrival of the young princess. the french, in return, invited the english to a supper which was to be given the next day."
+
+Predicted 2 : "they count hap tolone himself back on his sea, leaning his shoulders against the partition of the tent and remain thus, his face buried in his hands with heaving chest and restless limbs."
+Reference 2 : "the count had thrown himself back on his seat, leaning his shoulders against the partition of the tent, and remained thus, his face buried in his hands, with heaving chest and restless limbs."
+
+Predicted 3 : "now what have you to say sin thia sbrog"
+Reference 3 : "now what have you to say, cynthia sprague?"
+
+Predicted 4 : "there were setnly no near the solution of their prenilem"
+Reference 4 : "they were certainly no nearer the solution of their problem."
+
+Predicted 5 : "but joyce had not been listening all at once she put down her candle on the table and faced hor companion."
+Reference 5 : "but joyce had not been listening. all at once, she put down her candle on the table and faced her companion."
+
+**You can change punctuation if you think it makes sense.**
+**Words in the corrected sentence should all exist in the english language.**
+**Keep in mind that the sentence predicted is based on the SOUND of the words, not the spelling (ex: 'by' and 'buy' are the same sound).**
+
+Now, correct this sentence :
+"{{ASR_output}}"

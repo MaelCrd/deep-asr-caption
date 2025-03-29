@@ -81,7 +81,7 @@ if __name__ == '__main__':
         keep_in_memory=True,
     )
 
-    take_len = 100_000
+    take_len = 1_000
     cv_17 = iter(cv_17.take(take_len))
     
     dataset = []
@@ -311,7 +311,7 @@ if __name__ == '__main__':
     model.to(device)
     criterion.to(device)
 
-    TRAIN = True # Set to True to train the model
+    TRAIN = False # Set to True to train the model
 
     def main():
         if TRAIN:
@@ -424,24 +424,25 @@ if __name__ == '__main__':
 
                     reference_sentences = []
                     for tokens in tokens_padded_cpu:
-                        sentence = "".join([index_to_char[token.item()] for token in tokens if token.item() != 0])
+                        # sentence = "".join([index_to_char[token.item()] for token in tokens if token.item() != 0])
+                        sentence = "".join([index_to_char[token.item()] for token in tokens])
                         reference_sentences.append(sentence)
                     
                     # print('Predicted:', predicted_sentences)
                     # print('Reference:', reference_sentences)
                     
                     # Print them one by one
-                    for i in range(len(predicted_sentences)):
-                        if i > len(reference_sentences) - 1:
-                            break
-                        print(f">>> Predicted: {predicted_sentences[i]}")
-                        # print(f">>> Predicted:")
-                        # for _ in range(len(predicted_sentences[i])):
-                        #     print(">", predicted_sentences[i][_])
-                        # print(">", predicted_sentences[i])
-                        print(f">>> Reference: {reference_sentences[i]}")
-                        print("")
-                        input("Press Enter to continue...")
+                    # for i in range(len(predicted_sentences)):
+                    #     if i > len(reference_sentences) - 1:
+                    #         break
+                    #     print(f">>> Predicted: {predicted_sentences[i]}")
+                    #     # print(f">>> Predicted:")
+                    #     # for _ in range(len(predicted_sentences[i])):
+                    #     #     print(">", predicted_sentences[i][_])
+                    #     # print(">", predicted_sentences[i])
+                    #     print(f">>> Reference: {reference_sentences[i]}")
+                    #     print("")
+                    #     input("Press Enter to continue...")
 
                     batch_wer = calculate_wer(reference_sentences, predicted_sentences)
                     if batch_wer is not None:

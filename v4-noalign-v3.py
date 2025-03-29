@@ -437,6 +437,12 @@ if __name__ == '__main__':
     print(f"Using device: {device}")
     model.to(device)
     criterion.to(device)
+    
+    # Print the number of parameters in the model
+    num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"Number of parameters in the model: {num_params}")
+    
+    quit()
 
     TRAIN = False # Set to True to train the model
 

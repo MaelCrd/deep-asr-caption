@@ -1,0 +1,488 @@
+1
+00:00:01,380 --> 00:00:05,700
+The magini happen across a short mulyscript that describes a seme between a person,
+
+2
+00:00:05,980 --> 00:00:07,200
+and their a i assistant,
+
+3
+00:00:07,560 --> 00:00:10,140
+thescriptd has what the person asks the a eye,
+
+4
+00:00:10,300 --> 00:00:13,180
+but the aeyes respons has been tourn off.
+
+5
+00:00:13,639 --> 00:00:18,478
+Suppose you also have this powerful magical machine the cantake any text and provide a
+
+6
+00:00:18,479 --> 00:00:21,079
+sensible prediction of what word comes next.
+
+7
+00:00:21,419 --> 00:00:24,659
+They could then an finished dhescript by feeding ind what you have to the machine,
+
+8
+00:00:24,979 --> 00:00:27,979
+seeing what it would predict to start the aeyes answer,
+
+9
+00:00:28,399 --> 00:00:31,738
+and then repeating this over and over with a growing script,
+
+10
+00:00:31,739 --> 00:00:32,819
+completing the dialog.
+
+11
+00:00:33,399 --> 00:00:35,059
+When you an errant with a chat but,
+
+12
+00:00:35,139 --> 00:00:36,599
+this is exactly whats happening,
+
+13
+00:00:37,099 --> 00:00:41,757
+a large language model is a sophisticated mathmadical function that predicts what word
+
+14
+00:00:41,758 --> 00:00:44,078
+comes next for any piece of tex,
+
+15
+00:00:44,398 --> 00:00:46,438
+instead of predicting one word with certainty,
+
+16
+00:00:46,558 --> 00:00:52,477
+though what it does is assign a probability to all possible next words to build a chat
+
+17
+00:00:52,478 --> 00:00:57,157
+but what you do is lay outsome tex that describes an interaction between a user and a
+
+18
+00:00:57,158 --> 00:00:58,778
+hypothetical a e assistant.
+
+19
+00:00:59,218 --> 00:01:03,218
+You at on whatever the user tapesin as the first part of that ineraction,
+
+20
+00:01:03,858 --> 00:01:07,857
+and then you have the model repeatedly prodict the next word tat such a hyhpathetical
+
+21
+00:01:08,077 --> 00:01:10,597
+aasisten would say in response,
+
+22
+00:01:10,957 --> 00:01:12,677
+and that s what s presented to the user.
+
+23
+00:01:13,097 --> 00:01:17,316
+In doing this the outquictins to look a what more natural if you allow at ti slect less
+
+24
+00:01:17,317 --> 00:01:19,597
+likely words along the way at random,
+
+25
+00:01:20,097 --> 00:01:23,117
+so with this meansas even though the movel itself is deterministic,
+
+26
+00:01:23,757 --> 00:01:27,257
+ta given permptd, tipically gives a different answer each time it s run,
+
+27
+00:01:27,977 --> 00:01:32,636
+modtels learn how to make these predictions by processing an enormous amount of text,
+
+28
+00:01:32,776 --> 00:01:37,075
+tipically pulled from the internate for ats anderd human to red the imount of text it was
+
+29
+00:01:37,076 --> 00:01:39,556
+used to train a ce pe te three firds emple,
+
+30
+00:01:39,636 --> 00:01:41,896
+if they read non stopp twenty for seven.
+
+31
+00:01:42,216 --> 00:01:44,456
+E would take over twenty six hundred years,
+
+32
+00:01:44,676 --> 00:01:47,556
+larger model since then train onmuch much more.
+
+33
+00:01:48,196 --> 00:01:51,856
+Te can think a training a little bit like tuning the dials on a big machine,
+
+34
+00:01:52,276 --> 00:01:56,575
+the way that a language model behaves is entirely determined by these many different
+
+35
+00:01:56,576 --> 00:02:00,495
+continuous values, usually called perametors or weats,
+
+36
+00:02:01,215 --> 00:02:05,894
+changing those perametors or change the probabilities that the modtlgins for the next
+
+37
+00:02:05,895 --> 00:02:07,335
+word on a given implit,
+
+38
+00:02:07,815 --> 00:02:13,034
+what puts the large in large language model is how they can have hundreds of bilians of
+
+39
+00:02:13,035 --> 00:02:18,954
+these perametors. No human ever deliberately sets those parameters instead,
+
+40
+00:02:18,955 --> 00:02:20,055
+they begin it random,
+
+41
+00:02:20,335 --> 00:02:22,115
+eining the model just output s gibberish,
+
+42
+00:02:22,535 --> 00:02:26,654
+but there repeatedly refined bases on many example pieces of text.
+
+43
+00:02:27,294 --> 00:02:30,294
+One of the straining examples could be just a handfull of words,
+
+44
+00:02:30,414 --> 00:02:31,434
+where i could be thousins,
+
+45
+00:02:31,814 --> 00:02:32,693
+but in either taste,
+
+46
+00:02:32,694 --> 00:02:37,854
+the way this works is to pass in all but the last word from that example into the model
+
+47
+00:02:37,994 --> 00:02:42,394
+and compared the prodiction that it makes with the true last word from the example,
+
+48
+00:02:43,254 --> 00:02:48,692
+and ouder them called back propagation is used to tweek all of the pramaters in such away
+
+49
+00:02:48,693 --> 00:02:52,813
+that it makes the model olit te more likely to choose the true last word,
+
+50
+00:02:52,913 --> 00:02:55,133
+an a little less likely to choose all the others.
+
+51
+00:02:56,173 --> 00:02:59,413
+When you do this for many mani trilians of examples,
+
+52
+00:02:59,953 --> 00:03:03,633
+not only does the modelstar to give more accurat predictions on the treaning data,
+
+53
+00:03:03,853 --> 00:03:08,433
+but it alsospets to make more reasonable predictions urtext that it s never seen before,
+
+54
+00:03:09,393 --> 00:03:13,673
+given the huge number of paramitors and the enormous amount of training data,
+
+55
+00:03:13,913 --> 00:03:18,892
+the scale of computation involved intraining a larchelanguich movel is mind buggling,
+
+56
+00:03:19,612 --> 00:03:24,691
+talustrate imagine that you could perform one lilian additions and multiplications every
+
+57
+00:03:24,692 --> 00:03:29,572
+single second. How on do you think that it would take for you to do all of the operations
+
+58
+00:03:30,112 --> 00:03:32,652
+involved intraining the largest language models.
+
+59
+00:03:33,432 --> 00:03:34,512
+Do you think you an take,
+
+60
+00:03:34,672 --> 00:03:38,152
+a year may be something like ten thousand years.
+
+61
+00:03:39,052 --> 00:03:43,991
+Tha nswer is actually much more than that it s well over one hundred melian years.
+
+62
+00:03:45,631 --> 00:03:47,050
+This is only part of the story,
+
+63
+00:03:47,051 --> 00:03:49,191
+though this while process is called retraining,
+
+64
+00:03:49,731 --> 00:03:54,150
+the gol of oto completing a random passage of tex from the internante was very different
+
+65
+00:03:54,151 --> 00:03:57,771
+from the gol of being a good a i assistant to address this,
+
+66
+00:03:57,911 --> 00:04:00,091
+chat bots undergo another type of training,
+
+67
+00:04:00,131 --> 00:04:03,991
+just as important, called reinforcement learning with human feet back,
+
+68
+00:04:04,391 --> 00:04:07,330
+workers flag unhelpfull their problematic predictions,
+
+69
+00:04:07,690 --> 00:04:10,610
+and their corrections further change the model s perimeters,
+
+70
+00:04:11,050 --> 00:04:14,910
+making them more likely to give predictions that users prefer,
+
+71
+00:04:15,470 --> 00:04:20,349
+looking backet the pretraning though this staggering amount of computation is only made
+
+72
+00:04:20,350 --> 00:04:24,789
+possible by using special competer chips that are optimized for running many many
+
+73
+00:04:24,790 --> 00:04:26,170
+operations in perale,
+
+74
+00:04:26,470 --> 00:04:28,550
+known as copy yous, however,
+
+75
+00:04:28,830 --> 00:04:31,230
+not all linguine models can be easily perilalized,
+
+76
+00:04:32,070 --> 00:04:33,369
+pryer to twenty seventeen,
+
+77
+00:04:33,929 --> 00:04:36,909
+most linguigh models would process text one were ta atine,
+
+78
+00:04:37,309 --> 00:04:39,469
+but then a tem of te serchters at gogol,
+
+79
+00:04:39,669 --> 00:04:42,329
+introduced a new model known as the transformer,
+
+80
+00:04:43,329 --> 00:04:46,349
+transformers don t read text from the start to the finish,
+
+81
+00:04:46,609 --> 00:04:49,229
+the so culd all in at once in parallo,
+
+82
+00:04:49,849 --> 00:04:54,409
+the very first step inside a transformer len most other language models for that matter
+
+83
+00:04:54,509 --> 00:04:57,529
+is to associate each word with a long wist of numbers,
+
+84
+00:04:57,829 --> 00:05:02,208
+the reason for this is that thetraining process only works with continuous values,
+
+85
+00:05:02,508 --> 00:05:05,528
+soou have to somehow incode language using numbers,
+
+86
+00:05:05,928 --> 00:05:10,448
+an each oe these lest of numbers may somehow incod the meaning of the corresponding word,
+
+87
+00:05:10,908 --> 00:05:16,028
+bhut maks transformers unique is there reliance ona special operation known as attention.
+
+88
+00:05:16,908 --> 00:05:19,348
+This operation gives all of these lists of numbers,
+
+89
+00:05:19,508 --> 00:05:21,068
+a chance to talk to one another,
+
+90
+00:05:21,328 --> 00:05:23,208
+and refined the meanings that they incode,
+
+91
+00:05:23,508 --> 00:05:26,627
+basted on the context around all thene in perallo,
+
+92
+00:05:27,327 --> 00:05:29,446
+for exemple the numbers incoting the word,
+
+93
+00:05:29,447 --> 00:05:34,786
+bank might be changed bast on the context surrounding it to somehow into the mor pacific
+
+94
+00:05:34,787 --> 00:05:36,407
+notion of a river bank,
+
+95
+00:05:37,447 --> 00:05:40,587
+genc formers tipically also include a second take of operationknown,
+
+96
+00:05:41,367 --> 00:05:43,387
+is e feed forward narrow that work,
+
+97
+00:05:43,627 --> 00:05:47,786
+and this gives the moval extricapacity to store more patterns about language learned
+
+98
+00:05:47,787 --> 00:05:52,945
+during training, all of thi stata repeatedly flows through many different iarations of
+
+99
+00:05:52,946 --> 00:05:54,486
+these two fundamental operations,
+
+100
+00:05:55,126 --> 00:06:00,365
+and as a desse, the hope is that each list of numbers is inwiched to encode whatever
+
+101
+00:06:00,366 --> 00:06:05,565
+information might be needed to make an accurate prediction of what word follows in the
+
+102
+00:06:05,566 --> 00:06:11,546
+passage at the end, one final function is performed on the last vector in this sequence,
+
+103
+00:06:11,926 --> 00:06:16,366
+which now has had a chance to be influictd by all the other context from the inpottext,
+
+104
+00:06:16,765 --> 00:06:21,424
+as while as everything the molter learnd during training to produce a prodiction of the
+
+105
+00:06:21,425 --> 00:06:26,645
+next word again, the model s prediction it looks like a probability for every possible
+
+106
+00:06:26,725 --> 00:06:32,445
+next word, although researcher s design the frame work for how each of the step s work,
+
+107
+00:06:32,665 --> 00:06:36,925
+it s important understand that thispacific behagor is an emergent phenomenon,
+
+108
+00:06:37,345 --> 00:06:40,985
+based unhow those hundreds of billions of perametors are tuned,
+
+109
+00:06:41,125 --> 00:06:46,363
+during training. This mensip incredibly challenging to determine why the model maks the
+
+110
+00:06:46,364 --> 00:06:51,063
+exact predictions that it does what you can t see is that when you use large language
+
+111
+00:06:51,064 --> 00:06:53,504
+model predictions to oto complete apprompt,
+
+112
+00:06:53,764 --> 00:06:57,464
+the words, the degenerates aret uncanaly fluent faccinating,
+
+113
+00:06:58,064 --> 00:07:08,482
+and peven useful if your a newvewre and your curious about more details anyhow
+
+114
+00:07:08,483 --> 00:07:12,243
+transformers and attention work by do i have so material for you,
+
+115
+00:07:12,403 --> 00:07:17,362
+wonuction is too jump in to a series i made about deplearning where we fisur wilize and
+
+116
+00:07:17,363 --> 00:07:19,503
+noti ate, the details of attention,
+
+117
+00:07:19,703 --> 00:07:21,663
+and all the other steps in a transformer,
+
+118
+00:07:22,183 --> 00:07:23,762
+but also im my sa ontinal,
+
+119
+00:07:23,763 --> 00:07:27,862
+i just posted to talk tat i cave a cuplements ago about thi totic for the company tea in
+
+120
+00:07:27,863 --> 00:07:32,742
+ge in unin omtems i aclleve trefer the content that i make as the casual tack rather tan
+
+121
+00:07:32,743 --> 00:07:36,961
+a pretties tidio bet i leaved up to you which on a these hails like the better follow on
+
+122
+00:07:36,962 --> 00:07:50,642
+a mola momer an i moeamomore moreo alaa oa a ao.
+
