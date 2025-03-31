@@ -37,7 +37,7 @@ def add_subtitles_to_video(video_path: str, subtitle_path: str, output_path: str
     # Execute the command
     # subprocess.run(command, check=True)
     run_ffmpeg_with_progress(command)
-    print(f"Subtitles added to {video_path} and saved to {output_path}.")
+    # print(f"Subtitles added to {video_path} and saved to {output_path}.")
 
 
 if __name__ == "__main__":

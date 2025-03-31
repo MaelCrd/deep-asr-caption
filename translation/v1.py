@@ -17,12 +17,12 @@ print("Num GPUs Available: ", len(gpus))
 print(gpus)
 
 
-quit()
+# quit()
 
 # Path to the data file
 data_path = 'en-fr-tatoeba.tsv'  # Replace with your actual path
 # num_samples = 10000  # Limit the number of samples for simplicity
-num_samples = 10e100  # Limit the number of samples for simplicity
+num_samples = 150_000  # Limit the number of samples for simplicity
 
 # Vectorize the data.
 input_texts = []
@@ -36,7 +36,7 @@ with open(data_path, 'r', encoding='utf-8') as f:
 # # Read the data file using pandas
 # lines = pd.read_csv(data_path, sep='\t', header=None, encoding='utf-8').values.tolist()
 
-max_length = 100  # Or a value you deem appropriate
+max_length = 40  # Or a value you deem appropriate
 
 for line in lines[: min(num_samples, len(lines) - 1)]:
     input_text, target_text, *_ = line.split('\t')
@@ -139,22 +139,22 @@ model = keras.Model([encoder_inputs, decoder_inputs], decoder_outputs)
 
 
 batch_size = 64  # Batch size for training.
-epochs = 100  # Number of epochs to train for.
+epochs = 500  # Number of epochs to train for.
 
 model.compile(
     optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy']
 )
 
-model.fit(
-    [encoder_input_data, decoder_input_data],
-    decoder_target_data,
-    batch_size=batch_size,
-    epochs=epochs,
-    validation_split=0.2,  # Use 20% of the data for validation
-)
+# model.fit(
+#     [encoder_input_data, decoder_input_data],
+#     decoder_target_data,
+#     batch_size=batch_size,
+#     epochs=epochs,
+#     validation_split=0.2,  # Use 20% of the data for validation
+# )
 
-# Save the model
-model.save('translation_model.keras')
+# # Save the model
+# model.save('translation_model.keras')
 
 
 # Define sampling models
@@ -162,11 +162,19 @@ model.save('translation_model.keras')
 model = keras.models.load_model('translation_model.keras')
 
 encoder_inputs = model.input[0]  # input_1
-encoder_outputs, state_h_enc, state_c_enc = model.layers[2].output  # lstm_1
+
+# encoder_outputs, state_h_enc, state_c_enc = model.layers[2].output  # lstm_1
+encoder_output_list = model.layers[2].output
+encoder_outputs = encoder_output_list[0]
+state_h_enc = encoder_output_list[1]
+state_c_enc = encoder_output_list[2]
+
 encoder_states = [state_h_enc, state_c_enc]
 encoder_model = keras.Model(encoder_inputs, encoder_states)
 
-decoder_inputs = model.input[1]  # input_2
+# decoder_inputs = model.input[1]  # input_2
+decoder_inputs = Input(shape=(1, num_decoder_tokens))  # Changed to (1, num_decoder_tokens) for inference
+
 decoder_state_input_h = Input(shape=(latent_dim,), name='input_3')
 decoder_state_input_c = Input(shape=(latent_dim,), name='input_4')
 decoder_states_inputs = [decoder_state_input_h, decoder_state_input_c]

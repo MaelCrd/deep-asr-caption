@@ -165,15 +165,15 @@ def _load_model(model_path):
     return model
 
 
-# Load the model
-MODEL = _load_model("data/models/7_asr_v3.pth")
-
-
 def predict(audio_path):
     """
     Predict the transcription of an audio file.
     """
     return MODEL.predict(audio_path)
+
+
+# Load the model
+MODEL = _load_model("data/models/7_asr_v3.pth")
 
 
 if __name__ == '__main__':

@@ -15,3 +15,5 @@ Datasets
 venv-wsl
 *.mp4
 .tsv
+*.keras
+*.srt

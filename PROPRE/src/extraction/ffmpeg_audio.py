@@ -27,10 +27,10 @@ def extract_audio_from_video(video_path: str, audio_path: str) -> float:
     
     # Execute the command
     # subprocess.run(command, check=True)
-    run_ffmpeg_with_progress(command)
-    print(f"Audio extracted from {video_path} and saved to {audio_path}.")
+    duration = run_ffmpeg_with_progress(command)
+    # print(f"Audio extracted from {video_path} and saved to {audio_path}.")
     
-    return librosa.get_duration(path=audio_path)  # Get the duration of the audio file
+    return duration  # Get the duration of the audio file
     
 
 if __name__ == "__main__":

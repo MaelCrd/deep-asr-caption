@@ -3,9 +3,10 @@ from tqdm import tqdm
 import subprocess
 
 
-def run_ffmpeg_with_progress(command):
+def run_ffmpeg_with_progress(command) -> float:
     """
     Run ffmpeg command and display progress in the console using tqdm.
+    Returns the total duration of the audio / video file in seconds.
     """
     process = subprocess.Popen(
         command,
@@ -42,6 +43,8 @@ def run_ffmpeg_with_progress(command):
         progress_bar.close()
     if process.returncode != 0:
         raise subprocess.CalledProcessError(process.returncode, command)
+    
+    return total_duration
 
 
 def _convert_to_seconds(time_str):

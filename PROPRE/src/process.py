@@ -1,3 +1,7 @@
+# Import necessary libraries
+from datetime import datetime
+from time import time
+
 # Preprocessing imports
 import extraction.ffmpeg_audio as ffmpeg_audio
 
@@ -25,11 +29,18 @@ OUTPUT_SUBS_PATH = _OUTPUT_PATH + "subtitles/"
 OUTPUT_VIDEOS_PATH = _OUTPUT_PATH + "videos/"
 
 
-def process(video_filename_or_path):
+def _time_str(seconds):
+    ms = seconds * 1000  # Convert seconds to milliseconds
+    return '[' + str(int(seconds)).zfill(3) + "s" + str(int(ms % 1000)).zfill(3) + ']'  # Format as seconds and milliseconds
+
+
+def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=False):
     """
     Process the video file by extracting audio, predicting transcription, post-processing, and adding subtitles to the video.\n
     Args:\n
         - video_filename (str): The name of the video file to process. Can also be a path.\n
+        - use_spellchecking (bool): Whether to use spellchecking for correcting the transcription.\n
+        - use_ollama_correct (bool): Whether to use Ollama for correcting the transcription.\n
     Returns:\n
         output_video_path (str): Path to the output video file with subtitles.\n
         subtitles_path (str): Path to the generated subtitle file.\n
@@ -38,6 +49,11 @@ def process(video_filename_or_path):
     # Extract video name (without path (/or \) and extension)
     video_name = video_filename_or_path.split("/")[-1] if '/' in video_filename_or_path else video_filename_or_path.split("\\")[-1]  # Extract the video name from the path
     id = ''.join(video_name.split(".")[:-1]) # ID for the video, used for naming output files
+    id.replace(" ", "_")  # Replace spaces with underscores in the ID
+    
+    # Add a timestamp to the ID for uniqueness (DDMMYY_HHMMSS)
+    timestamp = datetime.now().strftime("%y-%m-%d_%H-%M-%S")
+    id = f"{id}_{timestamp}"  # Add timestamp to the ID
     
     # Input video path
     if '/' in video_filename_or_path or '\\' in video_filename_or_path:
@@ -47,10 +63,14 @@ def process(video_filename_or_path):
 
     # Output audio path
     audio_path = INPUT_AUDIO_PATH + id + ".mp3"  # Path to save the extracted audio
+    
+    # Start time
+    start_time = time()
 
     # Extract audio from video
-    print(f"Extracting audio from {video_path}...")
+    print(f"{_time_str(time() - start_time)} Extracting audio from {video_path}...")
     real_duration = ffmpeg_audio.extract_audio_from_video(video_path, audio_path)
+    print(f"{_time_str(time() - start_time)} Audio extracted to {audio_path} with duration {real_duration} seconds.")
 
     # # Prediction (mocked for now)
     # predicted = "----------------------s-o----mee--  -a-------s--s--i--d----  -i----ss--- --o---f--tt-enn-- --a----d--d-e-d--  two-----------  -i-nn----hhi-----b-b-i--t-------  c--ll-i-mm-err--i-s---a----t---iio--n------  -i---n---  the-  two-----------be----------------------------------------------------.  -i-f-- yyou--  w-a-nnt  -a----  ssp-e-eed  u---p---- the- ss-e-t-t-ing  of- ss-i---p-er--l--uu-------------------, --o---nee  w-ay-----  -i-s--  t-o- hha----dd-  m-o--rre-  -n-eg-ggedt-of  -i---------o-----n-----ss-----, the---------  -inn---i-t----ii----a---t-orrss--------------- tha-t-------  ssttaa-rr--t--- the----- p----ll-e-mmerr--i--s---a--t---iio-n---------- rr-e----a----c--t--iionn-----------------------.  y-ou--- c-ann---------  b-y-----------  -ex---c-e---lllerrraa--t-orr--ss----  sp-e----s-i---f-i-cal-lly-- f-or- thiss  -b-ur---p-use- -of-f-  the  shell-------f-----------------------------."
@@ -58,10 +78,10 @@ def process(video_filename_or_path):
     # real_duration = 4.3  # Example duration in seconds
     
     # Predict the transcription
-    print(f"Predicting transcription for audio file '{audio_path}'...")
+    print(f"{_time_str(time() - start_time)} Predicting transcription for audio file '{audio_path}'...")
     predicted = model_predict.predict(audio_path)  # Predict the transcription
     total_time = len(predicted)  # Total time, no units
-    print(f"Predicted transcription: {predicted}")
+    print(f"{_time_str(time() - start_time)} Predicted transcription: {predicted}")
     
     # # Postprocessing steps
     # min_chars = 20
@@ -69,18 +89,23 @@ def process(video_filename_or_path):
 
     # A_groupby: Group by words
     sentence, start_indices = A_groupby.group_and_timestamps(predicted)
-    print(f"Grouped sentence: {sentence}")
+    print(f"{_time_str(time() - start_time)} Grouped sentence: {sentence}")
     
     # B_spellchecking: Correct subtitles using spellchecking
-    print(f"Correcting sentence using spellchecking...")
-    corrected_sentence = B_spellchecking.correct_sentence(sentence)
-    print(f"Corrected sentence (spellchecking): {corrected_sentence}")
+    if use_spellchecking:
+        print(f"{_time_str(time() - start_time)} Correcting sentence using spellchecking...")
+        spell_corrected_sentence = B_spellchecking.correct_sentence(sentence)
+        print(f"{_time_str(time() - start_time)} Corrected sentence (spellchecking): {spell_corrected_sentence}")
+    else:
+        spell_corrected_sentence = sentence
 
     # B_ollama_correct: Correct subtitles using Ollama
-    # print(f"Correcting sentence...")
-    # corrected_sentence = B_ollama_correct.correct_sentence(sentence)
-    # corrected_sentence = sentence  # Mocked for now, replace with actual correction
-    # print(f"Corrected sentence (ollama): {corrected_sentence}")
+    if use_ollama_correct:
+        print(f"{_time_str(time() - start_time)} Correcting sentence...")
+        corrected_sentence = B_ollama_correct.correct_sentence(spell_corrected_sentence)
+        print(f"{_time_str(time() - start_time)} Corrected sentence (ollama): {corrected_sentence}")
+    else:
+        corrected_sentence = spell_corrected_sentence
 
     # C_correlation: Correlate subtitles with timestamps
     ajusted_timestamps = C_correlation.correlate_sequences_with_timestamps(sentence, start_indices, corrected_sentence)
@@ -89,7 +114,7 @@ def process(video_filename_or_path):
     subtitles, subs_timestamps, error = D_partitioning.partition_transcription(corrected_sentence, ajusted_timestamps)#, min_chars, max_chars)
     if error:
         print(f">>> Error: {error}")
-    print(f"Subtitles: {subtitles}")
+    print(f"{_time_str(time() - start_time)} Subtitles: {subtitles}")
 
     # Create subtitle file
     subtitles_path = OUTPUT_SUBS_PATH + id + ".srt"  # Path to save the subtitle file
@@ -97,8 +122,9 @@ def process(video_filename_or_path):
 
     # Add subtitles to video
     output_video_path = OUTPUT_VIDEOS_PATH + id + "_subs.mp4"  # Path to save the output video with subtitles
-    print(f"Adding subtitles to video '{video_path}'...")
+    print(f"{_time_str(time() - start_time)} Adding subtitles to video '{video_path}'...")
     ffmpeg_subs.add_subtitles_to_video(video_path, subtitles_path, output_video_path)
+    print(f"{_time_str(time() - start_time)} Subtitles added to video '{output_video_path}'.")
     
     return output_video_path, subtitles_path, "Subtitles added successfully."
 
