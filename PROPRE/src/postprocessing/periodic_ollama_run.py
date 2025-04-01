@@ -15,7 +15,7 @@ def _periodic_ollama_run(model):
             },
         ],
     )
-    print(response)
+    # print(response)
 
 
 def start_periodic_ollama_check(model):

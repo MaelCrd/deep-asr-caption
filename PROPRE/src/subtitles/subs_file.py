@@ -31,7 +31,7 @@ def create_subtitle_file(subtitles: list[str], timestamps: list[tuple[int,int]],
     
     # Add a small delay to the last word to ensure subtitles are readable
     # This can be cut down if the last word is not the last subtitle
-    last_word_additional_time = 0.5  # seconds
+    last_word_additional_time = 0.66  # seconds
     
     for i, sub in enumerate(subtitles):
         start_time, end_time = timestamps_sec[i]
