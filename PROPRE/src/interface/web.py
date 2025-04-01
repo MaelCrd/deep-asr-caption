@@ -2,14 +2,18 @@ import gradio as gr
 import time
 import os
 import sys
+import threading
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import process as process
+from postprocessing.periodic_ollama_run import start_periodic_ollama_check
+
+
+# MODEL = "mistral"  # Model name for Ollama
+MODEL = "llama3.2"  # Model name for Ollama
 
 
 MESSAGE = ""
-
-
 def process_video_pipeline(video, spellchecking, llm, progress):
     """Orchestrates the video processing steps."""
     global MESSAGE
@@ -22,7 +26,7 @@ def process_video_pipeline(video, spellchecking, llm, progress):
     
     start_time = time.time()
     # Process the video
-    output_video_path, output_subtitle_path, message = process.process(video, use_spellchecking=spellchecking, use_ollama_correct=llm, progress_component=progress)
+    output_video_path, output_subtitle_path, message = process.process(video, use_spellchecking=spellchecking, use_ollama_correct=llm, model=MODEL, progress_component=progress)
     # output_video_path, output_subtitle_path, message = None, None, None  # Mocked for now
     progress(progress=1, desc="Processing complete")
     end_time = time.time()
@@ -137,4 +141,5 @@ with gr.Blocks(theme=gr.themes.Ocean(), title="Video Subtitling Pipeline", css=c
     # )
 
 if __name__ == "__main__":
+    start_periodic_ollama_check(MODEL)  # Start the periodic Ollama check in a separate thread
     demo.launch(share=False)

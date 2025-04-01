@@ -35,7 +35,7 @@ def _time_str(seconds):
     return '[' + str(int(seconds)).zfill(3) + "s" + str(int(ms % 1000)).zfill(3) + ']'  # Format as seconds and milliseconds
 
 
-def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=False, progress_component=None):
+def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=False, model='llama3.2', progress_component=None):
     """
     Process the video file by extracting audio, predicting transcription, post-processing, and adding subtitles to the video.\n
     Args:\n
@@ -131,9 +131,10 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
             progress_component(progress=0.6, desc="Correcting sentence using Ollama...")
         corrected_sentence = B_ollama_correct.correct_sentence(
             spell_corrected_sentence,
+            model=model,
             progress_callback=lambda progress: progress_callback(
-                progress=progress, 
-                desc="Correcting sentence using Ollama...", 
+                progress=progress,
+                desc="Correcting sentence using Ollama...",
                 minp=0.6,
                 maxp=0.95
             ) if progress_component is not None else None

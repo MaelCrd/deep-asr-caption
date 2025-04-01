@@ -19,7 +19,7 @@ class ProcessedSentence(BaseModel):
   processed_sentence: str
 
 
-def correct_sentence(sentence: str, model: str = 'mistral', progress_callback=None) -> str:
+def correct_sentence(sentence: str, model: str = 'llama3.2', progress_callback=None) -> str:
     """
     Correct the given sentence using a Ollama model.\n
     Ex:\n
@@ -97,9 +97,9 @@ def correct_sentence(sentence: str, model: str = 'mistral', progress_callback=No
 
 
 if __name__ == "__main__":
-    model = 'mistral'
+    model = 'mistral' # Bien mais un peu lent
     # model = 'mixtral'
-    # model = 'llama3.2'
+    model = 'llama3.2' # Bien et vitesse ok
     # model = 'gemma3:1b'
     # model = 'deepseek-r1:14b'
     # model = 'llama3.1'
