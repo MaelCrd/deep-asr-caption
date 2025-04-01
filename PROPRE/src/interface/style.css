@@ -1,0 +1,29 @@
+video::cue {
+    font-size: 24px;
+    border: 1px solid green;
+}
+
+video::-webkit-media-text-track-display {
+    padding: 8px;
+    padding-left: 70px;
+    padding-right: 70px;
+    line-height: 29.5px;
+}
+
+video::-webkit-media-text-track-container {}
+
+.dark .toast-icon.info {
+    color: var(--color-green-500) !important;
+}
+
+.dark .toast-text.info {
+    color: var(--color-grey-200) !important;
+}
+
+.dark .timer.info {
+    background: var(--color-green-500) !important;
+}
+
+.dark .toast-body.info {
+    border: 1px solid var(--color-green-500) !important;
+}

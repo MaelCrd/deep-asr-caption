@@ -126,15 +126,15 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
 
     # B_ollama_correct: Correct subtitles using Ollama
     if use_ollama_correct:
-        print(f"{_time_str(time() - start_time)} Correcting sentence...")
+        print(f"{_time_str(time() - start_time)} Correcting transcription...")
         if progress_component is not None:
-            progress_component(progress=0.6, desc="Correcting sentence using Ollama...")
+            progress_component(progress=0.6, desc="Correcting transcription using Ollama...")
         corrected_sentence = B_ollama_correct.correct_sentence(
             spell_corrected_sentence,
             model=model,
             progress_callback=lambda progress: progress_callback(
                 progress=progress,
-                desc="Correcting sentence using Ollama...",
+                desc="Correcting transcription using Ollama...",
                 minp=0.6,
                 maxp=0.95
             ) if progress_component is not None else None
