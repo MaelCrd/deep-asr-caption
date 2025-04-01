@@ -1,6 +1,7 @@
 # Import necessary libraries
 from datetime import datetime
 from time import time
+import multiprocessing
 
 # Preprocessing imports
 import extraction.ffmpeg_audio as ffmpeg_audio
@@ -34,7 +35,7 @@ def _time_str(seconds):
     return '[' + str(int(seconds)).zfill(3) + "s" + str(int(ms % 1000)).zfill(3) + ']'  # Format as seconds and milliseconds
 
 
-def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=False):
+def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=False, progress_component=None):
     """
     Process the video file by extracting audio, predicting transcription, post-processing, and adding subtitles to the video.\n
     Args:\n
@@ -66,10 +67,28 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     
     # Start time
     start_time = time()
+    
+    # Progress callback function
+    # This function will be called to update the progress bar in the UI
+    def progress_callback(progress, desc=None, minp=0, maxp=1):
+        if progress_component is not None:
+            progress_component(progress=min(maxp, max(minp, minp + (maxp - minp) * progress)), desc=desc)
 
     # Extract audio from video
     print(f"{_time_str(time() - start_time)} Extracting audio from {video_path}...")
-    real_duration = ffmpeg_audio.extract_audio_from_video(video_path, audio_path)
+    
+    if progress_component is not None:
+        progress_component(progress=0, desc="Extracting audio from video...")
+    real_duration = ffmpeg_audio.extract_audio_from_video(
+        video_path,
+        audio_path,
+        progress_callback=lambda progress: progress_callback(
+            progress=progress, 
+            desc="Extracting audio from video...", 
+            minp=0, 
+            maxp=0.4
+        ) if progress_component is not None else None
+    )
     print(f"{_time_str(time() - start_time)} Audio extracted to {audio_path} with duration {real_duration} seconds.")
 
     # # Prediction (mocked for now)
@@ -79,6 +98,8 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     
     # Predict the transcription
     print(f"{_time_str(time() - start_time)} Predicting transcription for audio file '{audio_path}'...")
+    if progress_component is not None:
+        progress_component(progress=0.4, desc="Predicting transcription...")
     predicted = model_predict.predict(audio_path)  # Predict the transcription
     total_time = len(predicted)  # Total time, no units
     print(f"{_time_str(time() - start_time)} Predicted transcription: {predicted}")
@@ -88,12 +109,16 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     # max_chars = 60
 
     # A_groupby: Group by words
+    if progress_component is not None:
+        progress_component(progress=0.5, desc="Grouping by words...")
     sentence, start_indices = A_groupby.group_and_timestamps(predicted)
     print(f"{_time_str(time() - start_time)} Grouped sentence: {sentence}")
     
     # B_spellchecking: Correct subtitles using spellchecking
     if use_spellchecking:
         print(f"{_time_str(time() - start_time)} Correcting sentence using spellchecking...")
+        if progress_component is not None:
+            progress_component(progress=0.55, desc="Correcting sentence using spellchecking...")
         spell_corrected_sentence = B_spellchecking.correct_sentence(sentence)
         print(f"{_time_str(time() - start_time)} Corrected sentence (spellchecking): {spell_corrected_sentence}")
     else:
@@ -102,7 +127,17 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     # B_ollama_correct: Correct subtitles using Ollama
     if use_ollama_correct:
         print(f"{_time_str(time() - start_time)} Correcting sentence...")
-        corrected_sentence = B_ollama_correct.correct_sentence(spell_corrected_sentence)
+        if progress_component is not None:
+            progress_component(progress=0.6, desc="Correcting sentence using Ollama...")
+        corrected_sentence = B_ollama_correct.correct_sentence(
+            spell_corrected_sentence,
+            progress_callback=lambda progress: progress_callback(
+                progress=progress, 
+                desc="Correcting sentence using Ollama...", 
+                minp=0.6,
+                maxp=0.95
+            ) if progress_component is not None else None
+        )
         print(f"{_time_str(time() - start_time)} Corrected sentence (ollama): {corrected_sentence}")
     else:
         corrected_sentence = spell_corrected_sentence
@@ -123,6 +158,8 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     # Add subtitles to video
     output_video_path = OUTPUT_VIDEOS_PATH + id + "_subs.mp4"  # Path to save the output video with subtitles
     print(f"{_time_str(time() - start_time)} Adding subtitles to video '{video_path}'...")
+    if progress_component is not None:
+        progress_component(progress=0.95, desc="Adding subtitles to video...")
     ffmpeg_subs.add_subtitles_to_video(video_path, subtitles_path, output_video_path)
     print(f"{_time_str(time() - start_time)} Subtitles added to video '{output_video_path}'.")
     

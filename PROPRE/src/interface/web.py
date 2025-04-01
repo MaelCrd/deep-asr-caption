@@ -10,7 +10,7 @@ import process as process
 MESSAGE = ""
 
 
-def process_video_pipeline(video, spellchecking, llm):
+def process_video_pipeline(video, spellchecking, llm, progress):
     """Orchestrates the video processing steps."""
     global MESSAGE
     if video is None:
@@ -18,11 +18,15 @@ def process_video_pipeline(video, spellchecking, llm):
         return None
     # print(video)
     
+    progress(progress=0, desc="Processing video...")
+    
     start_time = time.time()
     # Process the video
-    output_video_path, output_subtitle_path, message = process.process(video, use_spellchecking=spellchecking, use_ollama_correct=llm)
+    output_video_path, output_subtitle_path, message = process.process(video, use_spellchecking=spellchecking, use_ollama_correct=llm, progress_component=progress)
     # output_video_path, output_subtitle_path, message = None, None, None  # Mocked for now
+    progress(progress=1, desc="Processing complete")
     end_time = time.time()
+    time.sleep(0.05)
     elapsed_time = end_time - start_time
     MESSAGE = message
     
@@ -96,6 +100,7 @@ with gr.Blocks(theme=gr.themes.Ocean(), title="Video Subtitling Pipeline", css=c
             # processed_output = gr.Textbox(label="Step 2: Post-Processed Transcription", interactive=False)
         with gr.Column():
             output_video = gr.Video(label="Subtitled Video", interactive=False, show_download_button=True, visible=True)
+            progress = gr.Progress()
             # gr.DownloadButton(label="Download Subtitled Video", interactive=True, variant="primary")
             # output_text = gr.Textbox(label="Processing information", interactive=False, visible=False)
             # number = gr.Number(label="Runtime", interactive=False, visible=True, value=1.0)
@@ -108,8 +113,13 @@ with gr.Blocks(theme=gr.themes.Ocean(), title="Video Subtitling Pipeline", css=c
     def update_message(_arg):
         return gr.update(visible=len(MESSAGE) > 0, value=MESSAGE)
     
+    # input_video.change(
+    #     fn=process_video_pipeline,
+    #     inputs=[input_video, checkbox_spellchecking, checkbox_llm, progress],
+    #     outputs=[output_video]
+    # )
     input_video.change(
-        fn=process_video_pipeline,
+        fn=lambda video, spellchecking, llm: process_video_pipeline(video, spellchecking, llm, progress),
         inputs=[input_video, checkbox_spellchecking, checkbox_llm],
         outputs=[output_video]
     )
@@ -127,4 +137,4 @@ with gr.Blocks(theme=gr.themes.Ocean(), title="Video Subtitling Pipeline", css=c
     # )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=False)

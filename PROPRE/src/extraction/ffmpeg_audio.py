@@ -11,7 +11,7 @@ from ffmpeg.ffmpeg_utils import run_ffmpeg_with_progress
 # OUTPUT_PATH = _DATA_PATH + "output/"
 
 
-def extract_audio_from_video(video_path: str, audio_path: str) -> float:
+def extract_audio_from_video(video_path: str, audio_path: str, progress_callback=None) -> float:
     """
     Extract audio from a video file using ffmpeg.
     Returns the duration of the audio in seconds.
@@ -27,7 +27,7 @@ def extract_audio_from_video(video_path: str, audio_path: str) -> float:
     
     # Execute the command
     # subprocess.run(command, check=True)
-    duration = run_ffmpeg_with_progress(command)
+    duration = run_ffmpeg_with_progress(command, progress_callback)
     # print(f"Audio extracted from {video_path} and saved to {audio_path}.")
     
     return duration  # Get the duration of the audio file

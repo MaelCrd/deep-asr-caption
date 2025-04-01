@@ -3,7 +3,7 @@ from tqdm import tqdm
 import subprocess
 
 
-def run_ffmpeg_with_progress(command) -> float:
+def run_ffmpeg_with_progress(command, progress_callback=None) -> float:
     """
     Run ffmpeg command and display progress in the console using tqdm.
     Returns the total duration of the audio / video file in seconds.
@@ -37,6 +37,10 @@ def run_ffmpeg_with_progress(command) -> float:
                 current_time = _convert_to_seconds(progress_match.group(1))
                 progress_bar.n = current_time
                 progress_bar.refresh()
+                
+                # Update the external progress callback
+                if progress_callback and total_duration:
+                    progress_callback(current_time / total_duration)
 
     process.wait()
     if progress_bar:
