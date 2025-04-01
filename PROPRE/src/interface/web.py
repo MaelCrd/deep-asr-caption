@@ -12,24 +12,20 @@ from postprocessing.periodic_ollama_run import start_periodic_ollama_check
 MODEL = "llama3.2"  # Model name for Ollama
 
 
-MESSAGE = ""
 def process_video_pipeline(video, spellchecking, llm, progress):
     """Orchestrates the video processing steps."""
-    global MESSAGE
     if video is None:
-        MESSAGE = ""
         return None
     
     progress(progress=0, desc="Processing video...")
     start_time = time.time()
     # Process the video
-    output_video_path, output_subtitle_path, message = process.process(video, use_spellchecking=spellchecking, use_ollama_correct=llm, model=MODEL, progress_component=progress)
+    output_video_path, output_subtitle_path = process.process(video, use_spellchecking=spellchecking, use_ollama_correct=llm, model=MODEL, progress_component=progress)
     # output_video_path, output_subtitle_path, message = None, None, None  # Mocked for now
     progress(progress=1, desc="Processing complete")
     end_time = time.time()
     time.sleep(0.05)
     elapsed_time = end_time - start_time
-    MESSAGE = message
     
     gr.Info("Processed video in {:.2f} seconds".format(elapsed_time), title = "Success", duration=4)
     
@@ -59,9 +55,6 @@ if __name__ == "__main__":
             with gr.Column():
                 output_video = gr.Video(label="Subtitled Video", interactive=False, show_download_button=True, visible=True)
                 progress = gr.Progress()
-                
-        def update_message(_arg):
-            return gr.update(visible=len(MESSAGE) > 0, value=MESSAGE)
         
         input_video.change(
             fn=lambda video, spellchecking, llm: process_video_pipeline(video, spellchecking, llm, progress),

@@ -164,7 +164,7 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     ffmpeg_subs.add_subtitles_to_video(video_path, subtitles_path, output_video_path)
     print(f"{_time_str(time() - start_time)} Subtitles added to video '{output_video_path}'.")
     
-    return output_video_path, subtitles_path, "Subtitles added successfully."
+    return output_video_path, subtitles_path
 
 
 if __name__ == "__main__":
@@ -172,5 +172,5 @@ if __name__ == "__main__":
     video_filename = "youtube_1B3B_LLM-26s.mp4"  # Name of the input video file
     # video_filename = "youtube_1B3B_LLM.mp4"  # Name of the input video file
     # video_filename = "youtube_Bt-7YiNBvLE_1920x1080_h264.mp4"  # Name of the input video file
-    output_video_path, subtitles_path, message = process(video_filename)
+    output_video_path, subtitles_path = process(video_filename)
     
