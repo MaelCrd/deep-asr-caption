@@ -102,7 +102,7 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
         progress_component(progress=0.4, desc="Predicting transcription...")
     predicted = model_predict.predict(audio_path)  # Predict the transcription
     total_time = len(predicted)  # Total time, no units
-    print(f"{_time_str(time() - start_time)} Predicted transcription: {predicted}")
+    # print(f"{_time_str(time() - start_time)} Predicted transcription: {predicted}")
     
     # # Postprocessing steps
     # min_chars = 20
@@ -112,15 +112,15 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     if progress_component is not None:
         progress_component(progress=0.5, desc="Grouping by words...")
     sentence, start_indices = A_groupby.group_and_timestamps(predicted)
-    print(f"{_time_str(time() - start_time)} Grouped sentence: {sentence}")
+    # print(f"{_time_str(time() - start_time)} Grouped sentence: {sentence}")
     
     # B_spellchecking: Correct subtitles using spellchecking
     if use_spellchecking:
-        print(f"{_time_str(time() - start_time)} Correcting sentence using spellchecking...")
+        print(f"{_time_str(time() - start_time)} Correcting transcription using spellchecking...")
         if progress_component is not None:
-            progress_component(progress=0.55, desc="Correcting sentence using spellchecking...")
+            progress_component(progress=0.55, desc="Correcting transcription using spellchecking...")
         spell_corrected_sentence = B_spellchecking.correct_sentence(sentence)
-        print(f"{_time_str(time() - start_time)} Corrected sentence (spellchecking): {spell_corrected_sentence}")
+        # print(f"{_time_str(time() - start_time)} Corrected transcription (spellchecking): {spell_corrected_sentence}")
     else:
         spell_corrected_sentence = sentence
 
@@ -139,7 +139,7 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
                 maxp=0.95
             ) if progress_component is not None else None
         )
-        print(f"{_time_str(time() - start_time)} Corrected sentence (ollama): {corrected_sentence}")
+        # print(f"{_time_str(time() - start_time)} Corrected transcription (ollama): {corrected_sentence}")
     else:
         corrected_sentence = spell_corrected_sentence
 
@@ -149,8 +149,8 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     # D_partitioning: Partition subtitles into final format
     subtitles, subs_timestamps, error = D_partitioning.partition_transcription(corrected_sentence, ajusted_timestamps)#, min_chars, max_chars)
     if error:
-        print(f">>> Error: {error}")
-    print(f"{_time_str(time() - start_time)} Subtitles: {subtitles}")
+        print(f">>> Warning: {error}")
+    # print(f"{_time_str(time() - start_time)} Subtitles: {subtitles}")
 
     # Create subtitle file
     subtitles_path = OUTPUT_SUBS_PATH + id + ".srt"  # Path to save the subtitle file

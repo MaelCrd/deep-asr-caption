@@ -5,8 +5,8 @@ video::cue {
 
 video::-webkit-media-text-track-display {
     padding: 8px;
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 130px;
+    padding-right: 130px;
     line-height: 29.5px;
 }
 

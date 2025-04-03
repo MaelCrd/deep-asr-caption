@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # Ocean
     with gr.Blocks(theme=gr.themes.Ocean(), title="Video Subtitling Pipeline", css=css) as demo: #primary_hue="purple", secondary_hue="blue"
         gr.Markdown("# Video Subtitling Pipeline")
-        gr.Markdown("Upload a video to generate subtitles and add them to the video.")
+        gr.Markdown("Upload a video to generate subtitles (closed captions) and add them to the video.")
 
         with gr.Row():
             with gr.Column():
