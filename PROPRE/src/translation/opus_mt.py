@@ -42,7 +42,8 @@ if __name__ == "__main__":
         "Hello, how are you today?",
         "The weather is beautiful in Saguenay.",
         "I enjoy learning new things.",
-        "This is a test sentence."
+        "This is a test sentence.",
+        'The magini happen across a short mulyscript that describes a seene between a person, and their a i assistant. Thesgriptd has what the person asks the a eye, but the aeyes respons has been tourn off. Suppose you also have this powerful magical machine the cantake any text and provide a sensible prediction of what word comes next. They could then a finished thescript by feeding ind what you have to the machine, seeing what it would predict to start'
     ]
 
     # Traduction vers le français
@@ -52,11 +53,11 @@ if __name__ == "__main__":
         print(f"Anglais: {original}")
         print(f"Français: {traduit}")
 
-    print("\n" + "="*30 + "\n")
+    # print("\n" + "="*30 + "\n")
 
-    # Traduction vers l'espagnol
-    phrases_espagnoles = traduire_liste(liste_phrases_anglaises, output_language='es')
-    print("Traductions vers l'espagnol:")
-    for original, traduit in zip(liste_phrases_anglaises, phrases_espagnoles):
-        print(f"Anglais: {original}")
-        print(f"Espagnol: {traduit}")
+    # # Traduction vers l'espagnol
+    # phrases_espagnoles = traduire_liste(liste_phrases_anglaises, output_language='es')
+    # print("Traductions vers l'espagnol:")
+    # for original, traduit in zip(liste_phrases_anglaises, phrases_espagnoles):
+    #     print(f"Anglais: {original}")
+    #     print(f"Espagnol: {traduit}")

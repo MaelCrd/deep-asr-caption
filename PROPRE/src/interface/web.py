@@ -105,7 +105,7 @@ def validate_model_selection(model, languages):
     return gr.update()
 
 
-if __name__ == "__main__":
+def start_app():
     # Load CSS for styling
     with open("src/interface/style.css", "r") as f:
         css = f.read()
@@ -180,3 +180,7 @@ if __name__ == "__main__":
         
     start_periodic_ollama_check(MODEL)  # Start the periodic Ollama check in a separate thread
     demo.launch(share=False)
+    
+
+if __name__ == "__main__":
+    start_app()

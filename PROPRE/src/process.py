@@ -179,7 +179,7 @@ def process(
             subtitles[lang] = translate_custom.translate(subtitles['en'])
         elif translation_model == 'opus-mt':
             subtitles[lang] = translate_opus.traduire_liste(
-                subtitles['en'], 
+                subtitles['en'],
                 output_language=lang,
                 progress_callback=lambda progress: progress_callback(
                     progress=progress/2 + 0.5 * (len(subtitles) - 1),
@@ -188,8 +188,6 @@ def process(
                     maxp=0.98,
                 ) if progress_component is not None else None
             )
-
-    print(subtitles)
     
     # Create subtitle file
     subtitles_path = OUTPUT_SUBS_PATH + id  # Path to save the subtitle file
