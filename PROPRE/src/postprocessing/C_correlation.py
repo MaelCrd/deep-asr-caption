@@ -1,7 +1,7 @@
 import difflib
 
 
-def correlate_sequences_with_timestamps(inital_sequence: str, initial_timestamps: list[int], corrected_sentence: str) -> list[int]:
+def correlate_transcription_with_timestamps(inital_sequence: str, initial_timestamps: list[int], corrected_sentence: str) -> list[int]:
     """
     Correlate the initial sequence of words with timestamps to a corrected sentence.\n
     Ex:\n

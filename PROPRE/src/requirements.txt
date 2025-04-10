@@ -1,0 +1,15 @@
+# Must be installed using this commands :
+# (change the version of torch to match your CUDA version)
+# > pip install pysubs2==1.8.0 tqdm==4.67.1 gradio==5.23.1 sentencepiece==0.2.0
+# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+# pysubs2==1.8.0
+# tqdm==4.67.1
+# gradio==5.23.1
+# sentencepiece==0.2.0
+# sacremoses==0.1.1
+
+# --index-url https://download.pytorch.org/whl/cu126
+# torch
+# torchvision
+# torchaudio

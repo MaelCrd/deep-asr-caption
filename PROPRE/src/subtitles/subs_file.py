@@ -20,39 +20,40 @@ def timestamps_to_milliseconds(timestamps: list[tuple[int,int]], total_time: int
     return new_timestamps
 
 
-def create_subtitle_file(subtitles: list[str], timestamps: list[tuple[int,int]], total_time: int, real_duration: float, output_path: str) -> None:
+def create_subtitle_files(subtitles: dict[list[str]], timestamps: list[tuple[int,int]], total_time: int, real_duration: float, output_path: str) -> None:
     """
     Create a subtitle file from the subtitles and timestamps.
     """
-    subs = pysubs2.SSAFile()
-    subs.info['Title'] = 'Generated Subtitles'
-    
     timestamps_sec = timestamps_to_milliseconds(timestamps, total_time, real_duration)
     
     # Add a small delay to the last word to ensure subtitles are readable
     # This can be cut down if the last word is not the last subtitle
     last_word_additional_time = 0.66  # seconds
     
-    for i, sub in enumerate(subtitles):
-        start_time, end_time = timestamps_sec[i]
-        next_start_time = 9e99 # Default to a very large number
-        if i + 1 < len(timestamps_sec):
-            next_start_time = timestamps_sec[i + 1][0] - 1 # 1 millisecond before the next start time
-        # Take the minimum of the next start time and the end time + last word additional time
-        # This ensures that the subtitle does not overlap with the next one
-        next_start_time = min(end_time + last_word_additional_time * 1000, next_start_time)
+    for lang in subtitles:
+        subs = pysubs2.SSAFile()
+        subs.info['Title'] = 'Generated Subtitles'
         
-        # print(f"Start: {start_time:.3f}, End: {end_time:.3f}, Subtitle: {sub}")
-        # Create a new subtitle event
-        event = pysubs2.SSAEvent(
-            start=start_time,
-            end=next_start_time,
-            text=sub
-        )
-        # Append the event to the subtitle file
-        subs.append(event)
-    
-    subs.save(output_path)
+        for i, sub in enumerate(subtitles[lang]):
+            start_time, end_time = timestamps_sec[i]
+            next_start_time = 9e99 # Default to a very large number
+            if i + 1 < len(timestamps_sec):
+                next_start_time = timestamps_sec[i + 1][0] - 1 # 1 millisecond before the next start time
+            # Take the minimum of the next start time and the end time + last word additional time
+            # This ensures that the subtitle does not overlap with the next one
+            next_start_time = min(end_time + last_word_additional_time * 1000, next_start_time)
+            
+            # print(f"Start: {start_time:.3f}, End: {end_time:.3f}, Subtitle: {sub}")
+            # Create a new subtitle event
+            event = pysubs2.SSAEvent(
+                start=start_time,
+                end=next_start_time,
+                text=sub
+            )
+            # Append the event to the subtitle file
+            subs.append(event)
+        
+        subs.save(output_path + f"_{lang}.srt")
 
 
 if __name__ == "__main__":

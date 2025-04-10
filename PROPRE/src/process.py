@@ -1,13 +1,16 @@
 # Import necessary libraries
 from datetime import datetime
 from time import time
-import multiprocessing
 
 # Preprocessing imports
 import extraction.ffmpeg_audio as ffmpeg_audio
 
 # Prediction imports
-import prediction.model_predict as model_predict
+import transcription.model_predict as transcript_predict
+
+# Translation imports
+import translation.custom_model.predict as translate_custom
+import translation.opus_mt as translate_opus
 
 # Postprocessing imports
 import postprocessing.A_groupby as A_groupby
@@ -35,7 +38,15 @@ def _time_str(seconds):
     return '[' + str(int(seconds)).zfill(3) + "s" + str(int(ms % 1000)).zfill(3) + ']'  # Format as seconds and milliseconds
 
 
-def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=False, model='llama3.2', progress_component=None):
+def process(
+    video_filename_or_path, 
+    use_spellchecking=True, 
+    use_ollama_correct=False, 
+    model='llama3.2', 
+    translation_model='opus-mt',
+    translation_languages=['en', 'fr'],
+    progress_component=None,
+):
     """
     Process the video file by extracting audio, predicting transcription, post-processing, and adding subtitles to the video.\n
     Args:\n
@@ -100,7 +111,7 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     print(f"{_time_str(time() - start_time)} Predicting transcription for audio file '{audio_path}'...")
     if progress_component is not None:
         progress_component(progress=0.4, desc="Predicting transcription...")
-    predicted = model_predict.predict(audio_path)  # Predict the transcription
+    predicted = transcript_predict.predict(audio_path)  # Predict the transcription
     total_time = len(predicted)  # Total time, no units
     # print(f"{_time_str(time() - start_time)} Predicted transcription: {predicted}")
     
@@ -118,9 +129,9 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     if use_spellchecking:
         print(f"{_time_str(time() - start_time)} Correcting transcription using spellchecking...")
         if progress_component is not None:
-            progress_component(progress=0.55, desc="Correcting transcription using spellchecking...")
+            progress_component(progress=0.52, desc="Correcting transcription using spellchecking...")
         spell_corrected_sentence = B_spellchecking.correct_sentence(sentence)
-        # print(f"{_time_str(time() - start_time)} Corrected transcription (spellchecking): {spell_corrected_sentence}")
+        print(f"{_time_str(time() - start_time)} Corrected transcription (spellchecking): {spell_corrected_sentence}")
     else:
         spell_corrected_sentence = sentence
 
@@ -128,15 +139,15 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
     if use_ollama_correct:
         print(f"{_time_str(time() - start_time)} Correcting transcription...")
         if progress_component is not None:
-            progress_component(progress=0.6, desc="Correcting transcription using Ollama...")
+            progress_component(progress=0.54, desc="Correcting transcription using Ollama...")
         corrected_sentence = B_ollama_correct.correct_sentence(
             spell_corrected_sentence,
             model=model,
             progress_callback=lambda progress: progress_callback(
                 progress=progress,
                 desc="Correcting transcription using Ollama...",
-                minp=0.6,
-                maxp=0.95
+                minp=0.54,
+                maxp=0.80
             ) if progress_component is not None else None
         )
         # print(f"{_time_str(time() - start_time)} Corrected transcription (ollama): {corrected_sentence}")
@@ -144,27 +155,55 @@ def process(video_filename_or_path, use_spellchecking=True, use_ollama_correct=F
         corrected_sentence = spell_corrected_sentence
 
     # C_correlation: Correlate subtitles with timestamps
-    ajusted_timestamps = C_correlation.correlate_sequences_with_timestamps(sentence, start_indices, corrected_sentence)
+    ajusted_timestamps = C_correlation.correlate_transcription_with_timestamps(sentence, start_indices, corrected_sentence)
 
     # D_partitioning: Partition subtitles into final format
     subtitles, subs_timestamps, error = D_partitioning.partition_transcription(corrected_sentence, ajusted_timestamps)#, min_chars, max_chars)
     if error:
         print(f">>> Warning: {error}")
     # print(f"{_time_str(time() - start_time)} Subtitles: {subtitles}")
+    
+    # Translate subtitles
+    if progress_component is not None:
+        progress_component(progress=0.8, desc="Translating subtitles...")
+    subtitles = {
+        'en': subtitles,  # Original English subtitles
+    }
+    translation_model = translation_model.lower()
+    languages_codes = {'French': 'fr', 'Spanish': 'es'}
+    translation_languages = [languages_codes[lang] for lang in translation_languages if lang in languages_codes]
+    for lang in translation_languages:
+        if translation_model == 'custom':
+            if lang != 'fr':
+                continue  # Skip translation for unsupported languages
+            subtitles[lang] = translate_custom.translate(subtitles['en'])
+        elif translation_model == 'opus-mt':
+            subtitles[lang] = translate_opus.traduire_liste(
+                subtitles['en'], 
+                output_language=lang,
+                progress_callback=lambda progress: progress_callback(
+                    progress=progress/2 + 0.5 * (len(subtitles) - 1),
+                    desc="Translating subtitles...",
+                    minp=0.8,
+                    maxp=0.98,
+                ) if progress_component is not None else None
+            )
 
+    print(subtitles)
+    
     # Create subtitle file
-    subtitles_path = OUTPUT_SUBS_PATH + id + ".srt"  # Path to save the subtitle file
-    subs_file.create_subtitle_file(subtitles, subs_timestamps, total_time, real_duration, subtitles_path)
+    subtitles_path = OUTPUT_SUBS_PATH + id  # Path to save the subtitle file
+    subs_file.create_subtitle_files(subtitles, subs_timestamps, total_time, real_duration, subtitles_path)
 
     # Add subtitles to video
     output_video_path = OUTPUT_VIDEOS_PATH + id + "_subs.mp4"  # Path to save the output video with subtitles
     print(f"{_time_str(time() - start_time)} Adding subtitles to video '{video_path}'...")
     if progress_component is not None:
-        progress_component(progress=0.95, desc="Adding subtitles to video...")
+        progress_component(progress=0.98, desc=f"Adding subtitles to video...")
     ffmpeg_subs.add_subtitles_to_video(video_path, subtitles_path, output_video_path)
     print(f"{_time_str(time() - start_time)} Subtitles added to video '{output_video_path}'.")
     
-    return output_video_path, subtitles_path
+    return output_video_path, subtitles_path  # Return the paths to the output video and subtitle files
 
 
 if __name__ == "__main__":

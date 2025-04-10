@@ -1,6 +1,5 @@
 import sys
 import os
-import librosa
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from ffmpeg.ffmpeg_utils import run_ffmpeg_with_progress
