@@ -43,7 +43,7 @@ def process(
     use_spellchecking=True, 
     use_ollama_correct=False, 
     model='llama3.2', 
-    translation_model='opus-mt',
+    translation_model='marian-mt',
     translation_languages=['en', 'fr'],
     progress_component=None,
 ):
@@ -177,7 +177,7 @@ def process(
             if lang != 'fr':
                 continue  # Skip translation for unsupported languages
             subtitles[lang] = translate_custom.translate(subtitles['en'])
-        elif translation_model == 'opus-mt':
+        elif translation_model == 'marian-mt':
             subtitles[lang] = translate_opus.traduire_liste(
                 subtitles['en'],
                 output_language=lang,

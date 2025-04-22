@@ -1,4 +1,5 @@
 venv
+venv-propre
 __pycache__
 # *.wav
 *.json

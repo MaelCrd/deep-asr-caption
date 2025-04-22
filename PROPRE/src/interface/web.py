@@ -100,7 +100,7 @@ def validate_model_selection(model, languages):
         if "Spanish" in languages:
             languages.remove("Spanish")
         return gr.update(choices=["English", "French"], value=languages)
-    elif model == "Opus-MT":
+    elif model == "Marian-MT":
         return gr.update(choices=["English", "French", "Spanish"], value=languages)
     return gr.update()
 
@@ -125,7 +125,7 @@ def start_app():
                     checkbox_spellchecking = gr.Checkbox(info="Types of correction", label="Correct transcription with spellchecking", value=True, interactive=True)
                     checkbox_llm = gr.Checkbox(label="Correct transcription with LLM", value=False, interactive=True)
                     with gr.Row():
-                        radio_model = gr.Radio(show_label=False, info="Translation model", choices=["Custom", "Opus-MT"], value="Custom", interactive=True)
+                        radio_model = gr.Radio(show_label=False, info="Translation model", choices=["Custom", "Marian-MT"], value="Custom", interactive=True)
                         checkboxes_langages = gr.CheckboxGroup(show_label=False, info="Languages", choices=["English", "French"], value=["English"], interactive=True)
                     # gr.Markdown("### Translation")
                     
@@ -150,7 +150,7 @@ def start_app():
         output_video_subs.change(
             show_progress='hidden',
             fn=change_video_subs,
-            inputs=[input_video, output_video_subs],
+            inputs=[output_video, output_video_subs],
             outputs=[output_video]
         )
         

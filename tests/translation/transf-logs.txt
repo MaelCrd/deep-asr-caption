@@ -1,0 +1,642 @@
+Original dataset size: 124543
+Filtered dataset size: 122714
+Processing epoch 00: 100%|██████████| 11045/11045 [1:09:03<00:00,  2.67it/s, loss=5.786]
+--------------------------------------------------------------------------------
+SOURCE: Fix, like all the world, had been mistaken in Phileas Fogg, and had only done his duty in tracking and arresting him; while he, Passepartout. . . .
+TARGET: Il n'en voulait plus à l'inspecteur de police. Fix s'était trompé comme tout le monde à l'égard de Phileas Fogg, et, en le filant, en l'arrêtant, il n'avait fait que son devoir, tandis que lui...
+PREDICTED: -- Il ne ne , il ne l ' il était pas , et il était pas , et il était pas , et il était pas , et le , et le .
+--------------------------------------------------------------------------------
+SOURCE: Jane's delicate sense of honour would not allow her to speak to Elizabeth privately of what Lydia had let fall; Elizabeth was glad of it;--till it appeared whether her inquiries would receive any satisfaction, she had rather be without a confidante.
+TARGET: Jane avait une délicatesse trop scrupuleuse pour reparler avec Elizabeth de ce que Lydia avait laissé échapper. Elizabeth n’en était pas fâchée.
+PREDICTED: -- Il ne ne ne ne pas pas de la , et il ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne pas pas pas pas pas pas pas pas pas pas pas de la .
+Processing epoch 01: 100%|██████████| 11045/11045 [1:09:58<00:00,  2.63it/s, loss=5.804]
+--------------------------------------------------------------------------------
+SOURCE: Ma gaieté n’est-elle pas toujours voisine de l’ironie ?… Je dirai plus, ici il faut être sincère, ma gaieté ne laisse-t-elle pas entrevoir, comme chose toute proche, le pouvoir absolu… et la méchanceté ?
+TARGET: My gaiety, does it not always border upon irony? ... I will go farther, I must be sincere with myself; does not my gaiety allow a glimpse to be caught, as of something quite close to it, of absolute power ... and irresponsibility?
+PREDICTED: " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+--------------------------------------------------------------------------------
+SOURCE: It takes three girls to tow always; two hold the rope, and the other one runs round and round, and giggles.
+TARGET: Le halage exige toujours trois demoiselles : deux tiennent la cordelle pendant que la troisieme court de-ci de-la en gloussant.
+PREDICTED: Il se , et les , et les , et les , et les , et les et les .
+Processing epoch 02: 100%|██████████| 11045/11045 [1:10:00<00:00,  2.63it/s, loss=4.804]
+--------------------------------------------------------------------------------
+SOURCE: This inexplicable individual acted like a mathematics professor working out a problem for his pupils.
+TARGET: Cet inexplicable personnage avait l'air d'un professeur de mathématiques qui fait une démonstration à ses élèves.
+PREDICTED: Le capitaine , un homme de la main , et il se à la main .
+--------------------------------------------------------------------------------
+SOURCE: "The woman who was here--the woman with the embroidered handkerchief."
+TARGET: -- La femme qui était ici, la femme au mouchoir brodé.
+PREDICTED: -- C ' est un homme qui est le capitaine , et le capitaine de la porte .
+Processing epoch 03: 100%|██████████| 11045/11045 [1:09:58<00:00,  2.63it/s, loss=4.854]
+--------------------------------------------------------------------------------
+SOURCE: Accordingly, I dug up a piece of ground as well as I could with my wooden spade, and dividing it into two parts, I sowed my grain; but as I was sowing, it casually occurred to my thoughts that I would not sow it all at first, because I did not know when was the proper time for it, so I sowed about two-thirds of the seed, leaving about a handful of each.
+TARGET: Les pluies étant passées et le soleil entrant en s'éloignant de moi dans sa position méridionale, je crus alors le temps propice pour faire mes semailles. Je bêchai donc une pièce de terre du mieux que je pus avec ma pelle de bois, et, l'ayant divisée en deux portions, je me mis à semer mon grain.
+PREDICTED: Je me à une grande fois , je me à mon oncle , et je me , je me , je me , et je me , je me , je me , je me , je me que je me , et je me à la vie , je ne me pas à la vie , et je ne me pas à la vie .
+--------------------------------------------------------------------------------
+SOURCE: "Is it possible?" cried Elizabeth, when she had finished.
+TARGET: – Est-ce possible ! s’écria Elizabeth en terminant sa lecture.
+PREDICTED: -- Et c ' est - elle ? s ' écria - elle , elle avait été été .
+Processing epoch 04: 100%|██████████| 11045/11045 [1:09:58<00:00,  2.63it/s, loss=5.590]
+--------------------------------------------------------------------------------
+SOURCE: The idea of some ghastly presence constantly haunted him, and on more than one occasion he has asked me whether I had on my medical journeys at night ever seen any strange creature or heard the baying of a hound.
+TARGET: L’idée d’une présence fantomatique le hantait ; plus d’une fois il m’a demandé si au cours de mes visites médicales nocturnes, je n’avais jamais rencontré une bête étrange ou si je n’avais pas entendu l’aboiement d’un chien.
+PREDICTED: La vie de la tête se , et il ne me pas de lui , je me dit que je me à une femme de plus de la vie , que j ' avais été été de la vie de la vie .
+--------------------------------------------------------------------------------
+SOURCE: "Mother, give us the dominoes."
+TARGET: Mère, donne-moi le jeu de dominos.
+PREDICTED: -- En effet , nous .
+Processing epoch 05: 100%|██████████| 11045/11045 [1:10:11<00:00,  2.62it/s, loss=4.718]
+--------------------------------------------------------------------------------
+SOURCE: The mother quieted her with a push--a good thing if it had killed her!
+TARGET: La mere la calma d'une bourrade: quelle bonne affaire, si elle s'était tuée du coup!
+PREDICTED: La mère lui fit sa main , un homme , si si si elle avait été si elle l ' avait été !
+--------------------------------------------------------------------------------
+SOURCE: "Maybe," the Canadian answered, "it would be better to hunt it down, in the interests of mealtime."
+TARGET: -- Peut-être, répliqua le Canadien ; mais, dans l'intérêt de la cuisine, il vaut mieux lui donner la chasse.
+PREDICTED: -- Sans doute , répondit le capitaine , il faut qu ' il y a l ' autre , en de .
+Processing epoch 06: 100%|██████████| 11045/11045 [1:10:08<00:00,  2.62it/s, loss=4.701]
+--------------------------------------------------------------------------------
+SOURCE: After a last consultation, the guide announced that he was ready for the attempt, and advanced, followed by the others.
+TARGET: Après une dernière conversation, le guide se dit prêt à partir. Mr.
+PREDICTED: Après un instant , le ciel , le roi se mit à l ' air de l ' autre , et , il était en deux , en deux , en deux , en deux , les deux autres .
+--------------------------------------------------------------------------------
+SOURCE: The travellers crossed, beyond Milligaum, the fatal country so often stained with blood by the sectaries of the goddess Kali.
+TARGET: Pendant cette matinée, au-delà de la station de Malligaum, les voyageurs traversèrent ce territoire funeste, qui fut si souvent ensanglanté par les sectateurs de la déesse Kâli.
+PREDICTED: Les colons s ' , les , les , les de la de la de l ' .
+Processing epoch 07: 100%|██████████| 11045/11045 [1:09:58<00:00,  2.63it/s, loss=4.743]
+--------------------------------------------------------------------------------
+SOURCE: "I want some, you know.
+TARGET: —J'en veux, tu sais.
+PREDICTED: -- Je vous ai un peu , vous savez .
+--------------------------------------------------------------------------------
+SOURCE: "Yes; according to a rather obscure law. It is well known that the weight of bodies diminishes as fast as we descend.
+TARGET: ---Oui, suivant une loi assez peu déterminée; il est vrai que l'intensité de la pesanteur diminuera à mesure que nous descendrons.
+PREDICTED: -- Oui , c ' est un peu , c ' est bien que le plus qui est par les .
+Processing epoch 08: 100%|██████████| 11045/11045 [1:09:02<00:00,  2.67it/s, loss=5.105]
+--------------------------------------------------------------------------------
+SOURCE: The boredom of married life inevitably destroys love, when love has preceded marriage.
+TARGET: L’ennui de la vie matrimoniale fait périr l’amour sûrement, quand l’amour a précédé le mariage.
+PREDICTED: La vie de la vie de la vie , quand on a été de la vie .
+--------------------------------------------------------------------------------
+SOURCE: Cyrus Harding alone waited with his habitual patience, although his strong mind was exasperated at being confronted with such an inexplicable fact, and he was provoked at himself for allowing a feeling to which he could not give a name, to gain an influence over him.
+TARGET: Quant à Nab, il avait fini par se dire que tout cela ne le regardait pas, que cela regardait son maître, et, s'il n'eût pas craint de désobliger ses compagnons, le brave nègre aurait dormi cette nuit-là tout aussi consciencieusement que s'il eût reposé sur sa couchette de Granite-House!
+PREDICTED: Cyrus Smith avait été déjà à son regard , bien que son âme était , et il était bien d ' une telle chose , et il était à lui - même , il ne pouvait se faire faire un homme qui ne pouvait pas faire le faire .
+Processing epoch 09: 100%|██████████| 11045/11045 [1:08:38<00:00,  2.68it/s, loss=5.278]
+--------------------------------------------------------------------------------
+SOURCE: "Now, sir, what a strange idea!"
+TARGET: -- Mais, monsieur, quelle étrange idée avez-vous eue là?
+PREDICTED: -- Maintenant , monsieur , que cette idée !
+--------------------------------------------------------------------------------
+SOURCE: A physician for himself, a headsman for others."
+TARGET: Un médecin pour lui, un bourreau pour les autres. »
+PREDICTED: Un lui - même , un pour les autres .
+Processing epoch 10: 100%|██████████| 11045/11045 [1:08:47<00:00,  2.68it/s, loss=4.128]
+--------------------------------------------------------------------------------
+SOURCE: She took them quickly from his hand and put them in a glass of water.
+TARGET: Elle et son fils pleurèrent beaucoup. Emma, sous prétexte d’ordres à donner, disparut.
+PREDICTED: Elle les mit à la main de sa main et les de l ' eau .
+--------------------------------------------------------------------------------
+SOURCE: "Certainly," replied Pencroft.
+TARGET: -- Certes, répondit Pencroff.
+PREDICTED: -- Sans doute , répondit Pencroff .
+Processing epoch 11: 100%|██████████| 11045/11045 [1:08:50<00:00,  2.67it/s, loss=4.523]
+--------------------------------------------------------------------------------
+SOURCE: The instruments indicated that it was running southward at a speed of twenty miles per hour and a depth of 100 meters.
+TARGET: Les instruments m'indiquèrent qu'il courait toujours vers le sud avec une vitesse de vingt milles à l'heure par une profondeur de cent mètres.
+PREDICTED: Les eaux qu ' il était vers une vitesse de vingt milles à vingt - cinq milles de vingt - cinq mètres .
+--------------------------------------------------------------------------------
+SOURCE: I took sudden courage. Answering her compassionate gaze with a smile, I said-
+TARGET: Je pris courage; répondant par un sourire à son regard plein de compassion, je lui dis:
+PREDICTED: Je me levai de courage ; je me mis à parler de son sourire avec un sourire .
+Processing epoch 12: 100%|██████████| 11045/11045 [1:08:58<00:00,  2.67it/s, loss=2.720]
+--------------------------------------------------------------------------------
+SOURCE: The bell of the telegraph at Granite House remained mute.
+TARGET: Le timbre de Granite-House resta muet.
+PREDICTED: La cloche du directeur de Granite - House resta immobile .
+--------------------------------------------------------------------------------
+SOURCE: Chapter 4
+TARGET: IV
+PREDICTED: CHAPITRE IV
+Processing epoch 13: 100%|██████████| 11045/11045 [1:08:54<00:00,  2.67it/s, loss=3.676]
+--------------------------------------------------------------------------------
+SOURCE: I felt myself hurled into the waves; and if I escaped from death, and if my body was not torn over the sharp edges of the rocks, it was because the powerful arm of Hans came to my rescue.
+TARGET: Je me sentis précipité dans les flots, et si j'échappai à la mort, si mon corps ne fut pas déchiré sur les rocs aigus, c'est que le bras vigoureux de Hans me retira de l'abîme.
+PREDICTED: Je me sentais dans les flots ; et si je m ' de mort , et si mon corps ne s ' était pas sur les roches des roches , il était parce que le bras de Hans fut pour mon bras .
+--------------------------------------------------------------------------------
+SOURCE: It would be better to forget everything.
+TARGET: Il vaudrait mieux tout oublier.
+PREDICTED: Il serait mieux de ne pas mieux .
+Processing epoch 14: 100%|██████████| 11045/11045 [1:08:58<00:00,  2.67it/s, loss=4.006]
+--------------------------------------------------------------------------------
+SOURCE: "Your Lordship must have observed that he could not continue his journey."
+TARGET: -- Mais Votre Seigneurie a dû remarquer qu'il n'a pas pu continuer sa route.
+PREDICTED: -- Votre Majesté doit avoir dit qu ' il ne pouvait pas se laisser quitter son voyage .
+--------------------------------------------------------------------------------
+SOURCE: The Nautilus resumed its underwater navigating; but at the moment of our noon sights, the sea was deserted and the ship rose again to its waterline.
+TARGET: Le _Nautilus_ reprit sa navigation sous-marine ; mais à midi, au moment du point, la mer étant déserte, il remonta jusqu'à sa ligne de flottaison.
+PREDICTED: Le _Nautilus_ reprit son port - ouest , mais au moment de notre midi , la mer était déserte et le navire se leva vers ses .
+Processing epoch 15: 100%|██████████| 11045/11045 [1:09:07<00:00,  2.66it/s, loss=3.857]
+--------------------------------------------------------------------------------
+SOURCE: "No, my dear Spilett," replied the engineer, "and I really do not know how to account for the incident of yesterday."
+TARGET: -- Non, mon cher Spilett, répondit l'ingénieur, et je ne sais vraiment comment expliquer l'incident d'hier!
+PREDICTED: -- Non , mon cher Spilett , répondit l ' ingénieur , et je ne sais pas comment faire le secret de l ' incident d ' hier .
+--------------------------------------------------------------------------------
+SOURCE: "St. John made you schoolmistress of Morton before he knew you were his cousin?"
+TARGET: «Saint-John, dit-il, vous avait fait obtenir cette place de maîtresse d'école avant de voir une cousine en vous?
+PREDICTED: -- Saint - John vous a fait une lettre de Thornfield , avant qu ' il vous savait que vous avez été son cousin ?
+Processing epoch 16: 100%|██████████| 11045/11045 [1:09:14<00:00,  2.66it/s, loss=3.481]
+--------------------------------------------------------------------------------
+SOURCE: Its slanting fins drew it to depths of 2,000 and 3,500 meters.
+TARGET: Ses plans inclinés l'entraînèrent jusqu'à des fonds de deux mille et trois mille cinq cents mètres.
+PREDICTED: Ses plans s ' à vingt - deux mille mètres de trois cents mètres .
+--------------------------------------------------------------------------------
+SOURCE: Having identified the animal, which they did not disturb, Gideon Spilett erased "bear" from the title of his sketch, putting koala in its place, and the journey was resumed.
+TARGET: Vérification faite de l'identité dudit animal, qu'on ne dérangea point de ses occupations, Gédéon Spilett effaça «ours» de la légende de son croquis, mit «koula» à la place, et la route fut reprise.
+PREDICTED: Après avoir l ' animal , qui ne pas , Gédéon Spilett , -- car , au besoin de son , dans sa place , et le voyage s ' était levé .
+Processing epoch 17: 100%|██████████| 11045/11045 [1:09:06<00:00,  2.66it/s, loss=5.444]
+--------------------------------------------------------------------------------
+SOURCE: "Yes, I was there, and lingered for a quarter of an hour or so.
+TARGET: -- Oui, j'y étais et j'y suis resté environ un quart d'heure.
+PREDICTED: -- Oui , j ' étais là , et il y avait un quart d ' heure ou d ' heure .
+--------------------------------------------------------------------------------
+SOURCE: Their brother is a pleasant gentlemanlike man--he is a great friend of Darcy's."
+TARGET: Leur frere est un homme aimable et bien élevé, et c’est le grand ami de Darcy.
+PREDICTED: Leur frère est un bon homme de , il est un grand ami de Darcy .
+Processing epoch 18: 100%|██████████| 11045/11045 [1:09:06<00:00,  2.66it/s, loss=3.674]
+--------------------------------------------------------------------------------
+SOURCE: He gave an order.
+TARGET: Un ordre fut donné.
+PREDICTED: Il donna un ordre .
+--------------------------------------------------------------------------------
+SOURCE: "That's my sister, you swine!
+TARGET: —C'est ma soeur, cochon!…
+PREDICTED: -- C ' est ma soeur , tu es !
+Processing epoch 19: 100%|██████████| 11045/11045 [1:09:08<00:00,  2.66it/s, loss=3.713]
+--------------------------------------------------------------------------------
+SOURCE: But he was going away, flying, vanishing, a tiny speck already, no morethan an imperceptible spot on the enormous vessel.
+TARGET: Mais il s'en allait, il fuyait, disparaissait, devenu déjà tout petit,effacé comme une tache imperceptible sur le gigantesque bâtiment.
+PREDICTED: Mais il allait , se , se , une petite déjà , pas un endroit sur l ' énorme embarcation .
+--------------------------------------------------------------------------------
+SOURCE: His smiling face struck the guests.
+TARGET: M. Hennebeau fut aussi tres aimable.
+PREDICTED: Sa figure se mit à sourire les invités .
+Processing epoch 20: 100%|██████████| 11045/11045 [1:09:06<00:00,  2.66it/s, loss=3.503]
+--------------------------------------------------------------------------------
+SOURCE: This was indeed all a cheat thus far, viz. that I had no intention to go to Virginia, as the account of my former affairs there may convince anybody of; but the business was to get this last #50 of him, if possible, knowing well enough it would be the last penny I was ever to expect.
+TARGET: Or, tout ceci était une duperie, en ce que je n'avais nulle intention d'aller en Virginie, ainsi que le récit des affaires que j'y avais eues, peut convaincre quiconque; mais l'objet était de tirer de lui ces dernières 50£, sachant fort bien que ce serait le dernier sou que j'aurais à attendre de lui.
+PREDICTED: Ce fut en effet une telle ainsi que je n ' avais point besoin de s ' aller à la caisse , comme le récit de mon enfance ; mais l ' affaire était pour le faire un peu de mes affaires de , si bien que le dernier de , si possible , il serait bien possible de le faire .
+--------------------------------------------------------------------------------
+SOURCE: It was a meagre supper.
+TARGET: C’était un maigre souper.
+PREDICTED: C ' était un souper grave .
+Processing epoch 21: 100%|██████████| 11045/11045 [1:09:04<00:00,  2.67it/s, loss=3.823]
+--------------------------------------------------------------------------------
+SOURCE: That’s ingenious," said Athos.
+TARGET: Voilà qui est ingénieux, dit Athos.
+PREDICTED: C ' est des histoires , dit Athos .
+--------------------------------------------------------------------------------
+SOURCE: Then, after a hasty luncheon, we turned the mares' heads for the south.
+TARGET: Ensuite on déjeuna à la hâte et on lança les juments sur la route du sud.
+PREDICTED: Puis , après un déjeuner rapide , nous les têtes de « vers le sud .
+Processing epoch 22: 100%|██████████| 11045/11045 [1:09:01<00:00,  2.67it/s, loss=3.811]
+--------------------------------------------------------------------------------
+SOURCE: She was panting, with legs aching from the hundred and two ladders, and with bleeding palms, when Maheude, seeing her, rushed forward with her hand up.
+TARGET: Et, les jambes cassées des cent deux échelles, les paumes saignantes, elle soufflait, lorsque la Maheude, en la voyant, s'élança, la main haute.
+PREDICTED: Elle était , les jambes des cent deux échelles , et , avec des , lorsque la Maheude , la voyant , s ' élança de la main .
+--------------------------------------------------------------------------------
+SOURCE: What do you want it for?"
+TARGET: Pourquoi le veux-tu?
+PREDICTED: Que voulez - vous faire ?
+Processing epoch 23: 100%|██████████| 11045/11045 [1:08:57<00:00,  2.67it/s, loss=4.136]
+--------------------------------------------------------------------------------
+SOURCE: His eyes, intently fixed, gazed into the Place.
+TARGET: Son œil fixe plongeait dans la place.
+PREDICTED: Ses yeux , fixement , regardaient la place .
+--------------------------------------------------------------------------------
+SOURCE: He drew from it also the double ladder, which he immediately set up against the gallows.
+TARGET: Il en retira aussi la double échelle qu’il appliqua sur-le-champ au gibet.
+PREDICTED: Il l ’ approcha de lui aussi la double échelle , qu ’ il se mit aussitôt contre le gibet .
+Processing epoch 24: 100%|██████████| 11045/11045 [1:08:51<00:00,  2.67it/s, loss=2.495]
+--------------------------------------------------------------------------------
+SOURCE: It was simply pouring with rain outside, and had been all day; and I couldn't quite make matters out.
+TARGET: Dehors, la pluie tombait a verse, et cela depuis le début de la journée. La chose m’intrigua.
+PREDICTED: Il était simplement simplement de ne pas s ' endormir , et il était tout le jour de la pluie , et je ne pouvais pas faire des choses .
+--------------------------------------------------------------------------------
+SOURCE: Dreadful animals that teem in these seas and make them extremely dangerous.
+TARGET: Terribles animaux qui pullulent dans ces mers et les rendent fort dangereuses.
+PREDICTED: Les animaux , qui ces mers , les et les font très dangereux .
+Processing epoch 25: 100%|██████████| 11045/11045 [1:08:46<00:00,  2.68it/s, loss=5.170]
+--------------------------------------------------------------------------------
+SOURCE: Julien admired Madame de Renal's looks, but hated her for her beauty; it was the first reef on which his fortune had nearly foundered.
+TARGET: Julien trouvait Mme de Rênal fort belle, mais il la haïssait à cause de sa beauté ; c’était le premier écueil qui avait failli arrêter sa fortune.
+PREDICTED: Julien admirait la mine de Mme de Rênal , mais la pour sa beauté ; c ’ était le premier écueil dont sa fortune avait presque .
+--------------------------------------------------------------------------------
+SOURCE: 'And your luggage?' said Julien, who thought that perhaps Geronimo himself might have been sent to intercept him.
+TARGET: – Et vos effets? dit Julien, qui pensait que peut-être Geronimo lui-même pouvait être envoyé pour l’intercepter.
+PREDICTED: – Et vos bagages ? dit Julien , qui croyait peut - être se faire chercher à l ’ .
+Processing epoch 26: 100%|██████████| 11045/11045 [1:08:39<00:00,  2.68it/s, loss=2.705]
+--------------------------------------------------------------------------------
+SOURCE: "And what did he say to you?"
+TARGET: --Et que vous a-t-il dit?
+PREDICTED: -- Et qu ' a - t - il dit ?
+--------------------------------------------------------------------------------
+SOURCE: "Then smoke these cigars whenever you like, without debating their origin.
+TARGET: -- Fumez donc à votre fantaisie, et sans discuter l'origine de ces cigares.
+PREDICTED: -- Alors ces fumée vous comme vous , sans doute , sans plus rien faire leur origine .
+Processing epoch 27: 100%|██████████| 11045/11045 [1:08:36<00:00,  2.68it/s, loss=3.508]
+--------------------------------------------------------------------------------
+SOURCE: In a moment the reporter and his two companions had crossed the corral and reached the gate of the palisade behind which Top was heard growling sullenly.
+TARGET: En un instant, le reporter et ses deux compagnons eurent traversé le corral et regagné la porte de la palissade, derrière laquelle on entendait Top gronder sourdement.
+PREDICTED: En un moment , le reporter et ses deux compagnons avaient franchi le corral , et , à midi , la porte de l ' enceinte palissadée , derrière lequel Top entendait entendre des cris de colère .
+--------------------------------------------------------------------------------
+SOURCE: "Ah! now you are coming to reality," I said, as I obeyed her. "I shall begin to put some faith in you presently."
+TARGET: -- Ah! vous approchez de la vérité, répondis-je en obéissant; je serai bientôt forcée de vous croire.»
+PREDICTED: -- Ah ! maintenant , vous allez être en réalité , dis - je en lui montrant ; je vais bien me mettre une foi en vous - même .
+Processing epoch 28: 100%|██████████| 11045/11045 [1:08:44<00:00,  2.68it/s, loss=2.597]
+--------------------------------------------------------------------------------
+SOURCE: So imprudent a match on both sides!
+TARGET: Quel mariage imprudent pour l’un comme pour l’autre !
+PREDICTED: Comme un tel mariage a deux côtés !
+--------------------------------------------------------------------------------
+SOURCE: "But an earthquake is always to be feared at these times," observed Gideon Spilett.
+TARGET: -- Mais un tremblement de terre est toujours à craindre dans ces conditions, fit observer Gédéon Spilett.
+PREDICTED: -- Mais un tremblement de terre est toujours à craindre , fit observer Gédéon Spilett .
+Processing epoch 29: 100%|██████████| 11045/11045 [1:08:53<00:00,  2.67it/s, loss=3.162]
+--------------------------------------------------------------------------------
+SOURCE: She comes from the other world--from the abode of people who are dead; and tells me so when she meets me alone here in the gloaming!
+TARGET: Elle arrive de l'autre monde, de la demeure de ceux qui sont morts, et ne craint pas de me le dire, lorsqu'elle me rencontre seul dans l'obscurité.
+PREDICTED: Elle vient de l ' autre monde , de l ' époque où sont morts , et me dit si elle m ' aura ici seul ici dans le théâtre du soleil !
+--------------------------------------------------------------------------------
+SOURCE: To hear and see the fight the whole night through, and never to pull a lanyard or take the tompions out of my guns.
+TARGET: Entendre et voir la bataille pendant toute la nuit, sans pouvoir tirer une seule bordée, sans même ôter le tampon d'un seul canon!
+PREDICTED: D ' entendre , voyez la paix toute la nuit , et jamais de ne pas tirer un ou prendre le de mes canons .
+Processing epoch 30: 100%|██████████| 11045/11045 [1:08:54<00:00,  2.67it/s, loss=2.876]
+--------------------------------------------------------------------------------
+SOURCE: "And yet, my dear Watson, there is so very close a connection that the one is extracted out of the other.
+TARGET: – Et cependant, mon cher Watson, le rapport est tel que l’un est tiré de l’autre.
+PREDICTED: – Et cependant , mon cher Watson , il y a tant de rapport à un rapport que l ’ on a l ’ autre .
+--------------------------------------------------------------------------------
+SOURCE: On the 1st of October the Lorraine from Saint-Nazaire, came into theharbour of Havre to sail on the 7th, bound for New York, and PierreRoland was to take possession of the little floating cabin in whichhenceforth his life was to be confined.
+TARGET: Le 1er octobre, la _Lorraine_, venant de Saint-Nazaire, entra auport du Havre, pour en repartir le 7 du même mois à destination deNew-York; et Pierre Roland dut prendre possession de la petite cabineflottante où serait désormais emprisonnée sa vie.
+PREDICTED: Le 1er octobre , la de Saint - , vint à le Havre au 7 , devait servir à New York , et de prendre possession de la petite cabine qui devait être .
+Processing epoch 31: 100%|██████████| 11045/11045 [1:09:03<00:00,  2.67it/s, loss=4.145]
+--------------------------------------------------------------------------------
+SOURCE: Besides, I use my supplementary ballast tanks only to reach an average depth of 1,500 to 2,000 meters, and that with a view to conserving my machinery.
+TARGET: D'ailleurs, je ne me sers des réservoirs supplémentaires que pour atteindre des profondeurs moyennes de quinze cent à deux mille mètres, et cela dans le but de ménager mes appareils.
+PREDICTED: D ' ailleurs , j ' en mes réservoirs , à une profondeur moyenne de quinze cents mètres , cinq cents mètres environ , et celui - ci , en vue , ne pouvant mon machine .
+--------------------------------------------------------------------------------
+SOURCE: Where can she be sleeping?
+TARGET: Où sera-t-elle couchée ?
+PREDICTED: Où peut - elle dormir ?
+Processing epoch 32: 100%|██████████| 11045/11045 [1:09:04<00:00,  2.67it/s, loss=2.966]
+--------------------------------------------------------------------------------
+SOURCE: Behold!"
+TARGET: Voyez ! »
+PREDICTED: Voilà qui est là ! »
+--------------------------------------------------------------------------------
+SOURCE: When the corn was sown, I had no harrow, but was forced to go over it myself, and drag a great heavy bough of a tree over it, to scratch it, as it may be called, rather than rake or harrow it.
+TARGET: Quand mon blé fut semé, je n'avais point de herse, je fus obligé de passer dessus moi-même et de traîner une grande et lourde branche derrière moi, avec laquelle, pour ainsi dire, j'égratignais la terre plutôt que je ne la hersais ou ratissais.
+PREDICTED: Quand le blé fut couvert , je n ' avais pas de , mais il fut forcé de m ' en aller , et de me une grande quantité de qui l ' , comme on peut l ' appeler , plutôt que ou .
+Processing epoch 33: 100%|██████████| 11045/11045 [1:09:04<00:00,  2.67it/s, loss=2.838]
+--------------------------------------------------------------------------------
+SOURCE: But, for my own part, I like the rapier.
+TARGET: Pour moi, je préfère la rapière.
+PREDICTED: Mais , pour moi , je vous aime comme le poing .
+--------------------------------------------------------------------------------
+SOURCE: It was nine miles as the crow flies, and eleven and a half by road, from Berwick to West Inch, and my heart grew heavy at the weary distance that separated me from my mother; for, mark you, a lad of that age pretends that he has no need of his mother's caresses, but ah, how sad he is when he is taken at his word!
+TARGET: J'avais le coeur gros en pensant à la distance qui me séparait de ma mère. Remarquez, en effet, qu'un garçon de cet âge, tout en prétendant se passer des caresses maternelles, souffre cruellement, hélas! quand on le prend au mot.
+PREDICTED: Il était neuf milles comme les , et onze heures à demi , à demi de Berwick à West Inch , et mon coeur s ' à la distance chaude de la distance qui me séparait de ma mère ; car , à la marque de cet âge , il n ' a pas besoin de sa mère , mais , comme il est triste quand il est entré à son mot !
+Processing epoch 34: 100%|██████████| 11045/11045 [1:09:07<00:00,  2.66it/s, loss=3.477]
+--------------------------------------------------------------------------------
+SOURCE: Si j’échoue, tout le blâme tombera naturellement sur moi ; mais j’y suis préparé. ?
+TARGET: If I fail I shall, of course, incur all the blame due to this omission; but that I am prepared for.
+PREDICTED: If I shall be , all the me to - t - on ; but I am in my own own part ?
+--------------------------------------------------------------------------------
+SOURCE: When there was a woman in a man's heart, that man was done for; he might die.
+TARGET: Quand il y avait une femme dans le coeur d'un homme, l'homme était fini, il pouvait mourir.
+PREDICTED: Quand il y eut une femme dans le coeur d ' un homme , cet homme était fini , il pouvait mourir .
+Processing epoch 35: 100%|██████████| 11045/11045 [1:09:16<00:00,  2.66it/s, loss=4.365]
+--------------------------------------------------------------------------------
+SOURCE: 'There'd been no wedding, on account of that poor silly girl having got into her head a thousand mad notions that she explained to us.
+TARGET: Il n’y a pas eu de noces. Puisque cette pauvre folle s’était mis dans la tête mille folies qu’elle nous a expliquées.
+PREDICTED: Il n ’ y a pas de noce , de ce pauvre enfant , ayant fait la tête mille idées de folie qu ’ elle expliquait .
+--------------------------------------------------------------------------------
+SOURCE: Elizabeth could not refuse, though she foresaw little pleasure in the visit.
+TARGET: Elizabeth ne pouvait refuser, bien que la perspective de cette visite la séduisît peu au premier abord.
+PREDICTED: Elizabeth ne put refuser , bien qu ’ elle éprouvait un peu de plaisir a la visite .
+Processing epoch 36: 100%|██████████| 11045/11045 [1:09:23<00:00,  2.65it/s, loss=3.103]
+--------------------------------------------------------------------------------
+SOURCE: Pencroft stayed the last in Granite House in order to finish this work, and he then lowered himself down by means of a double rope held below, and which, when once hauled down, left no communication between the upper landing and the beach.
+TARGET: Pencroff resta le dernier dans Granite-House pour achever cette besogne, et il en redescendit au moyen d'une corde dont le double était maintenu en bas, et qui, une fois ramenée au sol, ne laissa plus subsister aucune communication entre le palier supérieur et la grève.
+PREDICTED: Pencroff resta la dernière fois à Granite - House pour achever ce travail , et il se baissa alors au moyen d ' une double corde qui , quand , après avoir reçu , ne laissait aucune communication entre le palier et la grève .
+--------------------------------------------------------------------------------
+SOURCE: Captain Nemo called out.
+TARGET: Le capitaine Nemo appela.
+PREDICTED: Le capitaine Nemo appela .
+Processing epoch 37: 100%|██████████| 11045/11045 [1:09:20<00:00,  2.65it/s, loss=2.703]
+--------------------------------------------------------------------------------
+SOURCE: 'Details of the execution and of the last moments of Louis Jenrel, executed at Besancon, on the ...'
+TARGET: Détails de l’exécution et des derniers moments de Louis Jenrel, exécuté à Besançon, le…
+PREDICTED: – de l ’ exécution et des derniers moments de Louis , exécutés à Besançon , sur le …
+--------------------------------------------------------------------------------
+SOURCE: I don't know.
+TARGET: Je ne sais.
+PREDICTED: Je ne sais pas .
+Processing epoch 38: 100%|██████████| 11045/11045 [1:09:17<00:00,  2.66it/s, loss=2.406]
+--------------------------------------------------------------------------------
+SOURCE: "Be satisfied," replied Felton; "he will not sail."
+TARGET: -- Soyez tranquille, répondit Felton, il ne partira pas.»
+PREDICTED: -- Soyez tranquille , répondit Felton , il ne pas .
+--------------------------------------------------------------------------------
+SOURCE: He was naughty and obstinate. He would not take his physic unless I shared it with him.
+TARGET: Je couchais avec Camille: la nuit, je m'éloignais de lui, écoeurée par l'odeur fade qui sortait de son corps.
+PREDICTED: Il était si triste et entêté ; il ne voulut pas se mettre à la gorge si je le lui .
+Processing epoch 39: 100%|██████████| 11045/11045 [1:09:17<00:00,  2.66it/s, loss=3.057]
+--------------------------------------------------------------------------------
+SOURCE: 'Cisco was reached at seven in the morning; and an hour later the dormitory was transformed into an ordinary car, and the travellers could observe the picturesque beauties of the mountain region through which they were steaming.
+TARGET: Il était sept heures du matin quand fut traversée la station de Cisco. Une heure après, le dortoir était redevenu un wagon ordinaire et les voyageurs pouvaient à travers les vitres entrevoir les points de vue pittoresques de ce montagneux pays.
+PREDICTED: Les étaient arrivés à sept heures du matin ; et une heure après le dortoir était transformée en une disposition ordinaire , et les voyageurs purent observer les beautés de la montagne par laquelle ils furent .
+--------------------------------------------------------------------------------
+SOURCE: 'Please to observe,' he said to her, 'that you are speaking extremely loud; they will hear you in the next room.'
+TARGET: – Daignez remarquer, lui dit-il, que vous parlez très haut, on vous entendra de la pièce voisine.
+PREDICTED: « Pardon , » dit - il , que vous parlez fort haut , ils vous dans la chambre voisine .
+Processing epoch 40: 100%|██████████| 11045/11045 [1:09:08<00:00,  2.66it/s, loss=2.841]
+--------------------------------------------------------------------------------
+SOURCE: "Will Grace Poole live here still, sir?"
+TARGET: -- Grace Poole continuera-t-elle à demeurer ici, monsieur?
+PREDICTED: -- Grace Poole demeure toujours ici , monsieur ?
+--------------------------------------------------------------------------------
+SOURCE: "Let go her head, William!"
+TARGET: -- Lâchez la tête, William.
+PREDICTED: « Laissez - la la tête , Guillaume .
+Processing epoch 41: 100%|██████████| 11045/11045 [1:09:01<00:00,  2.67it/s, loss=2.564]
+--------------------------------------------------------------------------------
+SOURCE: Bonnemort and Mouque were both talking together, saying vague violent things which nobody heard.
+TARGET: Bonnemort et Mouque causaient a la fois, disaient des choses vagues et violentes, qu'on ne distinguait pas.
+PREDICTED: Bonnemort et Mouque causaient tous deux , en disant des vagues choses vagues qui ne l ' entendait .
+--------------------------------------------------------------------------------
+SOURCE: "He did.
+TARGET: – En effet.
+PREDICTED: -- Il l ' a fait .
+Processing epoch 42: 100%|██████████| 11045/11045 [1:08:49<00:00,  2.67it/s, loss=2.429]
+--------------------------------------------------------------------------------
+SOURCE: The carriage was ready: they were bringing it round to the front, and my master was pacing the pavement, Pilot following him backwards and forwards.
+TARGET: La voiture était prête, on l'amenait devant la maison; mon maître s'avançait vers elle, et Pilote l'accompagnait.
+PREDICTED: La voiture était prête ; ils le devant le trottoir , et mon maître le suivait en arrière , en courant et en avant .
+--------------------------------------------------------------------------------
+SOURCE: A figure was approaching us over the moor, and I saw the dull red glow of a cigar.
+TARGET: Un homme avançait en effet vers nous, j’aperçus la lueur rouge de son cigare.
+PREDICTED: Une figure s ’ approchait de nous sur la lande ; je vis la lueur sombre d ’ un cigare .
+Processing epoch 43: 100%|██████████| 11045/11045 [1:08:50<00:00,  2.67it/s, loss=2.965]
+--------------------------------------------------------------------------------
+SOURCE: Two crewmen carrying instruments, the captain, Conseil, and I were on board.
+TARGET: Le capitaine, deux de ses hommes portant les instruments, Conseil et moi, nous nous y embarquâmes.
+PREDICTED: Deux hommes de l ' équipage portaient des instruments , le capitaine Conseil , et moi , nous étions à bord .
+--------------------------------------------------------------------------------
+SOURCE: "It is of the order of ganoids, of the family of the cephalaspidae; and a species of pterichthys. But this one displays a peculiarity confined to all fishes that inhabit subterranean waters. It is blind, and not only blind, but actually has no eyes at all."
+TARGET: --A l'ordre des Ganoïdes, famille des Céphalaspides, genre... --Eh bien? --Genre des Pterychtis, j'en jurerais; mais celui-ci offre une particularité qui, dit-on, se rencontre chez les poissons des eaux souterraines. --Laquelle? --Il est aveugle! --Aveugle! --Non seulement aveugle, mais l'organe de la vue lui manque absolument.»
+PREDICTED: -- C ' est l ' ordre des , de la famille des , et une espèce de ; mais cette espèce de est à tous poissons qui habitent les poissons souterrains ; c ' est aveugle et non seulement , mais qui n ' a pas les yeux .
+Processing epoch 44: 100%|██████████| 11045/11045 [1:08:51<00:00,  2.67it/s, loss=3.097]
+--------------------------------------------------------------------------------
+SOURCE: "Since the tide will be sufficient," Conseil replied simply.
+TARGET: Puisque la marée suffira ! » répondit simplement Conseil.
+PREDICTED: -- Puisque la marée sera assez suffisante , répondit simplement Conseil .
+--------------------------------------------------------------------------------
+SOURCE: "No doubt," replied Herbert; "but what can two rifles do against the brig's guns?"
+TARGET: -- Sans doute, répondit Harbert, mais que pourraient faire deux carabines contre les canons du brick? -- Eh!
+PREDICTED: -- Sans doute , répondit Harbert , mais ce qui peut faire deux fusils contre les canons du brick ?
+Processing epoch 45: 100%|██████████| 11045/11045 [1:08:52<00:00,  2.67it/s, loss=2.665]
+--------------------------------------------------------------------------------
+SOURCE: 'If I speak, she can no longer doubt the intensity of my emotion, the sound of my voice will betray me, all may be lost once more.'
+TARGET: Si je parle, elle ne peut plus douter de l’excès de mon émotion, le son de ma voix me trahira, tout peut être perdu encore.
+PREDICTED: Si je parle , elle ne peut plus douter l ’ excès de mon émotion , le son de ma voix me , tout sera perdu de nouveau .
+--------------------------------------------------------------------------------
+SOURCE: My arms were round her, and I was kissing her, and kissing her, and kissing her, on her mouth, her cheeks, her eyes, and pressing her to my heart, and whispering to her that she was all, all, to me, and that I could not be without her.
+TARGET: Je la pressai contre mon coeur. Je lui dis bien bas quelle était tout pour moi, tout, et que je ne pouvais pas vivre sans elle.
+PREDICTED: Mes bras se , et je l ' embrassai , je la baisait , et la baisa , sur sa bouche , les yeux , les yeux et lui serrant du coeur , et lui disant :
+Processing epoch 46: 100%|██████████| 11045/11045 [1:08:46<00:00,  2.68it/s, loss=3.382]
+--------------------------------------------------------------------------------
+SOURCE: The party did not supply much conversation.
+TARGET: La conversation n’était pas tres animée.
+PREDICTED: La partie ne dura pas .
+--------------------------------------------------------------------------------
+SOURCE: Afterwards the ladies discussed a recipe with respect to the pineapple which was declared equally exquisite.
+TARGET: Ensuite, les dames discuterent une recette, au sujet de l'ananas, qu'on déclara également exquis.
+PREDICTED: Ensuite , les dames une recette , avec respect aux qui furent également charmantes .
+Processing epoch 47: 100%|██████████| 11045/11045 [1:08:44<00:00,  2.68it/s, loss=2.723]
+--------------------------------------------------------------------------------
+SOURCE: And mouldy cheese to boot! Come on!
+TARGET: Du fromage moisi par-dessus le marché !
+PREDICTED: Et pour soulier !
+--------------------------------------------------------------------------------
+SOURCE: "Gräuben!" I murmured.
+TARGET: «Graüben! m'écriai-je.
+PREDICTED: « Graüben !» murmurai - je .
+Processing epoch 48: 100%|██████████| 11045/11045 [1:08:40<00:00,  2.68it/s, loss=2.179]
+--------------------------------------------------------------------------------
+SOURCE: "For at least two hundred and fifty or three hundred years."
+TARGET: -- Au moins deux cent cinquante ou trois cents ans.
+PREDICTED: -- Pour le moins , deux cent cinquante ou trois cents ans .
+--------------------------------------------------------------------------------
+SOURCE: Determined to put the advice of M. de Treville in practice instantly, d’Artagnan directed his course toward the Rue des Fossoyeurs, in order to superintend the packing of his valise.
+TARGET: Décidé à mettre les conseils de M. de Tréville en pratique à l'instant même, d'Artagnan s'achemina vers la rue des Fossoyeurs, afin de veiller à la confection de son portemanteau.
+PREDICTED: En arrivant à mettre le conseil de M . de Tréville en hâte , d ' Artagnan se dirigea vers la rue des Fossoyeurs , afin d ' y aller rejoindre les de sa valise .
+Processing epoch 49: 100%|██████████| 11045/11045 [1:08:42<00:00,  2.68it/s, loss=2.753]
+--------------------------------------------------------------------------------
+SOURCE: Lizzy, my dear, run down to your father, and ask him how much he will give her.
+TARGET: Lizzy, mon enfant, courez demander a votre pere combien il lui donnera.
+PREDICTED: Lizzy , ma chere Lizzy , allez vous demander combien il la rendra grande opinion .
+--------------------------------------------------------------------------------
+SOURCE: D’Artagnan crossed the quays, went out by the gate of La Conference and followed the road, much more beautiful then than it is now, which leads to St. Cloud.
+TARGET: D'Artagnan traversa les quais, sortit par la porte de la Conférence et suivit alors le chemin, bien plus beau alors qu'aujourd'hui, qui mène à Saint-Cloud.
+PREDICTED: D ' Artagnan traversa les quais , sortit par la porte de La et suivit la route , beaucoup plus belle encore qu ' il est maintenant qui conduit à Saint - Cloud .
+Processing epoch 50: 100%|██████████| 11045/11045 [1:08:55<00:00,  2.67it/s, loss=2.675]
+--------------------------------------------------------------------------------
+SOURCE: "Do not stir!" said Gudule.
+TARGET: « Ne bouge pas ! » dit Gudule.
+PREDICTED: – Ne pas ! dit Gudule .
+--------------------------------------------------------------------------------
+SOURCE: "My friends," said Cyrus Harding, in a voice of the profoundest emotion, "may the God of mercy have had pity on the soul of Captain Nemo, our benefactor."
+TARGET: -- Mes amis, dit Cyrus Smith d'une voix profondément émue, que le dieu de toutes les miséricordes reçoive l'âme du capitaine Nemo, notre sauveur!»
+PREDICTED: « Mes amis , dit Cyrus Smith , d ' une voix profonde , peut - être que Dieu ayez pitié de Dieu ait eu pitié de l ' âme du capitaine Nemo , notre bienfaiteur .
+Processing epoch 51: 100%|██████████| 11045/11045 [1:08:55<00:00,  2.67it/s, loss=1.547]
+--------------------------------------------------------------------------------
+SOURCE: On the next day, the 19th of December, the masts, rafts, and spars were burned; the crew worked lustily, keeping up the fires.
+TARGET: Le lendemain, 19 décembre, on brûla la mâture, les dromes, les esparres. On abattit les mâts, on les débita à coups de hache.
+PREDICTED: Le lendemain , 19 décembre , les mâts , les mâts , les débris furent brûlés , les débris furent brûlé ; l ' équipage , , se sur les feux .
+--------------------------------------------------------------------------------
+SOURCE: Lydia, my love, ring the bell--I must speak to Hill this moment."
+TARGET: Lydia, mon amour, sonnez vite ! Il faut que je parle tout de suite a la cuisiniere.
+PREDICTED: Lydia , mon amour , la cloche du ring , il faut que je parle Hill en ce moment .
+Processing epoch 52: 100%|██████████| 11045/11045 [1:09:04<00:00,  2.66it/s, loss=2.083]
+--------------------------------------------------------------------------------
+SOURCE: On mature reflection, she had decided that he was a creature, if not altogether common, at any rate not sufficiently conspicuous to deserve all the strange follies which she had ventured to commit for him.
+TARGET: En y pensant mûrement, elle avait décidé que c’était un être, si ce n’est tout à fait commun, du moins ne sortant pas assez de la ligne pour mériter toutes les étranges folies qu’elle avait osées pour lui.
+PREDICTED: Cette réflexion terminée , elle avait décidé qu ’ il était une créature , si elle n ’ était pas tout entière , à tout dire , ne pas assez en apparence , pour mériter toutes les folies étranges qu ’ elle lui avait .
+--------------------------------------------------------------------------------
+SOURCE: 'You've no right to grow here,' said the Dormouse.
+TARGET: « Vous n’avez pas le droit de grandir ici, » dit le Loir.
+PREDICTED: « Vous n ’ avez pas le droit de vous en tenir , » dit le Loir .
+Processing epoch 53: 100%|██████████| 11045/11045 [1:09:06<00:00,  2.66it/s, loss=3.214]
+--------------------------------------------------------------------------------
+SOURCE: During the night the engineer could not dream of descending, and when day broke, even a glimpse of the earth below was intercepted by fog.
+TARGET: L'ingénieur, pendant la nuit, ne put songer à descendre, et quand le jour vint, toute vue de la terre lui était interceptée par les brumes.
+PREDICTED: Pendant la nuit , l ' ingénieur ne pouvait songer à descendre , et , quand le jour eut fini , on apercevait le brouillard au - dessous de la terre .
+--------------------------------------------------------------------------------
+SOURCE: "She has nothing, in short, to recommend her, but being an excellent walker.
+TARGET: – Il faut lui reconnaître une qualité, celle d’etre une excellente marcheuse.
+PREDICTED: -- Elle n ' a rien , en somme , pour lui recommander le , mais un excellent .
+Processing epoch 54: 100%|██████████| 11045/11045 [1:09:12<00:00,  2.66it/s, loss=2.745]
+--------------------------------------------------------------------------------
+SOURCE: See that the triggers are oiled, Ambrose, for I love a light pull.
+TARGET: Ambroise, veillez à ce que les chiens soient huilés, car j'aime une détente légère.
+PREDICTED: Voyez - vous que les sont , Ambroise , car j ' aime la lumière .
+--------------------------------------------------------------------------------
+SOURCE: He made no further attempt, that evening, to approach the blue sofa to which Mathilde was faithful.
+TARGET: Il n’essaya plus de s’approcher, le soir, du canapé bleu, auquel Mathilde était fidèle.
+PREDICTED: Il ne fit pas plus de tentative , ce soir - là , pour s ’ approcher du canapé bleu à laquelle Mathilde était fidèle .
+Processing epoch 55: 100%|██████████| 11045/11045 [1:09:19<00:00,  2.66it/s, loss=2.420]
+--------------------------------------------------------------------------------
+SOURCE: It looks like part of a wreck half buried in the sand."
+TARGET: On dirait une épave à demi enfoncée dans le sable.
+PREDICTED: Il semble qu ' un rôle de débris de naufrage dans le sable , mort !»
+--------------------------------------------------------------------------------
+SOURCE: Un sot trouve toujours un plus sot qui l’admire.
+TARGET: 'Un sot trouve toujours un plus sot qui l'admire.'"
+PREDICTED: A fool is always a fool for a fool who the admirer .
+Processing epoch 56: 100%|██████████| 11045/11045 [1:09:29<00:00,  2.65it/s, loss=2.620]
+--------------------------------------------------------------------------------
+SOURCE: There, between its leaflike folds, I saw a loose pearl as big as a coconut.
+TARGET: Là, entre les plis foliacés, je vis une perle libre dont la grosseur égalait celle d'une noix de cocotier.
+PREDICTED: Là , entre ses plis , je vis une perle aussi grosse que un _Shannon_ .
+--------------------------------------------------------------------------------
+SOURCE: The columns and squadrons which had stood so squarely all day were now all ragged at the edges; and where there had been thick fringes of skirmishers in front, there were now a spray of stragglers in the rear.
+TARGET: Les colonnes et les escadrons, qui avaient tenu bon si carrément pendant tout le jour, offraient maintenant des vides sur les bords. Au lieu d'avoir, en avant, une forte ligne de tirailleurs, elles avaient, à l'arrière, un éparpillement de traînards.
+PREDICTED: Les colonnes et les qui avaient tenu si carrément tous les jours se trouvaient maintenant en lambeaux sur les bords . Il y avait de larges plaques de cristal en face , et il y avait maintenant une épaisse poussière de nuit , qui s ' étendait au - dessus de la queue .
+Processing epoch 57: 100%|██████████| 11045/11045 [1:09:30<00:00,  2.65it/s, loss=2.489]
+--------------------------------------------------------------------------------
+SOURCE: "Yes, sir."
+TARGET: -- Oui, monsieur.
+PREDICTED: -- Oui , monsieur .
+--------------------------------------------------------------------------------
+SOURCE: That evening, they were seated in silence round the domestic hearth; the crackle of the blazing beech logs was their sole distraction.
+TARGET: Le soir, on était assis en silence autour du foyer domestique ; le bruit du hêtre enflammé était la seule distraction.
+PREDICTED: Le soir , on s ’ asseyait dans le silence autour du foyer domestique ; le de la des bois était leur seule distraction .
+Processing epoch 58: 100%|██████████| 11045/11045 [1:09:28<00:00,  2.65it/s, loss=2.548]
+--------------------------------------------------------------------------------
+SOURCE: Passing near these unusual animals, I could examine them at my leisure since they didn't stir.
+TARGET: En passant auprès de ces curieux animaux, je pus les examiner à loisir, car ils ne se dérangeaient pas.
+PREDICTED: Je passais près de ces curieux animaux , à mon tour , car ils ne se pas .
+--------------------------------------------------------------------------------
+SOURCE: It was a long two minutes before he spoke.
+TARGET: Deux longues minutes se passèrent avant qu'il parlât.
+PREDICTED: Il y eut deux minutes , avant qu ' il parlait .
+Processing epoch 59: 100%|██████████| 11045/11045 [1:09:31<00:00,  2.65it/s, loss=2.415]
+--------------------------------------------------------------------------------
+SOURCE: "But, captain--" answered the sailor, little disposed to obey.
+TARGET: -- Mais, Monsieur Cyrus... répliqua le marin, peu disposé à obéir.
+PREDICTED: -- Mais , Monsieur Cyrus ... répondit le marin , peu disposé à obéir .
+--------------------------------------------------------------------------------
+SOURCE: 'What guarantee, what god will assure me that the position which you seem disposed to restore to me at this moment will last for more than two days?'
+TARGET: Quelle garantie, quel dieu me répondra que la position que vous semblez disposée à me rendre en cet instant vivra plus de deux jours?
+PREDICTED: Quelle garantie , quel dieu me - t - il que la position que vous me de me rendre compte en ce moment plus de deux jours ?
+Processing epoch 60: 100%|██████████| 11045/11045 [1:09:30<00:00,  2.65it/s, loss=2.352]
+--------------------------------------------------------------------------------
+SOURCE: With this sublime conclusion, Mr. Brocklehurst adjusted the top button of his surtout, muttered something to his family, who rose, bowed to Miss Temple, and then all the great people sailed in state from the room.
+TARGET: Après cette sublime conclusion, M. Brockelhurst attacha le dernier bouton de son pardessus et dit quelque chose tout bas à sa famille. Celle-ci se leva, salua Mlle Temple et quitta cérémonieusement la salle d'étude.
+PREDICTED: À cette sublime conclusion , M . Brockelhurst prit le bouton du , murmura quelque chose à sa famille , qui s ' était levée , et s ' inclina vers Mlle Temple , et alors tout le grand monde s ' était mis en état .
+--------------------------------------------------------------------------------
+SOURCE: And he made them do it, too. He told them that that sort of thing was half the fun of a picnic.
+TARGET: Il leur posa une pile d’assiettes dans les bras, leur affirmant que la vaisselle faisait partie des agréments du pique-nique.
+PREDICTED: Et il les fit aussi , il leur dit que cette espèce de plaisir était moitié la moitié de la coupe a terre .
+Processing epoch 61: 100%|██████████| 11045/11045 [1:09:19<00:00,  2.66it/s, loss=3.190]
+--------------------------------------------------------------------------------
+SOURCE: "It remains for me, then," he said, "to remember you in my prayers, and to entreat God for you, in all earnestness, that you may not indeed become a castaway.
+TARGET: -- Alors, reprit-il, il ne me reste qu'à me souvenir de vous dans mes prières et à supplier Dieu du fond de mon coeur qu'il ne fasse pas de vous une réprouvée.
+PREDICTED: -- Il me reste donc pour moi , dit - il , de vous rappeler mes prières , et de vous prier Dieu de tout sérieux , que vous ne pouvez pas être un naufragé .
+--------------------------------------------------------------------------------
+SOURCE: "Where, then, is Chaval?" asked Pieron.
+TARGET: —Ou donc est Chaval? demanda Pierron.
+PREDICTED: — Ou donc , Chaval ? demanda - t - il .
+Processing epoch 62: 100%|██████████| 11045/11045 [1:09:18<00:00,  2.66it/s, loss=1.710]
+--------------------------------------------------------------------------------
+SOURCE: "Yes, your honour; a pilot-boat--No. 43--the best in the harbour."
+TARGET: -- Oui, Votre Honneur, un bateau-pilote n° 43, le meilleur de la flottille.
+PREDICTED: -- Oui , votre honneur , un bateau de pilote , pas un ; le meilleur était dans le port .
+--------------------------------------------------------------------------------
+SOURCE: But it must be acknowledged that the most successful portrait was incontestably that of Master Jup.
+TARGET: Mais, il faut le dire, le portrait le mieux réussi fut incontestablement celui de maître Jup.
+PREDICTED: Mais il faut avouer que le plus réussir était celui du portrait celui de maître Jup .
+Processing epoch 63: 100%|██████████| 11045/11045 [1:09:14<00:00,  2.66it/s, loss=2.563]
+--------------------------------------------------------------------------------
+SOURCE: For he stood there, his hands hanging down and his eyes wide open, as if enmeshed in the innumerable threads of a sudden reverie.
+TARGET: Car il restait debout, les mains pendantes et les yeux ouverts, comme enlacé dans les fils innombrables d’une rêverie soudaine.
+PREDICTED: Car il restait là , les mains suspendus , les yeux grands , comme si les aux innombrables fils d ’ une rêverie subite .
+--------------------------------------------------------------------------------
+SOURCE: "I'm speaking in a general way; we shall see later.
+TARGET: —Je parle en général, on verra plus tard…
+PREDICTED: -- Je parle en général , nous verrons plus tard .
+Processing epoch 64: 100%|██████████| 11045/11045 [1:09:12<00:00,  2.66it/s, loss=2.639]
+--------------------------------------------------------------------------------
+SOURCE: Qu’on juge de l’émotion de la duchesse, lorsque tout à fait vers la fin du concert elle remarqua un homme en livrée de chasseur, debout près de la porte du grand salon ; cette tournure rappelait quelqu’un.
+TARGET: We may imagine the Duchessa's emotion when, right at the end of the concert, she noticed a man in the full livery of a chasseur, standing by the door of the big drawing-room: that pose reminded her of someone.
+PREDICTED: One may judge of the Duchessa ' s emotion , when suddenly , towards the end of the concert , she noticed a man in livery , standing near the door of the great room ; this recalled the one of one .
+--------------------------------------------------------------------------------
+SOURCE: He has a half-smile, and a way of raising his eyebrows, for which he will be shot one of these mornings.
+TARGET: Avec son demi-sourire, sa façon de remonter les sourcils, il se fera tirer une balle dans le corps, un de ces matins.
+PREDICTED: Il a un demi - sourire , et , d ' un bond , lui levant les sourcils , car il fera un de ces matins .
+Processing epoch 65: 100%|██████████| 11045/11045 [1:09:07<00:00,  2.66it/s, loss=3.271]
+--------------------------------------------------------------------------------
+SOURCE: "I think I am able to try it," replied the engineer, who, without much effort, rose and stood upright.
+TARGET: -- Je crois être en état de l'essayer, répondit l'ingénieur, qui, sans trop d'efforts, se leva et se tint debout.
+PREDICTED: -- Je crois pouvoir essayer de le voir , répondit l ' ingénieur , qui , sans effort , se leva et se tenait debout .
+--------------------------------------------------------------------------------
+SOURCE: 'So it lies within the power of the lowest of mankind to work me up like this!' he said angrily to himself.
+TARGET: Ainsi il est au pouvoir du dernier des hommes de m’émouvoir à ce point! se disait-il avec rage.
+PREDICTED: Ainsi se trouve - t - il dans la puissance du dernier des hommes à m ’ occuper de lui ! se disait - il avec colère .
+Processing epoch 66: 100%|██████████| 11045/11045 [1:09:04<00:00,  2.66it/s, loss=2.608]
+--------------------------------------------------------------------------------
+SOURCE: As soon as the first gleam of light appeared in the east, the colonists, suitably armed, repaired to the beach under Granite House.
+TARGET: Dès que les premières lueurs du jour s'élevèrent dans l'est, les colons, convenablement armés, se rendirent sur le rivage, à la lisière des récifs.
+PREDICTED: Dès que la première lueur du jour parut être dans l ' est , les colons , armés , jusqu ' à la grève sous Granite - House .
+--------------------------------------------------------------------------------
+SOURCE: The sun was shining in upon them through a side-window, and I can see the three faces now--one in the dusk, one in the light, and one cut across by the shadow.
+TARGET: Le soleil les éclairait par une fenêtre latérale et je me rappelle encore très bien leurs physionomies, l'une dans le demi-jour, l'autre en pleine lumière, et la troisième, à moitié dans l'ombre, à moitié au soleil.
+PREDICTED: Le soleil était brillant d ' elles à travers une fenêtre de côté , et je vois les trois visages maintenant : une à la nuit , une à la lumière , une à la lumière et une coupée par l ' ombre .
+Processing epoch 67: 100%|██████████| 11045/11045 [1:08:53<00:00,  2.67it/s, loss=2.219]
+--------------------------------------------------------------------------------
+SOURCE: "Mates! to-morrow morning at Jean-Bart, is it agreed?"
+TARGET: —Camarades! demain matin, a Jean-Bart, est-ce convenu?
+PREDICTED: — Camarades … demain matin a Jean - Bart , est - ce convenu ?
+--------------------------------------------------------------------------------
+SOURCE: — Peu importe ! répondis-je. J’ai consigné toute cette histoire dans mon journal et le public en aura connaissance.
+TARGET: "Never mind," I answered, "I have all the facts in my journal, and the public shall know them.
+PREDICTED: " Never mind ," I answered ; " I have all this story in my paper and the public will have .
+Processing epoch 68: 100%|██████████| 11045/11045 [1:08:52<00:00,  2.67it/s, loss=2.413]
+--------------------------------------------------------------------------------
+SOURCE: "At any rate, since we must leave Granite House for a long expedition, I think the 'Bonadventure' will be safer here during our absence, and we shall do best to leave her here until the island is rid of these blackguards."
+TARGET: En tout cas, puisque nous devons quitter Granite-House pour une assez longue expédition, je crois que le Bonadventure sera plus en sûreté ici pendant notre absence, et que nous ferons bien de l'y laisser jusqu'à ce que l'île soit purgée de ces coquins.
+PREDICTED: -- En tout cas , puisque nous devons quitter Granite - House pour une longue expédition , je pense que le Bonadventure sera plus en sûreté pendant notre absence , et nous ferons mieux de la quitter ici jusqu ' à l ' île , jusqu ' à ce que l ' île soit débarrassé de ces gueux .»
+--------------------------------------------------------------------------------
+SOURCE: Over my head ragged clouds were drifting past, and by an optical inversion they seemed stationary, while the steeple, the ball and I were all spinning along with fantastic speed.
+TARGET: Au-dessus de ma tête passaient des nuages échevelés, et, par un renversement d'optique, ils me paraissaient immobiles, tandis que le clocher, la boule, moi, nous étions entraînés avec une fantastique vitesse.
+PREDICTED: Sur ma tête , des nuages se ; et , par une d ' optique , ils semblaient immobiles , tandis que le clocher , la balle et moi nous tous les points d ' une vitesse fantastique .
+Processing epoch 69: 100%|██████████| 11045/11045 [1:08:58<00:00,  2.67it/s, loss=2.843]
+--------------------------------------------------------------------------------
+SOURCE: She hardly knew how to suppose that she could be an object of admiration to so great a man; and yet that he should look at her because he disliked her, was still more strange.
+TARGET: Darcy se fixait souvent sur elle. Il était impossible qu’elle inspirât un intéret flatteur a ce hautain personnage !
+PREDICTED: Elle savait à peine si elle pouvait avoir l ’ admiration d ’ un homme aussi grand , et cependant qu ’ il lui fallait la regarder parce qu ’ il lui était inspiré encore plus étrange .
+--------------------------------------------------------------------------------
+SOURCE: "Tomorrow, at midday, Treville."
+TARGET: -- Demain à midi, Tréville.
+PREDICTED: -- Demain , à midi , Tréville .
+Processing epoch 70: 100%|██████████| 11045/11045 [1:09:03<00:00,  2.67it/s, loss=3.176]
+--------------------------------------------------------------------------------
+SOURCE: Leon, bewildered by Emma's anger, Monsieur Homais' chatter, and, perhaps, by the heaviness of the luncheon, was undecided, and, as it were, fascinated by the chemist, who kept repeating—
+TARGET: Léon, étourdi par la colère d’Emma, le bavardage de M. Homais et peut-être les pesanteurs du déjeuner, restait indécis et comme sous la fascination du pharmacien qui répétait:
+PREDICTED: Léon , éperdu de colère , la colère de M . Homais , et peut - être , par la pesanteur du déjeuner , était indécis , et comme il était , fasciné par le pharmacien , qui répétait :
+--------------------------------------------------------------------------------
+SOURCE: "The writing of Madame de Chevreuse!" said Milady to herself.
+TARGET: «L'écriture de Mme de Chevreuse! se dit en elle-même Milady.
+PREDICTED: -- L ' écriture de Mme de Chevreuse ! se dit Milady .
+Processing epoch 71:  48%|████▊     | 5285/11045 [12:55:31<14:05:13,  8.80s/it, loss=2.502]
