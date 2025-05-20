@@ -84,3 +84,5 @@ Ce projet est sous licence MIT.
 - Virgil P.
 
 *Projet réalisé dans le cadre du cours d'Apprentissage profond à l'Université du Québec à Chicoutimi (UQAC).*
+
+
